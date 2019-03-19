@@ -1,4 +1,4 @@
-package com.proppensi.winscore.repository;
+package com.propensi.winscore.repository;
 
 import org.springframework.stereotype.Repository;
 
