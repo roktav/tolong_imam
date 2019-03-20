@@ -19,4 +19,27 @@ public class ProvinsiModel implements Serializable {
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY, cascade= CascadeType.PERSIST)
 	private List<KabKotaModel> listKabKota;
 
+    public long getId_provinsi() {
+        return id_provinsi;
+    }
+
+    public void setId_provinsi(long id_provinsi) {
+        this.id_provinsi = id_provinsi;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public List<KabKotaModel> getListKabKota() {
+        return listKabKota;
+    }
+
+    public void setListKabKota(List<KabKotaModel> listKabKota) {
+        this.listKabKota = listKabKota;
+    }
 }

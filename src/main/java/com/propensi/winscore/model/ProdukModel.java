@@ -15,12 +15,12 @@ public class ProdukModel implements Serializable {
 	private long id_produk;
 
 	@OneToOne
-	@JoinColumn(name = "id_garansi")
-	private long id_garansi;
+	@JoinColumn(name = "id_garansi", referencedColumnName = "id_garansi")
+	private GaransiModel id_garansi;
 
 	@OneToOne
-	@JoinColumn(name = "id_promosi")
-	private long id_promosi;
+	@JoinColumn(name = "id_promosi", referencedColumnName = "id_promosi")
+	private PromosiModel id_promosi;
 
 	@NotNull
 	@Size(max = 50)

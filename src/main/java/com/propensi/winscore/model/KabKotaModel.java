@@ -20,7 +20,7 @@ public class KabKotaModel implements Serializable {
 	private List<KecamatanModel> listKecamatan;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_provinsi", referencedColumnName="id",nullable = false)
+	@JoinColumn(name="id_provinsi", referencedColumnName="id_provinsi",nullable = false)
 	@OnDelete(action= OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private ProvinsiModel provinsi;
@@ -29,4 +29,35 @@ public class KabKotaModel implements Serializable {
 	@Column(name = "nama", nullable = false)
 	private String nama;
 
+    public long getId_kabkota() {
+        return id_kabkota;
+    }
+
+    public void setId_kabkota(long id_kabkota) {
+        this.id_kabkota = id_kabkota;
+    }
+
+    public List<KecamatanModel> getListKecamatan() {
+        return listKecamatan;
+    }
+
+    public void setListKecamatan(List<KecamatanModel> listKecamatan) {
+        this.listKecamatan = listKecamatan;
+    }
+
+    public ProvinsiModel getProvinsi() {
+        return provinsi;
+    }
+
+    public void setProvinsi(ProvinsiModel provinsi) {
+        this.provinsi = provinsi;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
 }

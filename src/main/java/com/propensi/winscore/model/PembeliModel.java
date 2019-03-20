@@ -8,11 +8,28 @@ import java.io.Serializable;
 @Table(name= "pembeli")
 public class PembeliModel implements Serializable {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_pembeli;
+	@OneToOne
+	@JoinColumn(name = "id_pembeli",  referencedColumnName="id_user")
+	private UserModel id_pembeli;
 	
 	@NotNull
-	@Column(name = "id_kecamatan", nullable = false)
-	private String id_kecamatan;
+	@OneToOne
+	@JoinColumn(name = "id_kecamatan",  referencedColumnName="id_kecamatan")
+	private KecamatanModel kecamatan;
 
+	public UserModel getId_pembeli() {
+		return id_pembeli;
+	}
+
+	public void setId_pembeli(UserModel id_pembeli) {
+		this.id_pembeli = id_pembeli;
+	}
+
+	public KecamatanModel getKecamatan() {
+		return kecamatan;
+	}
+
+	public void setKecamatan(KecamatanModel kecamatan) {
+		this.kecamatan = kecamatan;
+	}
 }

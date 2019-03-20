@@ -16,7 +16,7 @@ public class KecamatanModel implements Serializable {
 	private long id_kecamatan;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_kabkota", referencedColumnName="id",nullable = false)
+    @JoinColumn(name="id_kabkota", referencedColumnName="id_kabkota",nullable = false)
     @OnDelete(action= OnDeleteAction.NO_ACTION)
     @JsonIgnore
     private KabKotaModel kabkota;
@@ -29,4 +29,35 @@ public class KecamatanModel implements Serializable {
 	@Column(name = "status", nullable = false)
 	private String status;
 
+    public long getId_kecamatan() {
+        return id_kecamatan;
+    }
+
+    public void setId_kecamatan(long id_kecamatan) {
+        this.id_kecamatan = id_kecamatan;
+    }
+
+    public KabKotaModel getKabkota() {
+        return kabkota;
+    }
+
+    public void setKabkota(KabKotaModel kabkota) {
+        this.kabkota = kabkota;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
