@@ -29,4 +29,12 @@ public class TeknisiModel implements Serializable {
 	@NotNull
 	@Column(name = "shift", nullable = false)
 	private String shift;
+
+	@NotNull
+	@Column(name = "alamat", nullable = false)
+	private String alamat;
+
+    @NotNull
+    @Column(name = "foto", nullable = false)
+    private String foto;
 }

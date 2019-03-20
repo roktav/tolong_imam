@@ -2,37 +2,40 @@ package com.propensi.winscore.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "produk")
-public class Produk implements Serializable {
+public class ProdukModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private long id_produk;
+
+	@OneToOne
+	@JoinColumn(name = "id_garansi")
+	private long id_garansi;
+
+	@OneToOne
+	@JoinColumn(name = "id_promosi")
+	private long id_promosi;
+
 	@NotNull
 	@Size(max = 50)
-	@Column(name = "namaProduk", nullable = false)
-	private String namaProduk;
+	@Column(name = "nama", nullable = false)
+	private String nama;
 	
 	@NotNull
 	@Size(max = 15)
-	@Column(name = "kodeProduk", nullable = false)
-	private String kodeProduk;
+	@Column(name = "kode_produk", nullable = false)
+	private String kode_produk;
 
 	@NotNull
 	@Size(max = 100)
-	@Column(name = "detailProduk", nullable = false)
-	private String detailProduk;
+	@Column(name = "detail_produk", nullable = false)
+	private String detail_produk;
 	
 	@NotNull
 	@Size(max = 20)
@@ -44,35 +47,35 @@ public class Produk implements Serializable {
 	private Long harga;
 	
 	public Long getId() {
-		return id;
+		return id_produk;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long id_produk) {
+		this.id_produk = id_produk;
 	}
 
 	public String getNamaProduk() {
-		return namaProduk;
+		return nama;
 	}
 
 	public void setNamaProduk(String namaProduk) {
-		this.namaProduk = namaProduk;
+		this.nama = namaProduk;
 	}
 
 	public String getKodeProduk() {
-		return kodeProduk;
+		return kode_produk;
 	}
 
 	public void setKodeProduk(String kodeProduk) {
-		this.kodeProduk = kodeProduk;
+		this.kode_produk = kodeProduk;
 	}
 
 	public String getDetailProduk() {
-		return detailProduk;
+		return detail_produk;
 	}
 
 	public void setDetailProduk(String detailProduk) {
-		this.detailProduk = detailProduk;
+		this.detail_produk = detailProduk;
 	}
 
 	public String getStatus() {
