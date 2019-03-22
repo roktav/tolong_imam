@@ -29,4 +29,60 @@ public class TeknisiModel implements Serializable {
 	@NotNull
 	@Column(name = "shift", nullable = false)
 	private String shift;
+
+	@NotNull
+	@Column(name = "alamat", nullable = false)
+	private String alamat;
+
+    @NotNull
+    @Column(name = "foto", nullable = false)
+    private String foto;
+
+	public long getId_teknisi() {
+		return id_teknisi;
+	}
+
+	public void setId_teknisi(long id_teknisi) {
+		this.id_teknisi = id_teknisi;
+	}
+
+	public String getNama() {
+		return nama;
+	}
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
+	public String getNo_telp() {
+		return no_telp;
+	}
+
+	public void setNo_telp(String no_telp) {
+		this.no_telp = no_telp;
+	}
+
+	public String getShift() {
+		return shift;
+	}
+
+	public void setShift(String shift) {
+		this.shift = shift;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 }
