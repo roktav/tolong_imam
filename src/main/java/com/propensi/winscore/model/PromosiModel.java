@@ -13,7 +13,7 @@ public class PromosiModel implements Serializable {
 	private long id_promosi;
 	
 	@NotNull
-	@Column(name = "tgl_selesai", nullable = false)
+	@Column(name = "tgl_mulai", nullable = false)
 	private Date tgl_mulai;
 	
 	@NotNull
