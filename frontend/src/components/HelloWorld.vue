@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <nav-bar></nav-bar>
+    <h1>{{  }}</h1>
   </div>
 </template>
 
@@ -11,7 +12,12 @@ export default {
   name: 'HelloWorld',
   components: {
       'nav-bar': NavBar
+  },
+data() {
+  return {
+    produk : 'cctv'
   }
+}
 }
 </script>
 

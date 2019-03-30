@@ -3,17 +3,19 @@
     <sidebar-menu :menu="menu" :width="'200px'"/>
     <nav-bar></nav-bar>
     <h2>Welcome to Winscore Admin Page</h2>
+    <data-table></data-table>
   </div>
 </template>
 
 <script>
 import NavBar from './NavBar';
+import DataTable from './DataTable';
 
 
 export default {
-  name: 'HelloWorld',
   components: {
-      'nav-bar': NavBar
+      'nav-bar': NavBar,
+      'data-table': DataTable
   },
   data() {
     return {
@@ -43,6 +45,11 @@ export default {
 .admin-page{
   margin-left: 200px;
 }
+
+.v-sidebar-menu.vsm-header {
+  font-size: 23px;
+}
+
 
 h2 {
   margin-left: 20px;
