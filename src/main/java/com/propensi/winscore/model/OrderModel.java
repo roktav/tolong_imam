@@ -4,9 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name= "order")
+@Table(name= "`order`")
 public class OrderModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +20,21 @@ public class OrderModel implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "id_teknisi",  referencedColumnName="id_teknisi")
 	private TeknisiModel teknisi;
-	
+
 	@NotNull
 	@Column(name = "tgl_order", nullable = false)
 	private Date tgl_order;
-	
+
 	@NotNull
 	@Column(name = "kategori_produk", nullable = false)
 	private String kategori_produk;
-	
+
 	@NotNull
 	@Column(name = "jenis_bangunan", nullable = false)
 	private String jenis_bangunan;
+
+	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade= CascadeType.PERSIST)
+	private List<ProdukModel> listProduk;
 
 	public long getId_order() {
 		return id_order;
@@ -78,5 +82,13 @@ public class OrderModel implements Serializable {
 
 	public void setJenis_bangunan(String jenis_bangunan) {
 		this.jenis_bangunan = jenis_bangunan;
+	}
+
+	public List<ProdukModel> getListProduk() {
+		return listProduk;
+	}
+
+	public void setListProduk(List<ProdukModel> listProduk) {
+		this.listProduk = listProduk;
 	}
 }

@@ -8,12 +8,12 @@ import java.sql.Date;
 @Entity
 @Table(name= "laporan")
 public class LaporanModel implements Serializable {
-/*
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_laporan;
-	
-	@NotNull
+
+	/*@NotNull
 	@Column(name = "id_order", nullable = false)
 	private long id_order;
 	
@@ -25,5 +25,4 @@ public class LaporanModel implements Serializable {
 	@Column(name = "tgl_laporan", nullable = false)
 	private Date tgl_laporan;
 */
-
 }
