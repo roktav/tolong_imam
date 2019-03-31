@@ -11,7 +11,12 @@ export default {
   name: 'HelloWorld',
   components: {
       'nav-bar': NavBar
+  },
+data() {
+  return {
+    produk : 'cctv'
   }
+}
 }
 </script>
 
