@@ -29,26 +29,24 @@ public class ProdukServiceImpl implements ProdukService {
     }
 
     @Override
-    public ProdukModel addNewProduk(Long id_produk, String namaProduk, String kodeProduk, String detailProduk, String status, Long harga) {
+    public ProdukModel addNewProduk(Long id_produk, String nama, String kode_produk, String detail_produk, String status, Long harga) {
         ProdukModel produk = new ProdukModel();
-        produk.setId(id_produk);
-        produk.setNamaProduk(namaProduk);
-        produk.setKodeProduk(kodeProduk);
-        produk.setDetailProduk(detailProduk);
-        produk.setKodeProduk(kodeProduk);
-        produk.setDetailProduk(detailProduk);
+        produk.setId_produk(id_produk);
+        produk.setNama(nama);
+        produk.setKode_produk(kode_produk);
+        produk.setDetail_produk(detail_produk);
         produk.setStatus(status);
         produk.setHarga(harga);
         return repository.save(produk);
     }
 
     @Override
-    public ProdukModel updateProduk(Long id_produk, String namaProduk, String kodeProduk, String detailProduk, String status, Long harga) {
+    public ProdukModel updateProduk(Long id_produk, String nama, String kode_produk, String detail_produk, String status, Long harga) {
         final ProdukModel produk = this.getProdukById(id_produk);
-        produk.setId(id_produk);
-        produk.setNamaProduk(namaProduk);
-        produk.setKodeProduk(kodeProduk);
-        produk.setDetailProduk(detailProduk);
+        produk.setId_produk(id_produk);
+        produk.setNama(nama);
+        produk.setKode_produk(kode_produk);
+        produk.setDetail_produk(detail_produk);
         produk.setStatus(status);
         produk.setHarga(harga);
         return repository.save(produk);

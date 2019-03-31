@@ -7,12 +7,14 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import HelloWinscore from './components/HelloWinscore.vue'
+import ViewListProduk from "./components/ViewListProduk";
 
 export default {
   name: 'app',
   components: {
     'hello-world': HelloWorld,
-    'hello-winscore' : HelloWinscore
+    'hello-winscore' : HelloWinscore,
+    'list-produk' : ViewListProduk
   }
 
 }
