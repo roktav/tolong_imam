@@ -7,5 +7,5 @@ import com.propensi.winscore.model.ProdukModel;
 
 @Repository
 public interface ProdukRepository extends JpaRepository<ProdukModel, Long> {
-	
+
 }
