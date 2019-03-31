@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <nav-bar></nav-bar>
+    <h1>SIKOTAP</h1>
   </div>
 </template>
 

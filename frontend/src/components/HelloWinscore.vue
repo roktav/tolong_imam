@@ -2,6 +2,7 @@
   <div class="admin-page">
     <sidebar-menu :menu="menu" :width="'200px'"/>
     <nav-bar></nav-bar>
+    
     <h2>Welcome to Winscore Admin Page</h2>
   </div>
 </template>
