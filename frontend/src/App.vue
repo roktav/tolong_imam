@@ -6,13 +6,11 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import HelloWinscore from './components/HelloWinscore.vue'
 
 export default {
   name: 'app',
   components: {
     'hello-world': HelloWorld,
-    'hello-winscore' : HelloWinscore
   }
 
 }

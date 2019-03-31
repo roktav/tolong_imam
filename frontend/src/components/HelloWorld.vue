@@ -1,11 +1,11 @@
 <template>
-  <div class="hello">
+  <v-app>
     <nav-bar></nav-bar>
-  </div>
+  </v-app>
 </template>
 
 <script>
-import NavBar from './NavBar';
+import NavBar from './NavBarVuetify';
 
 export default {
   name: 'HelloWorld',

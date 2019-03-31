@@ -1,8 +1,11 @@
 import HelloWorld from './components/HelloWorld.vue'
-import HelloWinscore from './components/HelloWinscore.vue'
+import AdminTeknisi from './components/AdminTeknisi.vue'
+import Profile from './components/Profile.vue'
 
 
 export default [
     { path : '/', component: HelloWorld},
-    { path : '/admin', component: HelloWinscore}
+    { path : '/admin-teknisi', component: AdminTeknisi},
+    { path : '/admin-teknisi/profile', component: Profile}
+
 ]
