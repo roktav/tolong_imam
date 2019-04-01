@@ -5,13 +5,11 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import ViewListProduk from './components/ViewListProduk.vue'
 
 export default {
     name: 'app',
     components: {
-        'hello-world': HelloWorld,
         'list-produk': ViewListProduk
     },
 }

@@ -3,31 +3,28 @@
         <nav-side-bar></nav-side-bar>
         <div id="list-produk">
             <v-app id="inspire">
-                <h4 class ="display-1">Daftar Produk</h4>
-
+                <h4 class ="display-1 font-weight-medium" align="left">Daftar Produk</h4>
+                <br>
+                <v-flex xs4>
+                <v-text-field id="search-holder"
+                        v-model="search"
+                        label="Cari produk"
+                        append-icon="search"
+                        single-line
+                        hide-details>
+                </v-text-field>
+                </v-flex>
                 <v-card>
-                    <v-card-title>
-                        <v-spacer></v-spacer>
-                        <v-text-field
-                                v-model="search"
-                                label="Cari produk"
-                                append-icon="search"
-                                single line
-                                hide-details>
-                        </v-text-field>
-                    </v-card-title>
                     <v-data-table
-                        :headers="header"
-                        :items="desserts"
+                        :headers="headers"
+                        :items="products"
                         :search="search">
 
                         <template slot="items" slot-scope="props">
-                            <td>{{ props.item.name }}</td>
-                            <td class="text-xs-right">{{ props.item.calories }}</td>
-                            <td class="text-xs-right">{{ props.item.fat }}</td>
-                            <td class="text-xs-right">{{ props.item.carbs }}</td>
-                            <td class="text-xs-right">{{ props.item.protein }}</td>
-                            <td class="text-xs-right">{{ props.item.iron }}</td>
+                            <td class="text-xs-center">{{ props.item.kode }}</td>
+                            <td class="text-xs-center">{{ props.item.nama }}</td>
+                            <td class="text-xs-center">{{ props.item.harga }}</td>
+                            <td class="text-xs-center">{{ props.item.status }}</td>
                         </template>
                         <v-alert slot="no-results" :value="true" color="error" icon="warning">
                         Your search for "{{ search }}" found no results.
@@ -49,27 +46,55 @@
         components: {
             'nav-side-bar': NavSideBar,
             'nav-footer': Footer,
-
         },
+        el:'#list-produk',
         data() {
             return {
-                menu: [
-                    {
-                        header: true,
-                        title: 'Winscore'
-                    },
-                    {
-                        href: '/',
-                        title: 'Winscore Site',
-                        icon: 'fas fa-globe'
-                    },
-                    {
-                        href: '/admin',
-                        title: 'Dashboard',
-                        icon: 'fas fa-home'
-                    }
-                ],
+                search: '',
+                headers: [
 
+                    { text: 'Kode Produk', value: 'kode', align: 'center' },
+                    { text: 'Nama Produk', value: 'nama', align: 'center' },
+                    { text: 'Harga', value: 'harga', align: 'center' },
+                    { text: 'Status Persediaan', value: 'status', align: 'center' }
+                ],
+                products: [
+                    {
+                        value: false,
+                        kode: 'GEDS-85204',
+                        nama: '4ch XMEYE 1080N',
+                        harga: 'Rp800.000',
+                        status: 'Tersedia'
+                    },
+                    {
+                        value: false,
+                        kode: 'GEDS-85208',
+                        nama: '8ch XMEYE 1080N',
+                        harga: 'Rp1.000.000',
+                        status: 'Tersedia'
+                    },
+                    {
+                        value: false,
+                        kode: 'GEDS-85210',
+                        nama: '8ch XMEYE 1060N',
+                        harga: 'Rp1.000.000',
+                        status: 'Tersedia'
+                    },
+                    {
+                        value: false,
+                        kode: 'GEDS-85200',
+                        nama: '6ch XMEYE 1080N',
+                        harga: 'Rp900.000',
+                        status: 'Tersedia'
+                    },
+                    {
+                        value: false,
+                        kode: 'GEDS-85310',
+                        nama: '8ch XMEYE 1020N',
+                        harga: 'Rp1.000.000',
+                        status: 'Tersedia'
+                    },
+                ]
             }
         }
     }
@@ -79,5 +104,11 @@
 <style scoped>
     #list-produk {
         margin-top: 50px;
+        margin-left: 270px;
+        margin-right: 30px;
+    }
+    #search-holder {
+        margin-bottom: 3px;
+
     }
 </style>

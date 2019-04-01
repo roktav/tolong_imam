@@ -45,7 +45,6 @@
 import NavSideBar from './NavSideBar';
 import Footer from './Footer';
 
-
 export default {
   name: 'AdminTeknisi',
   components: {
