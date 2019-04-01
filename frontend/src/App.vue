@@ -6,11 +6,14 @@
 
 <script>
 import ViewListProduk from './components/ViewListProduk.vue'
+import ViewDetailProduk from "./components/ViewDetailProduk";
 
 export default {
     name: 'app',
     components: {
-        'list-produk': ViewListProduk
+        'list-produk': ViewListProduk,
+        'detail-produk': ViewDetailProduk
+
     },
 }
 </script>
