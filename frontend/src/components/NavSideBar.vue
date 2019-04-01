@@ -5,7 +5,7 @@
       :fixed="drawer.fixed"
       :permanent="drawer.permanent"
       :mini-variant="drawer.mini"
-      :width="'250px'"
+      :width="'240px'"
       v-model="drawer.open"
       app
       dark

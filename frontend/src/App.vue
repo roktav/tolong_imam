@@ -6,13 +6,12 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import ViewListProduk from './components/ViewListProduk'
+import ViewListProduk from './components/ViewListProduk.vue'
 
 export default {
     name: 'app',
     components: {
         'hello-world': HelloWorld,
-        'hello-winscore': HelloWinscore,
         'list-produk': ViewListProduk
     },
 }
