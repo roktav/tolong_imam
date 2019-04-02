@@ -7,12 +7,14 @@
 <script>
 import ViewListProduk from './components/ViewListProduk.vue'
 import ViewDetailProduk from "./components/ViewDetailProduk";
+import UbahDetailProduk from "./components/UbahDetailProduk";
 
 export default {
     name: 'app',
     components: {
         'list-produk': ViewListProduk,
-        'detail-produk': ViewDetailProduk
+        'detail-produk': ViewDetailProduk,
+        'ubah-detail-produk': UbahDetailProduk
 
     },
 }
