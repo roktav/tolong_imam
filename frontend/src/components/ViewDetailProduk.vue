@@ -2,28 +2,33 @@
     <v-app>
         <nav-side-bar></nav-side-bar>
         <div id="detail-produk">
-            <v-app id="inspire">
-                <h4 class ="display-1 font-weight-medium" align="left">Detail Produk</h4>
-
-            <v-card-text>
-                <img class = "avatar left leftmargin" src="@/assets/images/padli.jpg">
-                <h4 class = "title left leftmargin">Arief Fadli Wicksono</h4> <br/> <br/>
-                <h4 class = "title left leftmargin">Status  : Aktif</h4> <br/>
-                <h4 class = "title left leftmargin">ID Karyawan : UBP131241213</h4><br/>
-                <h4 class = "title left leftmargin">Jabatan     : CEO</h4><br/>
-                <h4 class = "title left leftmargin">Role        : Admin Teknisi</h4><br/>
-                <h4 class = "title left leftmargin">Kantor Cabang: Jakarta</h4><br/>
-                <h4 class = "title left leftmargin">Nomor Handphone : 08121231123</h4><br/>
-                <h4 class = "title left leftmargin">Email       : arief.fadli@gmail.com</h4><br/>
-                <h4 class = "title left leftmargin">Alamat      : Kebun Raya Bogor</h4><br/>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn class="secondary">Edit</v-btn>
-                <v-btn class="error">Delete</v-btn>
-            </v-card-actions>
-            </v-app>
+            <h4 class ="display-1 font-weight-medium" align="left">Detail Produk</h4>
+            <br>
         </div>
-
+        <v-card-text>
+            <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
+            <div class="detail">
+                <h4 class = "title left leftmargin">4ch XMEYE 1080N</h4> <br/> <br/>
+                <h4 class = "body-2 left leftmargin">Kode Produk : GEDS-85204</h4> <br/>
+                <h4 class = "body-2 left leftmargin">Harga : Rp800.000,-</h4><br/>
+                <h4 class = "body-2 left leftmargin">Status : Tersedia</h4><br/><br>
+                <h4 class = "body-2 left leftmargin">Spesifikasi:</h4> <br/>
+                <h4 class = "body-2 left leftmargin">- Dapat digunakan untuk Android dan iOs smartphone</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Aplikasi menggunakan Mi Home</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Ir Infrared with Night Vision</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Micro SD 32 GB</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Full-HD video capture 1080p</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Built-in microphone and speaker</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Night shoot (visibility distance up to 9 m)</h4><br/>
+                <h4 class = "body-2 left leftmargin">- Smoke and carbon monoxide sensors</h4><br/>
+            </div>
+        </v-card-text>
+        <v-card-actions>
+            <div class="button">
+                <v-btn color="success">Ubah</v-btn>
+                <v-btn color="error">Hapus</v-btn>
+            </div>
+        </v-card-actions>
         <nav-footer></nav-footer>
     </v-app>
 </template>
@@ -34,7 +39,7 @@
     import axios from 'axios'
 
     export default {
-        name: 'DetaiProduk',
+        name: 'DetailProduk',
         components: {
             'nav-side-bar': NavSideBar,
             'nav-footer' : Footer
@@ -66,13 +71,28 @@
 <style scoped>
     .avatar {
         vertical-align: middle;
+        margin-left: 310px;
+        margin-top: 40px;
         width: 250px;
         height: 250px;
         border-radius: 50%;
     }
     #detail-produk {
-        margin-left: 270px;
-        margin-right: 30px;
+        margin-left: 290px;
+        margin-right: 50px;
         margin-top: 50px ;
     }
+    .detail {
+        margin-left: 660px;
+    }
+    .button {
+        margin-left: 1000px;
+        margin-top: 10px;
+    }
+    /*.edit {
+        color: #009688;
+    }
+    .delete {
+        color: #FF3D3D
+    }*/
 </style>

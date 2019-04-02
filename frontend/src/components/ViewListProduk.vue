@@ -104,8 +104,8 @@
 <style scoped>
     #list-produk {
         margin-top: 50px;
-        margin-left: 270px;
-        margin-right: 30px;
+        margin-left: 290px;
+        margin-right: 50px;
     }
     #search-holder {
         margin-bottom: 3px;
