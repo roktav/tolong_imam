@@ -1,4 +1,4 @@
-<template>
+<template xmlns:to="http://www.w3.org/1999/xhtml">
     <v-app>
         <nav-side-bar></nav-side-bar>
         <!--<ul v-for="item in listProduk" :key = "item.id_produk">
@@ -16,8 +16,11 @@
                             hide-details
                     ></v-text-field>
                     <v-spacer></v-spacer>
+                    <v-btn class="white--text" color="#009688" @click="expand = !expand">
+                        Tambah Produk
+                    </v-btn>
                 </v-card-title>
-                <v-btn id="button-add-produk" class="white--text" color="#009688">Tambah Produk</v-btn>
+                <br>
                 <v-card>
                     <v-data-table
                         :headers="headers"
@@ -26,7 +29,7 @@
 
                         <template slot="items" slot-scope="props">
                             <td class="text-xs-center">{{ props.item.kode_produk }}</td>
-                            <td class="text-xs-center">{{ props.item.nama }}</td>
+                            <td class="text-xs-center"><v-btn class="product-name" router :to="'/list-produk/detail-produk'" flat>{{ props.item.nama }}</v-btn></td>
                             <td class="text-xs-center">Rp {{ props.item.harga }}</td>
                             <td class="text-xs-center">{{ props.item.status }}</td>
                         </template>
@@ -35,7 +38,7 @@
                         </v-alert>
                     </v-data-table>
                 </v-card>
-                <br><br><br><br><br>
+                <br>
             </v-app>
         </div>
         <nav-footer></nav-footer>
@@ -93,8 +96,9 @@
         margin-left: 290px;
         margin-right: 50px;
     }
-    #button-add-produk {
-        margin-left: 770px;
-        margin-top: 5px;
+
+    .product-name {
+        font-size: small;
+
     }
 </style>
