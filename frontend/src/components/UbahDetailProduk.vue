@@ -7,35 +7,64 @@
         </div>
         <v-card-text>
             <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
+
             <div class="detail">
+                <v-flex sm6>
+                    <v-text-field
+                            value="GEDS-85200"
+                            label="Kode Produk"
+                            disabled
+                    ></v-text-field>
+                </v-flex>
                 <v-flex xs12 sm6>
                     <v-text-field
                             value="4ch XMEYE 1080N"
-                            solo
+                            label="Nama Produk"
+                            clearable
                     ></v-text-field>
                 </v-flex>
-                <h4 class = "body-2 left leftmargin">Kode Produk : GEDS-85204</h4> <br/>
-                <h4 class = "body-2 left leftmargin">Harga : Rp800.000</h4><br/>
-                <h4 class = "body-2 left leftmargin">Status : Tersedia</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Spesifikasi:</h4> <br/>
-                <h4 class = "body-2 left leftmargin">- Dapat digunakan untuk Android dan iOs smartphone</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Aplikasi menggunakan Mi Home</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Ir Infrared with Night Vision</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Micro SD 32 GB</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Full-HD video capture 1080p</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Built-in microphone and speaker</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Night shoot (visibility distance up to 9 m)</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Smoke and carbon monoxide sensors</h4><br/>
-            </div>
+                <v-flex xs12 sm6>
+                    <v-text-field small
+                            value="Rp 800000"
+                            label="Harga"
+                            clearable
+                    ></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
+                    <v-text-field
+                            value="Menggunakan aplikasi Mi Home"
+                            label="Spesifikasi"
+                            clearable
+                    ></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm6>
+                    <p class="status" align="left">Status</p>
+                    <v-overflow-btn
+                            label="Tersedia"
+                            :items="dropdown_status"
+                            target="#dropdown-example"
+                    ></v-overflow-btn>
 
-            <div class="edit">
-                <h4 class = "caption left leftmargin">Ubah Foto Produk</h4>
+                </v-flex>
             </div>
         </v-card-text>
+        <v-flex>
+            <v-btn class="edit-photo"
+                   flat
+                   small
+                   :position-x="x"
+                   :position-y="y"
+                   router-link :to="'/list-produk'"
+                >Ubah Foto Produk
+            </v-btn>
+        </v-flex>
         <v-card-actions>
             <div class="button">
-                <v-btn class="white--text" color="#009688">Simpan</v-btn>
-                <v-btn class="white--text" color="#EF5350">Batal</v-btn>
+                <v-btn class="white--text" color="#009688"
+                       router :to="'/list-produk/detail-produk/:id_produk'">Simpan</v-btn>
+                <v-btn class="white--text" color="#EF5350"
+                       router :to="'/list-produk/detail-produk/:id_produk'">Batal</v-btn>
+
             </div>
         </v-card-actions>
         <br><br><br><br>
@@ -56,7 +85,8 @@
         },
         data() {
             return {
-                info: null
+                info: null,
+                dropdown_status: ['Tersedia', 'Tidak Tersedia']
             }
         },
         props: {
@@ -100,9 +130,18 @@
         margin-left: 1000px;
         margin-top: 10px;
     }
-    .edit {
-        margin-left: 390px;
+
+    .status {
+        font-size: smaller;
+        color: #757575;
+        margin-bottom: 1px
     }
+    .edit-photo {
+        font-size: x-small;
+        margin-left: 5px;
+
+    }
+
     /*.edit {
         color: #009688;
     }

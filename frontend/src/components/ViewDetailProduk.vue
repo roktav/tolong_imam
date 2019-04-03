@@ -20,8 +20,22 @@
         <v-card-actions>
             <div class="button">
                 <v-btn class="white--text" color="#009688"
-                       router :to="'/list-produk/detail-produk/ubah-detail-produk'">Ubah</v-btn>
-                <v-btn class="white--text" color="#EF5350">Hapus</v-btn>
+                       router :to="'/list-produk/detail-produk/:id_produk/ubah-detail-produk'">Ubah</v-btn>
+                <v-dialog v-model="dialog" persistent max-width="400">
+                    <template v-slot:activator="{ on }">
+                        <v-btn class="white--text" color="#EF5350" v-on="on">Hapus</v-btn>
+                    </template>
+                    <v-card>
+                        <v-card-title class="headline">Produk akan dihapus!</v-card-title>
+                        <v-card-text>Apakah Anda yakin ingin menghapus produk?</v-card-text>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green darken-4" flat @click="dialog = false"
+                                router :to="'/list-produk'">Ya</v-btn>
+                            <v-btn color="green darken-4" flat @click="dialog = false">Tidak</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </div>
         </v-card-actions>
         <nav-footer></nav-footer>
@@ -41,17 +55,20 @@
         },
         data() {
             return {
-                detailProduk: []
+                detailProduk: [],
+                dialog: false
             }
         },
         props: {
-            source: String
+            source: String,
+
         },
 
         methods: {
 
         },
         mounted(){
+
             axios.get('http://localhost:8080/api/list-produk/detail-produk/1')
                 .then(response => {
                     this.detailProduk = response.data.result
@@ -86,6 +103,9 @@
     .button {
         margin-left: 1000px;
         margin-top: 10px;
+    }
+    .delete-headline {
+        position: center;
     }
     /*.edit {
         color: #009688;

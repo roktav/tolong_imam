@@ -19,7 +19,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile router :to="'/admin-teknisi/list-produk'" active-class="blue-grey lighten-1 black--text">
+        <v-list-tile router :to="'/list-produk'" active-class="blue-grey lighten-1 black--text">
           <v-list-tile-action><v-icon>store</v-icon></v-list-tile-action>
           <v-list-tile-content><v-list-tile-title>Produk</v-list-tile-title>
           </v-list-tile-content>

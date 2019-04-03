@@ -30,7 +30,7 @@
 
                         <template slot="items" slot-scope="props">
                             <td class="text-xs-center">{{ props.item.kode_produk }}</td>
-                            <td class="text-xs-center"><v-btn class="product-name" router :to="'/list-produk/detail-produk'" flat>{{ props.item.nama }}</v-btn></td>
+                            <td class="text-xs-center"><v-btn class="product-name" router :to="{name: 'detail-produk', params: {id_produk: props.item.id_produk}}" flat>{{ props.item.nama }}</v-btn></td>
                             <td class="text-xs-center">Rp {{ props.item.harga }}</td>
                             <td class="text-xs-center">{{ props.item.status }}</td>
                         </template>

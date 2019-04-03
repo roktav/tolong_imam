@@ -10,31 +10,36 @@
             <div class="detail">
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :rules="[rules.required, rules.counter]"
                             label="Nama Produk"
-                            outline
-                            clearable
+                            counter
+                            maxlength="30"
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                     <v-text-field
+                            v-model="price"
+                            :rules="[rules.required, rules.price]"
                             label="Harga"
-                            outline
-                            clearable
+                            prefix="Rp "
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                     <v-text-field
+                            :rules="[rules.required, rules.counter_spec]"
                             label="Spesifikasi"
-                            outline
-                            clearable
+                            counter
+                            maxlength="200"
                     ></v-text-field>
                 </v-flex>
             </div>
         </v-card-text>
         <v-card-actions>
             <div class="button">
-                <v-btn class="white--text" color="#009688">Simpan</v-btn>
-                <v-btn class="white--text" color="#EF5350">Batal</v-btn>
+                <v-btn class="white--text" color="#009688"
+                       router :to="'/list-produk/detail-produk/:id_produk'">Simpan</v-btn>
+                <v-btn class="white--text" color="#EF5350"
+                       router :to="'/list-produk'">Batal</v-btn>
             </div>
         </v-card-actions>
         <nav-footer></nav-footer>
@@ -54,7 +59,18 @@
         },
         data() {
             return {
-                info: null,
+                //info: null,
+                title: '',
+                email: '',
+                rules: {
+                    required: value => !!value || 'Required',
+                    counter: value => value.length <= 30 || 'Maksimum 30 karakter',
+                    counter_spec: value => value.length <= 200 || 'Maksimum 200 karakter',
+                    price: value => {
+                        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        return pattern.test(value) || 'Invalid'
+                    }
+                }
             }
         },
         props: {
