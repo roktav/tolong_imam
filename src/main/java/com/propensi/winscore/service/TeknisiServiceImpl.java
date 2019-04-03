@@ -20,5 +20,21 @@ public class TeknisiServiceImpl implements TeknisiService{
 		// TODO Auto-generated method stub
 		return teknisiDb.findAll();
 	}
+
+	@Override
+	public TeknisiModel getTeknisiById(long id_teknisi) {
+		// TODO Auto-generated method stub
+		return teknisiDb.getOne(id_teknisi);
+	}
+	
+	@Override
+	public TeknisiModel updateTeknisi(TeknisiModel teknisi) {
+		// TODO Auto-generated method stub
+		TeknisiModel updateTeknisi = teknisiDb.getOne(teknisi.getId_teknisi());
+		updateTeknisi.setNo_telp(teknisi.getNo_telp());
+		updateTeknisi.setAlamat(teknisi.getAlamat());
+		updateTeknisi.setShift(teknisi.getShift());
+		return teknisiDb.save(teknisi);
+	}
 	
 }

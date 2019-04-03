@@ -30,7 +30,7 @@
 <script>
 import NavSideBar from './NavSideBar';
 import Footer from './Footer';
-
+import axios from 'axios'
 
 export default {
   name: 'adminprofil',
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-        
+        info: null
     }
   },
   props: {
@@ -49,6 +49,14 @@ export default {
   
   methods: {
     
+  },
+  mounted() {
+      axios
+          .get('http://localhost:8080/api/order')
+          .then(response => {
+              this.info = response.data[0]
+              console.log(this.info)
+          })
   }
 }
 </script>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +30,30 @@ public class TeknisiController {
 		response.setMessage("success");
 		response.setResult(daftarteknisi);
 		return response;
+	}
+	
+	//ubah
+	@GetMapping(value="/ubah/{id_teknisi}")
+	private Object updateTeknisi(@PathVariable(value="id_teknisi") long id_teknisi, TeknisiModel teknisi) {
+		BaseResponse<TeknisiModel> response = new BaseResponse<TeknisiModel>();
+		TeknisiModel daftarteknisi = teknisiService.getTeknisiById(id_teknisi);
+		response.setStatus(200);
+		response.setMessage("success");
+		response.setResult(daftarteknisi);
+		return response;
+	}
+	
+	//ubah
+	@PostMapping(value="/ubah/{id_teknisi}")
+	private Object updateTeknisiSubmit(@PathVariable(value="id_teknisi") long id_teknisi, TeknisiModel teknisi) {
+		BaseResponse<TeknisiModel> response = new BaseResponse<TeknisiModel>();
+		teknisi.setId_teknisi(id_teknisi);
+		teknisiService.updateTeknisi(teknisi);
+		response.setStatus(200);
+		response.setMessage("success");
+		response.setResult(teknisi);
+		return response;
+		
 	}
 	
 }

@@ -31,12 +31,19 @@
         <td class="text-xs-left">{{ props.item.alamat }}</td>
         <td class="text-xs-left">{{ props.item.no_telp }}</td>
         <td class="text-xs-left">{{ props.item.foto }}</td>
+        <td class="text-xs-left">
+        	<a class="btn btn-warning btn-xs">
+              <router-link :to="{name: 'teknisi-edit', params: {id_teknisi: props.item.id_teknisi}}">Edit</router-link>
+            </a>
+        </td>
       </template>
+      
       <v-alert v-slot:no-results :value="true" color="error" icon="warning">
         Your search for "{{ search }}" found no results.
       </v-alert>
     </v-data-table>
   </v-card>
+  
    
   </v-app>
   
@@ -72,7 +79,8 @@ export default {
           { text: 'Shift', value: 'shift' },
           { text: 'Alamat', value: 'alamat' },
           { text: 'Nomor Telepon', value: 'no_telp' },
-          { text: 'Foto', value: 'foto' }
+          { text: 'Foto', value: 'foto' },
+          { text: 'Edit'}
         ],
         
     }
