@@ -1,6 +1,9 @@
 <template>
     <v-app>
         <nav-side-bar></nav-side-bar>
+        <!--<ul v-for="item in listProduk" :key = "item.id_produk">
+            <li> {{item.nama }}</li>
+        </ul>-->
         <div id="list-produk">
             <v-app id="inspire">
                 <h4 class ="display-1 font-weight-medium" align="left">Daftar Produk</h4>
@@ -18,13 +21,13 @@
                 <v-card>
                     <v-data-table
                         :headers="headers"
-                        :items="products"
+                        :items="listProduk"
                         :search="search">
 
                         <template slot="items" slot-scope="props">
-                            <td class="text-xs-center">{{ props.item.kode }}</td>
+                            <td class="text-xs-center">{{ props.item.kode_produk }}</td>
                             <td class="text-xs-center">{{ props.item.nama }}</td>
-                            <td class="text-xs-center">{{ props.item.harga }}</td>
+                            <td class="text-xs-center">Rp {{ props.item.harga }}</td>
                             <td class="text-xs-center">{{ props.item.status }}</td>
                         </template>
                         <v-alert slot="no-results" :value="true" color="error" icon="warning">
@@ -42,6 +45,7 @@
 <script>
     import NavSideBar from './NavSideBar';
     import Footer from './Footer';
+    import axios from 'axios';
 
     export default {
         name: 'ListProduk',
@@ -49,55 +53,35 @@
             'nav-side-bar': NavSideBar,
             'nav-footer': Footer,
         },
-        el:'#list-produk',
         data() {
             return {
+                listProduk: [],
+                errors: [],
                 search: '',
                 headers: [
 
-                    { text: 'Kode Produk', value: 'kode', align: 'center' },
+                    { text: 'Kode Produk', value: 'kode_produk', align: 'center' },
                     { text: 'Nama Produk', value: 'nama', align: 'center' },
                     { text: 'Harga', value: 'harga', align: 'center' },
                     { text: 'Status Persediaan', value: 'status', align: 'center' }
                 ],
-                products: [
-                    {
-                        value: false,
-                        kode: 'GEDS-85204',
-                        nama: '4ch XMEYE 1080N',
-                        harga: 'Rp800.000',
-                        status: 'Tersedia'
-                    },
-                    {
-                        value: false,
-                        kode: 'GEDS-85208',
-                        nama: '8ch XMEYE 1080N',
-                        harga: 'Rp1.000.000',
-                        status: 'Tersedia'
-                    },
-                    {
-                        value: false,
-                        kode: 'GEDS-85210',
-                        nama: '8ch XMEYE 1060N',
-                        harga: 'Rp1.000.000',
-                        status: 'Tersedia'
-                    },
-                    {
-                        value: false,
-                        kode: 'GEDS-85200',
-                        nama: '6ch XMEYE 1080N',
-                        harga: 'Rp900.000',
-                        status: 'Tersedia'
-                    },
-                    {
-                        value: false,
-                        kode: 'GEDS-85310',
-                        nama: '8ch XMEYE 1020N',
-                        harga: 'Rp1.000.000',
-                        status: 'Tersedia'
-                    },
-                ]
             }
+        },
+        props: {
+            source: String
+        },
+        mounted(){
+            axios.get('http://localhost:8080/api/list-produk')
+                .then(response => {
+                    this.listProduk = response.data.result
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        },
+        methods: {
+
         }
     }
 </script>

@@ -18,7 +18,6 @@ export default [
     { path : '/admin-teknisi', component: AdminTeknisi},
     { path : '/admin-teknisi/profile', component: Profile},
     { path : '/teknisi', component: Teknisi},
-    { path : '/admin-teknisi/list-produk', component: ListProduk},
     { path : '/admin-teknisi/list-pesanan', component: ListOrder},
     { path : '/ubah/{id_teknisi}', component: TeknisiUpdate}
 
