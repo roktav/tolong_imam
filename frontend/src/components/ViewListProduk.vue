@@ -16,7 +16,8 @@
                             hide-details
                     ></v-text-field>
                     <v-spacer></v-spacer>
-                    <v-btn class="white--text" color="#009688" @click="expand = !expand">
+                    <v-btn class="white--text" color="#009688" @click="expand = !expand"
+                        router :to="'/list-produk/tambah-produk'">
                         Tambah Produk
                     </v-btn>
                 </v-card-title>

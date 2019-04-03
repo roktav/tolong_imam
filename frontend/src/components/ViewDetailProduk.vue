@@ -8,24 +8,19 @@
         <v-card-text>
             <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
             <div class="detail">
-                <h4 class = "title left leftmargin">4ch XMEYE 1080N</h4> <br/> <br/>
-                <h4 class = "body-2 left leftmargin">Kode Produk : GEDS-85204</h4> <br/>
-                <h4 class = "body-2 left leftmargin">Harga : Rp800.000,-</h4><br/>
-                <h4 class = "body-2 left leftmargin">Status : Tersedia</h4><br/><br>
+                <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
+                <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br/>
+                <h4 class = "body-2 left leftmargin">Harga : Rp {{ detailProduk.harga }}</h4><br/>
+                <h4 class = "body-2 left leftmargin">Status : {{ detailProduk.status }}</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Spesifikasi:</h4> <br/>
-                <h4 class = "body-2 left leftmargin">- Dapat digunakan untuk Android dan iOs smartphone</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Aplikasi menggunakan Mi Home</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Ir Infrared with Night Vision</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Micro SD 32 GB</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Full-HD video capture 1080p</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Built-in microphone and speaker</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Night shoot (visibility distance up to 9 m)</h4><br/>
-                <h4 class = "body-2 left leftmargin">- Smoke and carbon monoxide sensors</h4><br/>
+                <h4 class = "body-2 left leftmargin">{{ detailProduk.detail_produk }}</h4><br/>
             </div>
+
         </v-card-text>
         <v-card-actions>
             <div class="button">
-                <v-btn class="white--text" color="#009688">Ubah</v-btn>
+                <v-btn class="white--text" color="#009688"
+                       router :to="'/list-produk/detail-produk/ubah-detail-produk'">Ubah</v-btn>
                 <v-btn class="white--text" color="#EF5350">Hapus</v-btn>
             </div>
         </v-card-actions>
@@ -46,7 +41,7 @@
         },
         data() {
             return {
-                info: null
+                detailProduk: []
             }
         },
         props: {
@@ -56,14 +51,16 @@
         methods: {
 
         },
-        mounted() {
-            axios
-                .get('http://localhost:8080/api/order')
+        mounted(){
+            axios.get('http://localhost:8080/api/list-produk/detail-produk/1')
                 .then(response => {
-                    this.info = response.data[0]
-                    console.log(this.info)
+                    this.detailProduk = response.data.result
+                    console.log(response.data)
                 })
-        }
+                .catch(e => {
+                    console.log(e)
+                })
+        },
     }
 </script>
 
@@ -72,7 +69,7 @@
     .avatar {
         vertical-align: middle;
         margin-left: 310px;
-        margin-top: 40px;
+        margin-top: 10px;
         width: 250px;
         height: 250px;
         border-radius: 50%;
@@ -84,6 +81,7 @@
     }
     .detail {
         margin-left: 660px;
+        margin-top: 30px;
     }
     .button {
         margin-left: 1000px;

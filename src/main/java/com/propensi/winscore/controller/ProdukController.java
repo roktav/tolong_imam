@@ -35,6 +35,16 @@ public class ProdukController {
         response.setResult(listProduk);
         return response;
     }
+
+    @GetMapping(value="/list-produk/detail-produk/{id_produk}")
+    public BaseResponses<ProdukModel> retrieveDetailProduk(@PathVariable(value="id_produk") long id_produk) {
+        BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
+        ProdukModel detailProduk = produkService.getProdukById(id_produk);
+        response.setStatus(200);
+        response.setMessage("success");
+        response.setResult(detailProduk);
+        return response;
+    }
     @GetMapping(value="/ubah-detail-produk")
     private Object updateProduk(@PathVariable(value="id_produk") long id_produk, ProdukModel produk) {
         BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
