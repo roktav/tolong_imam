@@ -4,16 +4,17 @@
         <div id="list-produk">
             <v-app id="inspire">
                 <h4 class ="display-1 font-weight-medium" align="left">Daftar Produk</h4>
-                <br>
-                <v-flex xs4>
-                <v-text-field id="search-holder"
-                        v-model="search"
-                        label="Cari produk"
-                        append-icon="search"
-                        single-line
-                        hide-details>
-                </v-text-field>
-                </v-flex>
+                <v-card-title>
+                    <v-text-field
+                            v-model="search"
+                            append-icon="search"
+                            label="Cari Produk"
+                            single-line
+                            hide-details
+                    ></v-text-field>
+                    <v-spacer></v-spacer>
+                </v-card-title>
+                <v-btn id="button-add-produk" class="white--text" color="#009688">Tambah Produk</v-btn>
                 <v-card>
                     <v-data-table
                         :headers="headers"
@@ -31,6 +32,7 @@
                         </v-alert>
                     </v-data-table>
                 </v-card>
+                <br><br><br><br><br>
             </v-app>
         </div>
         <nav-footer></nav-footer>
@@ -107,8 +109,8 @@
         margin-left: 290px;
         margin-right: 50px;
     }
-    #search-holder {
-        margin-bottom: 3px;
-
+    #button-add-produk {
+        margin-left: 770px;
+        margin-top: 5px;
     }
 </style>

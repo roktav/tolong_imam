@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/produk")
 //@PreAuthorize("isAuthenticated()")
@@ -26,13 +28,13 @@ public class ProdukController {
     }
 
     @GetMapping()
-     public String retrieveAllProduk(Model model) {
-        model.addAttribute("produkList", produkService.getRepository().findAll());
-        return "pages/ProdukListView.html";
+     public List<ProdukModel> retrieveAllProduk() {
+        List<ProdukModel> viewProduk = produkService.findAll();
+        return viewProduk;
     }
 
-    @PostMapping("/add")
+    /*@PostMapping("/add")
     public String addProduk(@ModelAttribute ProdukModel produk, RedirectAttributes redirectAttributes) {
         return "pages/AddProduk.html";
-    }
+    }*/
 }

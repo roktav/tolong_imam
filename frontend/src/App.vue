@@ -5,16 +5,18 @@
 </template>
 
 <script>
-import ViewListProduk from './components/ViewListProduk.vue'
+import ViewListProduk from "./components/ViewListProduk"
 import ViewDetailProduk from "./components/ViewDetailProduk";
 import UbahDetailProduk from "./components/UbahDetailProduk";
+import TambahProduk from "./components/TambahProduk";
 
 export default {
     name: 'app',
     components: {
         'list-produk': ViewListProduk,
         'detail-produk': ViewDetailProduk,
-        'ubah-detail-produk': UbahDetailProduk
+        'ubah-detail-produk': UbahDetailProduk,
+        'tambah-produk': TambahProduk
 
     },
 }

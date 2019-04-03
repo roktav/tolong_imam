@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.propensi.winscore.model.ProdukModel;
 
 @Repository
-public interface ProdukRepository extends JpaRepository<ProdukModel, Long> {
+public interface ProdukDb extends JpaRepository<ProdukModel, Long> {
 
 }

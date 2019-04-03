@@ -25,8 +25,8 @@
         </v-card-text>
         <v-card-actions>
             <div class="button">
-                <v-btn color="success">Ubah</v-btn>
-                <v-btn color="error">Hapus</v-btn>
+                <v-btn class="white--text" color="#009688">Ubah</v-btn>
+                <v-btn class="white--text" color="#EF5350">Hapus</v-btn>
             </div>
         </v-card-actions>
         <nav-footer></nav-footer>

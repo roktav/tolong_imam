@@ -1,29 +1,29 @@
 package com.propensi.winscore.service;
 
 import com.propensi.winscore.model.ProdukModel;
-import com.propensi.winscore.repository.ProdukRepository;
+import com.propensi.winscore.repository.ProdukDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 @Transactional
 @Qualifier(value = "ProdukServiceImpl")
 
 public class ProdukServiceImpl implements ProdukService {
-    private ProdukRepository repository;
-
     @Autowired
-    public void setRepository(ProdukRepository repository) {
-        this.repository = repository;
+    private ProdukDb produkDb;
+
+    public ProdukDb getProdukDb() {
+        return produkDb;
     }
 
-    @Override
-    public ProdukRepository getRepository() {
-        return repository;
+    public void setProdukDb(ProdukDb produkDb) {
+        this.produkDb = produkDb;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProdukServiceImpl implements ProdukService {
         produk.setDetail_produk(detail_produk);
         produk.setStatus(status);
         produk.setHarga(harga);
-        return repository.save(produk);
+        return produkDb.save(produk);
     }
 
     @Override
@@ -47,13 +47,18 @@ public class ProdukServiceImpl implements ProdukService {
         produk.setDetail_produk(detail_poduk);
         produk.setStatus(status);
         produk.setHarga(harga);
-        return getRepository().save(produk);
+        return getProdukDb().save(produk);
     }
 
     @Override
     public ProdukModel getProdukById(Long id_produk){
-        return getRepository()
+        return getProdukDb()
                 .findById(id_produk)
                 .orElseThrow(() -> new EntityNotFoundException(Long.toString(id_produk)));
+    }
+
+    @Override
+    public List<ProdukModel> findAll() {
+        return produkDb.findAll();
     }
 }
