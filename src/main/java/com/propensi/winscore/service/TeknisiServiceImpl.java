@@ -28,13 +28,19 @@ public class TeknisiServiceImpl implements TeknisiService{
 	}
 	
 	@Override
-	public TeknisiModel updateTeknisi(TeknisiModel teknisi) {
+	public TeknisiModel updateTeknisi(TeknisiModel newTeknisi) {
 		// TODO Auto-generated method stub
-		TeknisiModel updateTeknisi = teknisiDb.getOne(teknisi.getId_teknisi());
-		updateTeknisi.setNo_telp(teknisi.getNo_telp());
-		updateTeknisi.setAlamat(teknisi.getAlamat());
-		updateTeknisi.setShift(teknisi.getShift());
-		return teknisiDb.save(teknisi);
+		TeknisiModel updateTeknisi = teknisiDb.getOne(newTeknisi.getId_teknisi());
+		System.out.println(newTeknisi.getId_teknisi() + "8888");
+		//updateTeknisi.setNo_telp(teknisi.getNo_telp());
+		//updateTeknisi.setAlamat(teknisi.getAlamat());
+		
+		//gimana caranya ambil getShift dari id yang udah didapet
+		
+		System.out.println(updateTeknisi.getShift() + "5++");
+		updateTeknisi.setShift(newTeknisi.getShift());
+		System.out.println(updateTeknisi.getShift() + "6+++");
+		return teknisiDb.save(updateTeknisi);
 	}
 	
 }
