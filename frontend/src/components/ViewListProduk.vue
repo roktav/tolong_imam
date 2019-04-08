@@ -74,7 +74,7 @@
         props: {
             source: String
         },
-        mounted(){
+        created(){
             axios.get('http://localhost:8080/api/list-produk')
                 .then(response => {
                     this.listProduk = response.data.result

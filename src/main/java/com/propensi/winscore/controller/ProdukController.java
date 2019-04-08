@@ -4,8 +4,6 @@ import com.propensi.winscore.model.GaransiModel;
 import com.propensi.winscore.model.ProdukModel;
 import com.propensi.winscore.service.GaransiServiceImpl;
 import com.propensi.winscore.service.ProdukService;
-import org.apache.logging.log4j.message.Message;
-import org.apache.logging.log4j.message.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,41 +66,56 @@ public class ProdukController {
     @PostMapping("/list-produk/tambah-produk")
     public BaseResponses<ProdukModel> addProduk(@RequestBody Map<String, Object> getproduk) throws ParseException {
         BaseResponses<ProdukModel> response = new BaseResponses<>();
-            ProdukModel produk = new ProdukModel();
-            GaransiModel garansi = new GaransiModel();
-            produk.setNama((String) getproduk.get("nama"));
-            produk.setKode_produk((String) getproduk.get("kode_produk"));
-            produk.setDetail_produk((String) getproduk.get("detail_produk"));
-            produk.setStatus((String) getproduk.get("status"));
-            produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
-            System.out.println(produk.getId_produk());
-            //System.out.println(produk.toString());
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date date = sdf1.parse((String) getproduk.get("tgl_garansi"));
-            Date tglKadaluarsa = new Date(date.getTime());
-            garansi.setTgl_kadaluarsa(tglKadaluarsa);
-            garansiService.addNewGaransi(garansi);
-            produk.setId_garansi(garansi);
-            ProdukModel newProduk = produkService.addNewProduk(produk);
+        ProdukModel produk = new ProdukModel();
+        GaransiModel garansi = new GaransiModel();
+        produk.setNama((String) getproduk.get("nama"));
+        produk.setKode_produk((String) getproduk.get("kode_produk"));
+        produk.setDetail_produk((String) getproduk.get("detail_produk"));
+        produk.setStatus((String) getproduk.get("status"));
+        produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
+        System.out.println(produk.getId_produk());
+        //System.out.println(produk.toString());
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd MMM yyyy");
+        java.util.Date date = sdf1.parse((String) getproduk.get("tgl_garansi"));
+        Date tglKadaluarsa = new Date(date.getTime());
+        garansi.setTgl_kadaluarsa(tglKadaluarsa);
+        garansiService.addNewGaransi(garansi);
+        produk.setId_garansi(garansi);
+        ProdukModel newProduk = produkService.addNewProduk(produk);
 
-
-            response.setStatus(200);
-            response.setMessage("Success");
-            response.setResult(newProduk);
-            //produkService.addNewProduk(produk);
-            return response;
+        response.setStatus(200);
+        response.setMessage("Success");
+        response.setResult(newProduk);
+        //produkService.addNewProduk(produk);
+        return response;
     }
 
-   /* @GetMapping(value="/ubah-detail-produk")
-    private Object updateProduk(@PathVariable(value="id_produk") long id_produk, ProdukModel produk) {
+    @GetMapping(value="/ubah-detail-produk")
+    private BaseResponses<ProdukModel> updateProduk(@RequestBody Map<String, Object> updateproduk, Long id_produk, Long id_garansi) throws ParseException {
         BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
-        ProdukModel listProduk = produkService.getProdukById(id_produk);
-        response.setStatus(200);
-        response.setMessage("success");
-        response.setResult(listProduk);
-        return response;
-    }*/
+        ProdukModel produk = produkService.getProdukById(id_produk);
+        GaransiModel garansi = garansiService.getGaransiById(id_garansi);
+        produk.setNama((String) updateproduk.get("nama"));
+        produk.setKode_produk((String) updateproduk.get("kode_produk"));
+        produk.setDetail_produk((String) updateproduk.get("detail_produk"));
+        produk.setStatus((String) updateproduk.get("status"));
+        produk.setHarga(Long.valueOf((String) updateproduk.get("harga")));
+        System.out.println(produk.getId_produk());
+        //System.out.println(produk.toString());
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd MMM yyyy");
+        java.util.Date date = sdf1.parse((String) updateproduk.get("tgl_garansi"));
+        Date tglKadaluarsa = new Date(date.getTime());
+        garansi.setTgl_kadaluarsa(tglKadaluarsa);
+        garansiService.addNewGaransi(garansi);
+        produk.setId_garansi(garansi);
+        ProdukModel ubahDetailProduk = produkService.updateProduk(produk);
 
+        response.setStatus(200);
+        response.setMessage("Success");
+        response.setResult(ubahDetailProduk);
+        //produkService.addNewProduk(produk);
+        return response;
+    }
 
 }
 

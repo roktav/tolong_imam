@@ -91,7 +91,7 @@
         <v-card-actions>
             <div class="button">
                 <v-btn class="white--text" color="#009688"
-                       router :to="'/list-produk/detail-produk/:id_produk'">Simpan</v-btn>
+                       @click.native="updateProduk">Simpan</v-btn>
                 <v-btn class="white--text" color="#EF5350"
                        router :to="'/list-produk/detail-produk/:id_produk'">Batal</v-btn>
 
@@ -129,6 +129,14 @@
         },
 
         methods: {
+            updateProduk(){
+                alert(this.ubahDetailProduk),
+                    axios.put('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk + '/ubah-detail-produk')
+                        .then(response => {
+                            const idProduk = response.data.result.id_produk
+                            this.$router.push(`/list-produk/detail-produk/${idProduk}`)
+                        })
+            },
             onFileChange(e) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)

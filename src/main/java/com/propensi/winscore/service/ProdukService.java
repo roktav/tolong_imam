@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProdukService {
 
 	ProdukModel addNewProduk(ProdukModel produk);
-	ProdukModel updateProduk(Long id_produk, String nama, String kode_produk, String detail_poduk, String status, Long harga);
+	ProdukModel updateProduk(ProdukModel produk);
 	ProdukModel getProdukById(Long id_produk);
 	List<ProdukModel> findAll();
 

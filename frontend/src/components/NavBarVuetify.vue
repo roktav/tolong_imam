@@ -5,14 +5,14 @@
           :clipped-left="true"
           class="primary"
           flat>
+<!--
+                    &lt;!&ndash; Just an image &ndash;&gt;
+            <navbar variant="faded" type="light">
+                <navbar-brand>
 
-                    <!-- Just an image -->
-            <b-navbar variant="faded" type="light">
-                <b-navbar-brand>
-                    <img class="navbar-logo" src="@/assets/images/logoWinscore.png">
-                </b-navbar-brand>
-            </b-navbar>
-
+                </navbar-brand>
+            </navbar>-->
+        <img class="navbar-logo" src="@/assets/images/logoWinscore.png">
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
             <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
