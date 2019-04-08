@@ -3,7 +3,7 @@ import ViewListProduk from './components/ViewListProduk.vue'
 import AdminTeknisi from './components/AdminTeknisi.vue'
 import Profile from './components/Profile.vue'
 import Teknisi from './components/Teknisi.vue'
-import TeknisiUpdate from './components/TeknisiUpdate.vue'
+//import TeknisiUpdate from './components/TeknisiUpdate.vue'
 import Shift2 from './components/Shift2.vue'
 import Shift from './components/Shift.vue'
 import JadwalBulanan from './components/JadwalBulanan.vue'
@@ -25,7 +25,7 @@ export default [
     { path : '/admin-teknisi/profile', component: Profile},
     { path : '/teknisi', component: Teknisi},
     { path : '/admin-teknisi/list-pesanan', component: ListOrder},
-    { path : '/ubah/{id_teknisi}', component: TeknisiUpdate},
+   // { path : '/ubah/{id_teknisi}', component: TeknisiUpdate},
     { path : '/teknisi/shift', component: Shift},
     { path : '/teknisi/shiftt', component: Shift2},
     { path : '/jadwalbulanan', component: JadwalBulanan},

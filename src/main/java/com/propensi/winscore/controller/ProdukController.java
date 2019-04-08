@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
@@ -75,7 +76,7 @@ public class ProdukController {
         produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
         System.out.println(produk.getId_produk());
         //System.out.println(produk.toString());
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd MMM yyyy");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date date = sdf1.parse((String) getproduk.get("tgl_garansi"));
         Date tglKadaluarsa = new Date(date.getTime());
         garansi.setTgl_kadaluarsa(tglKadaluarsa);
@@ -90,24 +91,32 @@ public class ProdukController {
         return response;
     }
 
-    @GetMapping(value="/ubah-detail-produk")
-    private BaseResponses<ProdukModel> updateProduk(@RequestBody Map<String, Object> updateproduk, Long id_produk, Long id_garansi) throws ParseException {
+    @CrossOrigin
+    @PostMapping(value="/list-produk/detail-produk/{id_produk}/ubah-detail-produk")
+    public BaseResponses<ProdukModel> updateProduk(@RequestBody ProdukModel updateproduk,
+                                                    @PathVariable(value="id_produk") long id_produk) throws ParseException {
         BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
         ProdukModel produk = produkService.getProdukById(id_produk);
-        GaransiModel garansi = garansiService.getGaransiById(id_garansi);
-        produk.setNama((String) updateproduk.get("nama"));
-        produk.setKode_produk((String) updateproduk.get("kode_produk"));
-        produk.setDetail_produk((String) updateproduk.get("detail_produk"));
-        produk.setStatus((String) updateproduk.get("status"));
-        produk.setHarga(Long.valueOf((String) updateproduk.get("harga")));
-        System.out.println(produk.getId_produk());
-        //System.out.println(produk.toString());
-        SimpleDateFormat sdf1 = new SimpleDateFormat("dd MMM yyyy");
-        java.util.Date date = sdf1.parse((String) updateproduk.get("tgl_garansi"));
-        Date tglKadaluarsa = new Date(date.getTime());
-        garansi.setTgl_kadaluarsa(tglKadaluarsa);
-        garansiService.addNewGaransi(garansi);
-        produk.setId_garansi(garansi);
+        System.out.println(updateproduk.getId_garansi().getTgl_kadaluarsa());
+        produk.setNama(updateproduk.getNama());
+        produk.setHarga(updateproduk.getHarga());
+        produk.setStatus(updateproduk.getStatus());
+        produk.setDetail_produk(updateproduk.getDetail_produk());
+        produk.setKode_produk(updateproduk.getKode_produk());
+        GaransiModel garansi = produk.getId_garansi();
+        garansi.setTgl_kadaluarsa(updateproduk.getId_garansi().getTgl_kadaluarsa());
+//        produk.setNama((String) updateproduk.get("nama"));
+//        produk.setKode_produk((String) updateproduk.get("kode_produk"));
+//        produk.setDetail_produk((String) updateproduk.get("detail_produk"));
+//        produk.setStatus((String) updateproduk.get("status"));
+//        GaransiModel garansi = produk.getId_garansi();
+//        GaransiModel getGaransi = (GaransiModel) updateproduk.get("id_garansi");
+//        garansi.setTgl_kadaluarsa(getGaransi.getTgl_kadaluarsa());
+//        garansiService.addNewGaransi(garansi);
+////        produk.setHarga((long) updateproduk.get("harga"));
+////        produk.setId_garansi((GaransiModel) updateproduk.get("id_garansi"));
+//        System.out.println(produk.getId_produk());
+
         ProdukModel ubahDetailProduk = produkService.updateProduk(produk);
 
         response.setStatus(200);

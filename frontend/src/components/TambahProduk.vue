@@ -319,24 +319,25 @@
                 <v-btn class="white--text" color="#EF5350"
                        router :to="'/list-produk'">Batal</v-btn>
             </div>
-        </v-card-actions><br><br><br><br>
-        <nav-footer></nav-footer>
+        </v-card-actions><br><br><br>
+        <nav-footer-admin></nav-footer-admin>
     </v-app>
 
 </template>
 
 <script>
     import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
+    import FooterAdmin from './FooterAdmin';
     import axios from 'axios'
 
     export default {
-        el: '#app',
+
         name: 'TambahProduk',
         components: {
             'nav-side-bar': NavSideBar,
-            'nav-footer' : Footer
+            'nav-footer-admin' : FooterAdmin
         },
+        el: '#app',
         data() {
             return {
                 newProduk: {
@@ -405,7 +406,7 @@
     #tambah-produk {
         margin-left: 290px;
         margin-right: 50px;
-        margin-top: 50px ;
+        margin-top: 60px ;
     }
     .detail {
         margin-left: 330px;

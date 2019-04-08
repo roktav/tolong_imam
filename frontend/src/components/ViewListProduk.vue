@@ -42,20 +42,20 @@
                 <br>
             </v-app>
         </div>
-        <nav-footer></nav-footer>
+        <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
 
 <script>
     import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
+    import FooterAdmin from './FooterAdmin';
     import axios from 'axios';
 
     export default {
         name: 'ListProduk',
         components: {
             'nav-side-bar': NavSideBar,
-            'nav-footer': Footer,
+            'nav-footer-admin': FooterAdmin,
         },
         data() {
             return {
@@ -93,7 +93,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     #list-produk {
-        margin-top: 50px;
+        margin-top: 60px;
         margin-left: 290px;
         margin-right: 50px;
     }

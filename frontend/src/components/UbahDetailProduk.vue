@@ -11,6 +11,7 @@
             <div class="detail">
                 <v-flex sm8>
                     <v-text-field
+                            v-model="ubahDetailProduk.kode_produk"
                             value="GEDS-85200"
                             label="Kode Produk"
                             disabled
@@ -18,6 +19,7 @@
                 </v-flex>
                 <v-flex xs12 sm8>
                     <v-text-field
+                            v-model="ubahDetailProduk.nama"
                             value="4ch XMEYE 1080N"
                             label="Nama Produk"
                             clearable
@@ -25,6 +27,7 @@
                 </v-flex>
                 <v-flex xs12 sm8>
                     <v-text-field small
+                                  v-model="ubahDetailProduk.harga"
                             value="Rp 800000"
                             label="Harga"
                             clearable
@@ -32,6 +35,7 @@
                 </v-flex>
                 <v-flex xs12 sm8>
                     <v-text-field
+                            v-model="ubahDetailProduk.detail_produk"
                             value="Menggunakan aplikasi Mi Home"
                             label="Spesifikasi"
                             clearable
@@ -43,7 +47,7 @@
                             v-model="menu"
                             :close-on-content-click="false"
                             :nudge-right="100"
-                            :return-value.sync="date"
+                            :return-value.sync="ubahDetailProduk.id_garansi.tgl_kadaluarsa"
                             lazy
                             transition="scale-transition"
                             offset-y
@@ -52,10 +56,9 @@
                     >
                         <template v-slot:activator="{ on }">
                             <v-text-field
-                                    v-model="date"
+                                    v-model="ubahDetailProduk.id_garansi.tgl_kadaluarsa"
                                     label="Tanggal Batas Garansi"
                                     prepend-icon="event"
-                                    readonly
                                     v-on="on"
                                     clearable
                             ></v-text-field>
@@ -73,6 +76,7 @@
                     <v-overflow-btn
                             label="Tersedia"
                             :items="dropdown_status"
+                            v-model="ubahDetailProduk.status"
                             target="#dropdown-example"
                     ></v-overflow-btn>
 
@@ -92,26 +96,25 @@
             <div class="button">
                 <v-btn class="white--text" color="#009688"
                        @click.native="updateProduk">Simpan</v-btn>
-                <v-btn class="white--text" color="#EF5350"
-                       router :to="'/list-produk/detail-produk/:id_produk'">Batal</v-btn>
+                <v-btn class="white--text" color="#EF5350">Batal</v-btn>
 
             </div>
         </v-card-actions>
-        <br><br><br><br>
-        <nav-footer></nav-footer>
+        <br><br><br>
+        <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
 
 <script>
     import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
+    import FooterAdmin from './FooterAdmin';
     import axios from 'axios'
 
     export default {
         name: 'UbahDetailProduk',
         components: {
             'nav-side-bar': NavSideBar,
-            'nav-footer' : Footer
+            'nav-footer-admin' : FooterAdmin
         },
         data() {
             return {
@@ -130,13 +133,20 @@
 
         methods: {
             updateProduk(){
-                alert(this.ubahDetailProduk),
-                    axios.put('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk + '/ubah-detail-produk')
+                console.log(this.ubahDetailProduk),
+                    axios.post('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk + '/ubah-detail-produk/', this.ubahDetailProduk)
                         .then(response => {
                             const idProduk = response.data.result.id_produk
+
                             this.$router.push(`/list-produk/detail-produk/${idProduk}`)
                         })
             },
+            /*cancelUpdate(){
+                this.$router.push('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk)
+
+            },*/
+
+
             onFileChange(e) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
@@ -158,15 +168,17 @@
             }
         },
         mounted() {
+            console.log('text')
             axios
-                .get('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk + '/ubah-detail-produk')
+                .get('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk)
                 .then(response => {
                     this.ubahDetailProduk = response.data.result
-                    console.log(response.data)
+                    console.log(this.ubahDetailProduk)
                 })
                 .catch(e => {
                     console.log(e)
                 })
+            console.log(this.ubahDetailProduk)
         },
         dropdown: ['Tersedia', 'Tidak Tersedia']
     }
@@ -185,7 +197,7 @@
     #ubah-detail-produk {
         margin-left: 290px;
         margin-right: 50px;
-        margin-top: 50px ;
+        margin-top: 60px ;
     }
     .detail {
         margin-left: 660px;

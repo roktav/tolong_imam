@@ -112,14 +112,14 @@
 </template>
 
 <script>
-    import NavBarVuetify from './NavBarVuetify';
+    import NavBarUser from './NavBarUser';
     import Footer from './Footer';
     import axios from 'axios'
 
     export default {
         name: 'DetailProduk',
         components: {
-            'nav-bar': NavBarVuetify,
+            'nav-bar': NavBarUser,
             'nav-footer' : Footer
         },
         data() {

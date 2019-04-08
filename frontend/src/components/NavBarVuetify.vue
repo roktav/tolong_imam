@@ -3,7 +3,8 @@
           app
           :fixed="true"
           :clipped-left="true"
-          class="primary"
+          class="navbar"
+          height="80px"
           flat>
 <!--
                     &lt;!&ndash; Just an image &ndash;&gt;
@@ -12,7 +13,7 @@
 
                 </navbar-brand>
             </navbar>-->
-        <img class="navbar-logo" src="@/assets/images/logoWinscore.png">
+        <img class="navbar-logo" src="@/assets/images/logoWinscore.png" @click="toHome">
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
             <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
@@ -33,6 +34,12 @@
                 ]
             }
         },
+        methods: {
+            toHome(){
+                this.$router.push('/')
+            }
+        }
+
     }
 </script>
 
@@ -41,5 +48,7 @@
     .navbar-logo {
         width: 200px;
     }
-    
+    .navbar {
+        color:#28292B;
+    }
 </style>

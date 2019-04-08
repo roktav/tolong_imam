@@ -9,8 +9,7 @@
             <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
             <div class="detail">
                 <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
-                <h4 class = "body-2 left leftmargin">Kode Produk </h4>
-                <h4 class = "body-2 left leftmargin">: {{ detailProduk.kode_produk }}</h4> <br/>
+                <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br/>
                 <h4 class = "body-2 left leftmargin">Harga : Rp {{ detailProduk.harga }}</h4><br/>
                 <h4 class = "body-2 left leftmargin">Tanggal Batas Garansi : {{ detailProduk.id_garansi.tgl_kadaluarsa}}</h4><br/>
                 <h4 class = "body-2 left leftmargin">Status : {{ detailProduk.status }}</h4><br/><br>
@@ -21,11 +20,10 @@
         </v-card-text>
         <v-card-actions>
             <div class="button">
-                <v-btn class="white--text" color="#009688"
-                       router :to="'/list-produk/detail-produk/:id_produk/ubah-detail-produk'">Ubah</v-btn>
+                <v-btn class="white--text" color="#009688" @click.native="ubahProduk">Ubah</v-btn>
                 <v-dialog v-model="dialog" persistent max-width="400">
                     <template v-slot:activator="{ on }">
-                        <v-btn class="white--text" color="#EF5350" v-on="on">Hapus</v-btn>
+                        <v-btn class="white--text" color="#EF5350" v-on="on">Hapus</v-btn><br><br><br>
                     </template>
                     <v-card>
                         <v-card-title class="headline">Produk akan dihapus!</v-card-title>
@@ -40,20 +38,20 @@
                 </v-dialog>
             </div>
         </v-card-actions>
-        <nav-footer></nav-footer>
+        <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
 
 <script>
     import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
+    import FooterAdmin from './FooterAdmin';
     import axios from 'axios'
 
     export default {
         name: 'DetailProduk',
         components: {
             'nav-side-bar': NavSideBar,
-            'nav-footer' : Footer
+            'nav-footer-admin' : FooterAdmin
         },
         data() {
             return {
@@ -67,7 +65,9 @@
         },
 
         methods: {
-
+            ubahProduk(){
+                this.$router.push(this.$route.params.id_produk + '/ubah-detail-produk')
+            }
         },
         mounted(){
 
@@ -96,7 +96,7 @@
     #detail-produk {
         margin-left: 290px;
         margin-right: 50px;
-        margin-top: 50px ;
+        margin-top: 60px ;
     }
     .detail {
         margin-left: 660px;
@@ -106,13 +106,5 @@
         margin-left: 1000px;
         margin-top: 10px;
     }
-    .delete-headline {
-        position: center;
-    }
-    /*.edit {
-        color: #009688;
-    }
-    .delete {
-        color: #FF3D3D
-    }*/
+
 </style>

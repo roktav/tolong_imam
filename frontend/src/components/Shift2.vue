@@ -231,7 +231,7 @@ export default {
 	margin-left: 270px;
 	margin-top: 40px;
 	width: 50%;
-	font-size: 12;
+	font-size: 12px;
 	
 	
 
