@@ -1,3 +1,4 @@
+import Homepage from './components/Homepage.vue'
 import ViewListProduk from './components/ViewListProduk.vue'
 import AdminTeknisi from './components/AdminTeknisi.vue'
 import Profile from './components/Profile.vue'
@@ -11,6 +12,7 @@ import TambahProduk from './components/TambahProduk.vue'
 
 export default [
 
+    { path : '/', component: Homepage},
     { path : '/list-produk', component: ViewListProduk},
     { path : '/list-produk/detail-produk/:id_produk', name: 'detail-produk', component: ViewDetailProduk},
     { path : '/list-produk/detail-produk/:id_produk/ubah-detail-produk', component: UbahDetailProduk},

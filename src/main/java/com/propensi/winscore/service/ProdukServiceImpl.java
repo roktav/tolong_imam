@@ -27,14 +27,8 @@ public class ProdukServiceImpl implements ProdukService {
     }
 
     @Override
-    public ProdukModel addNewProduk(Long id_produk, String nama, String kode_produk, String detail_produk, String status, Long harga){
-        ProdukModel produk = new ProdukModel();
-        produk.setId_produk(id_produk);
-        produk.setNama(nama);
-        produk.setKode_produk(kode_produk);
-        produk.setDetail_produk(detail_produk);
-        produk.setStatus(status);
-        produk.setHarga(harga);
+    public ProdukModel addNewProduk(ProdukModel produk) {
+
         return produkDb.save(produk);
     }
 

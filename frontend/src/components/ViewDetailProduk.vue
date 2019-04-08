@@ -11,6 +11,7 @@
                 <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
                 <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br/>
                 <h4 class = "body-2 left leftmargin">Harga : Rp {{ detailProduk.harga }}</h4><br/>
+                <h4 class = "body-2 left leftmargin">Tanggal Batas Garansi : {{ detailProduk.tgl_garansi}}</h4><br/>
                 <h4 class = "body-2 left leftmargin">Status : {{ detailProduk.status }}</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Spesifikasi:</h4> <br/>
                 <h4 class = "body-2 left leftmargin">{{ detailProduk.detail_produk }}</h4><br/>
@@ -69,7 +70,7 @@
         },
         mounted(){
 
-            axios.get('http://localhost:8080/api/list-produk/detail-produk/1')
+            axios.get('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk)
                 .then(response => {
                     this.detailProduk = response.data.result
                     console.log(response.data)

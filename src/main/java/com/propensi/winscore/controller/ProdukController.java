@@ -1,15 +1,21 @@
 package com.propensi.winscore.controller;
 
+import com.propensi.winscore.model.GaransiModel;
 import com.propensi.winscore.model.ProdukModel;
+import com.propensi.winscore.service.GaransiServiceImpl;
 import com.propensi.winscore.service.ProdukService;
+import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.message.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -21,18 +27,25 @@ public class ProdukController {
     @Qualifier("ProdukServiceImpl")
     private ProdukService produkService;
 
+    @Autowired
+    private GaransiServiceImpl garansiService;
+
     public void setProdukService(ProdukService produkService) {
         this.produkService = produkService;
     }
 
     @GetMapping(value="/list-produk")
-     public BaseResponses<List<ProdukModel>> retrieveAllProduk() {
+    public BaseResponses<List<ProdukModel>> retrieveAllProduk() {
         BaseResponses<List<ProdukModel>> response = new BaseResponses<List<ProdukModel>>();
         List<ProdukModel> listProduk = produkService.findAll();
-        System.out.println(listProduk);
-        response.setStatus(200);
-        response.setMessage("success");
-        response.setResult(listProduk);
+        if(listProduk != null) {
+            response.setResult(listProduk);
+            response.setMessage("Success");
+            response.setStatus(200);
+        } else {
+            response.setStatus(404);
+            response.setMessage("Not Found");
+        }
         return response;
     }
 
@@ -40,12 +53,47 @@ public class ProdukController {
     public BaseResponses<ProdukModel> retrieveDetailProduk(@PathVariable(value="id_produk") long id_produk) {
         BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
         ProdukModel detailProduk = produkService.getProdukById(id_produk);
-        response.setStatus(200);
-        response.setMessage("success");
-        response.setResult(detailProduk);
+        if(detailProduk != null) {
+            response.setResult(detailProduk);
+            response.setMessage("Success");
+            response.setStatus(200);
+        } else {
+            response.setStatus(404);
+            response.setMessage("Not Found");
+        }
         return response;
     }
-    @GetMapping(value="/ubah-detail-produk")
+
+    @CrossOrigin
+    @PostMapping("/list-produk/tambah-produk")
+    public BaseResponses<ProdukModel> addProduk(@RequestBody Map<String, Object> getproduk) throws ParseException {
+        BaseResponses<ProdukModel> response = new BaseResponses<>();
+            ProdukModel produk = new ProdukModel();
+            GaransiModel garansi = new GaransiModel();
+            produk.setNama((String) getproduk.get("nama"));
+            produk.setKode_produk((String) getproduk.get("kode_produk"));
+            produk.setDetail_produk((String) getproduk.get("detail_produk"));
+            produk.setStatus((String) getproduk.get("status"));
+            produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
+            System.out.println(produk.getId_produk());
+            //System.out.println(produk.toString());
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = sdf1.parse((String) getproduk.get("tgl_garansi"));
+            Date tglKadaluarsa = new Date(date.getTime());
+            garansi.setTgl_kadaluarsa(tglKadaluarsa);
+            garansiService.addNewGaransi(garansi);
+            produk.setId_garansi(garansi);
+            ProdukModel newProduk = produkService.addNewProduk(produk);
+
+
+            response.setStatus(200);
+            response.setMessage("Success");
+            response.setResult(newProduk);
+            //produkService.addNewProduk(produk);
+            return response;
+    }
+
+   /* @GetMapping(value="/ubah-detail-produk")
     private Object updateProduk(@PathVariable(value="id_produk") long id_produk, ProdukModel produk) {
         BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
         ProdukModel listProduk = produkService.getProdukById(id_produk);
@@ -53,16 +101,11 @@ public class ProdukController {
         response.setMessage("success");
         response.setResult(listProduk);
         return response;
-    }
-
-
-    /*@PostMapping("/add")
-    public String addProduk(@ModelAttribute ProdukModel produk, RedirectAttributes redirectAttributes) {
-        return "pages/AddProduk.html";
     }*/
 
 
 }
+
 
 class BaseResponses<T> {
     private int status;
