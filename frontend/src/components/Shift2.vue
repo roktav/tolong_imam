@@ -28,38 +28,96 @@
       :headers="headers"
       :items="daftarteknisi"
       :search="search"
+      large
     >
       <template v-slot:items="props">
         <td>{{ props.item.id_teknisi }}</td>
         <td class="text-xs-left">{{ props.item.nama }}</td>
-        <td class="hidden-xs-only">{{ props.item.alamat }}</td>
-        <td class="text-xs-left">{{ props.item.no_telp }}</td>
+        <td class="text-xs-left">
+        <v-edit-dialog
+              :return-value.sync="props.item.alamat"
+              lazy
+              large 
+              persistent
+              @save="save(props.item)"
+              @cancel="cancel"
+              @open="open"
+              @close="close"
+            > {{ props.item.alamat }}
+              <template v-slot:input>
+                <v-text-field
+                  v-model="props.item.alamat"
+                  :rules="[max250chars]"
+                  label="Edit"
+                  single-line
+                  counter
+                ></v-text-field>
+              </template>
+            </v-edit-dialog>
+        </td>
+        <td class="text-xs-left">
+        <v-edit-dialog
+              :return-value.sync="props.item.no_telp"
+              lazy
+              large 
+              persistent
+              @save="save(props.item)"
+              @cancel="cancel"
+              @open="open"
+              @close="close"
+            > {{ props.item.no_telp }}
+              <template v-slot:input>
+                <v-text-field
+                  v-model="props.item.no_telp"
+                  :rules="[max25chars]"
+                  label="Edit"
+                  single-line
+                  counter
+                ></v-text-field>
+              </template>
+            </v-edit-dialog>
+        
+        </td>
         <td class="text-xs-left">{{ props.item.foto }}</td>
         <td class="text-xs-left">
         	<v-flex xs12 sm6 d-flex>
           	<v-select
+         
             	:items="items"
             	label="Pilih Shift"
             	v-model="props.item.shift"
+            	
           	>
-          		
           	</v-select>
+          	
+          	<v-btn depressed small color="info" lazy @click="addJob(props.item)" 
+          		large
+        		lazy
+        		persistent
+        	>Simpan
+      		</v-btn>
         	</v-flex>
-        	<v-btn depressed small color="primary" @click="addJob(props.item)">Primary</v-btn>
         </td>
       </template>
-      
+ 	   
       <v-alert v-slot:no-results :value="true" color="error" icon="warning">
         Your search for "{{ search }}" found no results.
       </v-alert>
+      <template v-slot:no-data>
+        <v-alert :value="true" color="error" icon="warning">
+          Sorry, nothing to display here :(
+        </v-alert>
+      </template>
     </v-data-table>
+    
   </v-card> 
-          
-        	
-              	
+
       </v-expansion-panel-content>
     </v-expansion-panel>
- 
+ 	<v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+        {{ snackText }}
+        <v-btn flat @click="snack = false">Close</v-btn>
+      </v-snackbar>
   </v-app>
 </div>
 </template>
@@ -78,19 +136,16 @@ export default {
   el: '#app',
   data () {
     return {
+    	alert:false,
 	  	items: ['pagi', 'siang'],
 	  	shift: [],
+	  	snack: false,
+        snackColor: '',
+        snackText: '',
 	  	months: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
      	pagination: {},
   		daftarteknisi: [],
   		
-  		editedItem: {
-  		  nama: '',
-  		  alamat: '',
-  		  no_telp: '',
-  		  foto: '',
-  		  shift: '', 
-  		},
     	errors: [],
     	search: "",
     	headers: [
@@ -114,15 +169,42 @@ export default {
     source: String
   },
   methods: {
-  		editItem(item){
-  			this.editedIndex = this.daftarteknisi.indexOf(item)
-  			this.editedItem = Object.assign({}, item)
+  		 save:function (teknisi) {
+    	  this.snack = true
+    	  this.snackColor = 'success'
+    	  this.snackText = 'Data saved'
+    	  console.log(teknisi)
+            axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
+            .then(response => {
+  			})
+  			.catch(e => {
+  			console.log(e)
+  		  })
+   		 },
+   		 cancel () {
+    	  this.snack = true
+	      this.snackColor = 'error'
+     	 this.snackText = 'Canceled'
+   		 },
+  		 open () {
+      	  this.snack = true
+      	  this.snackColor = 'info'
+          this.snackText = 'Dialog opened'
+   	 	},
+   close () {
+      console.log('Dialog closed')
+    },
+  		alert:function(){
+  			this.$set=('alert',true)
   		},
         addJob:function(teknisi) {
+      	  this.snack = true
+    	  this.snackColor = 'success'
+    	  this.snackText = 'Data saved'
         	console.log(teknisi)
             axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
             .then(response => {
-  				alert("hooray")
+  				alert("Data tersimpan!")
   			})
   			.catch(e => {
   			console.log(e)
@@ -148,7 +230,8 @@ export default {
 #panel {
 	margin-left: 270px;
 	margin-top: 40px;
-	width: 83%;
+	width: 50%;
+	font-size: 12;
 	
 	
 

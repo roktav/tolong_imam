@@ -37,9 +37,11 @@ public class TeknisiServiceImpl implements TeknisiService{
 		
 		//gimana caranya ambil getShift dari id yang udah didapet
 		
-		System.out.println(updateTeknisi.getShift() + "5++");
+		System.out.println(updateTeknisi.getAlamat() + "5++");
 		updateTeknisi.setShift(newTeknisi.getShift());
-		System.out.println(updateTeknisi.getShift() + "6+++");
+		updateTeknisi.setAlamat(newTeknisi.getAlamat());
+		updateTeknisi.setNo_telp(newTeknisi.getNo_telp());
+		System.out.println(updateTeknisi.getAlamat() + "6+++");
 		return teknisiDb.save(updateTeknisi);
 	}
 	

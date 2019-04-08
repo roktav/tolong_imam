@@ -6,6 +6,8 @@ import Teknisi from './components/Teknisi.vue'
 import Shift2 from './components/Shift2.vue'
 import Shift from './components/Shift.vue'
 
+import JadwalBulanan from './components/JadwalBulanan.vue'
+
 
 import ListProduk from './components/ListProduk.vue'
 import ListOrder from './components/ListOrder.vue'
@@ -20,6 +22,7 @@ export default [
     { path : '/teknisi', component: Teknisi},
     { path : '/teknisi/shift', component: Shift},
     { path : '/teknisi/shiftt', component: Shift2},
+    { path : '/jadwalbulanan', component: JadwalBulanan},
     
 
     { path : '/admin-teknisi/list-produk', component: ListProduk},
