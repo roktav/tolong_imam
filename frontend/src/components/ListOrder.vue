@@ -4,7 +4,7 @@
     <div id="app">
         <v-app id="inspire">
             <h2 class = "display-1">Daftar Produk</h2>
-            </br>
+            <br>
             <v-card>
             <v-card-title>
                 Nutrition
