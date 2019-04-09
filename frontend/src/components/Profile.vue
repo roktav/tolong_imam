@@ -6,7 +6,7 @@
         <h4 class = "display-1 left leftmargin">Profile Admin</h4>
       </v-card-title>
       <v-card-text>
-        <img class = "avatar left leftmargin" src="@/assets/images/padli.jpg">
+         <img class = "avatar left leftmargin" src="@/assets/images/padli.jpg">
         <h4 class = "title left leftmargin">Arief Fadli Wicksono</h4> <br/> <br/>
         <h4 class = "title left leftmargin">Status  : Aktif</h4> <br/>
         <h4 class = "title left leftmargin">ID Karyawan : UBP131241213</h4><br/>
@@ -29,7 +29,7 @@
 
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './Footer';
+import Footer from './FooterUser';
 import axios from 'axios'
 
 export default {

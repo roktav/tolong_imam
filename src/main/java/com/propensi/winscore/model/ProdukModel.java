@@ -54,7 +54,10 @@ public class ProdukModel implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_order", referencedColumnName="id_order")
     @OnDelete(action= OnDeleteAction.NO_ACTION)
+    @JsonIgnore
     private OrderModel order;
+
+    private String foto_produk;
 
     public long getId_produk() {
         return id_produk;

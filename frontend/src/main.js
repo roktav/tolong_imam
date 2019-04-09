@@ -11,7 +11,9 @@ Vue.config.productionTip = false
 
 Vue.use(Vuetify,{
   theme: {
-    primary: '#343a40'
+    primary: '#28292B',
+    secondary: '#009688',
+    warning: '#ef5350'
   }
 });
 Vue.use(VueRouter);

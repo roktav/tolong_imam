@@ -4,22 +4,20 @@
         <v-card>
         <v-card-title>
         <div id="detail-produk">
-            <h4 class ="display-1 font-weight-medium black--text" align="left">Profile</h4>
+            <h4 class ="display-1 font-weight-medium black--text" align="left">Detail Produk</h4>
 
         </div>
         </v-card-title>
         <v-card-text>
-            <img class = "avatar left leftmargin" src="@/assets/images/padli.jpg">
+            <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
             <div class="detail">
-                <h4 class = "title left leftmargin">Reihan Frandha</h4> <br/> <br/>
-                <h4 class = "body-2 left leftmargin">Status       	 : Aktif</h4> <br><br>
-                <h4 class = "body-2 left leftmargin">ID Karyawan  	 : UBP131245029</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Jabatan      	 : Manajer Operasional</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Role        	 : Manajer Teknisi</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Kantor Cabang	 : Jakarta</h4> <br/><br>
-                <h4 class = "body-2 left leftmargin">Nomor Handphone : 081380831321</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Email           : yesjadimanajer@winscore.com</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Alamat          : Istiqlal </h4><br/><br>
+                <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
+                <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br><br>
+                <h4 class = "body-2 left leftmargin">Harga : Rp {{ detailProduk.harga }}</h4><br/><br>
+                <h4 class = "body-2 left leftmargin">Tanggal Batas Garansi : {{ detailProduk.id_garansi.tgl_kadaluarsa}}</h4><br/><br>
+                <h4 class = "body-2 left leftmargin">Status : {{ detailProduk.status }}</h4><br/><br>
+                <h4 class = "body-2 left leftmargin">Spesifikasi:</h4> <br/><br>
+                <h4 class = "body-2 left leftmargin">{{ detailProduk.detail_produk }}</h4><br/>
             </div>
         </v-card-text>
         <v-card-actions>
@@ -48,14 +46,14 @@
 </template>
 
 <script>
-    import NavSideBarMT from './NavSideBarMT';
+    import NavSideBar from './NavSideBar';
     import FooterAdmin from './FooterAdmin';
     import axios from 'axios'
 
     export default {
         name: 'DetailProduk',
         components: {
-            'nav-side-bar': NavSideBarMT,
+            'nav-side-bar': NavSideBar,
             'nav-footer-admin' : FooterAdmin
         },
         data() {

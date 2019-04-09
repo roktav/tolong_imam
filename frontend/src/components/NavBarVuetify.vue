@@ -1,11 +1,19 @@
 <template>
     <v-toolbar dark
-      app
-      :fixed="true"
-      :clipped-left="true"
-      class="primary" 
-      flat>
-        <v-toolbar-title class="text-uppercase">Winscore</v-toolbar-title>
+          app
+          :fixed="true"
+          :clipped-left="true"
+          class="primary"
+          height="80px"
+          flat>
+<!--
+                    &lt;!&ndash; Just an image &ndash;&gt;
+            <navbar variant="faded" type="light">
+                <navbar-brand>
+
+                </navbar-brand>
+            </navbar>-->
+        <img class="navbar-logo" src="@/assets/images/logoWinscore.png" @click="toHome">
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-xs-only">
             <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
@@ -26,10 +34,18 @@
                 ]
             }
         },
+        methods: {
+            toHome(){
+                this.$router.push('/')
+            }
+        }
+
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
-
+    .navbar-logo {
+        width: 200px;
+    }
 </style>

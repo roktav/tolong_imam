@@ -1,6 +1,6 @@
 package com.propensi.winscore.model;
 
-import sun.security.util.Pem;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
