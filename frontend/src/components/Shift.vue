@@ -1,1112 +1,134 @@
-<template>
-	<div id="app">
-	<nav-side-bar></nav-side-bar>
-	
-  	<v-app id="panel" >
-  	<h1>Penjadwalan Bulanan Shift Teknisi</h1>
-  	<h1> 2 0 1 9 </h1>
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Januari</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-           	
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              	<div>
-              	<v-radio-group v-model="column" column>
-        			<v-radio label="Option 1" value="radio-1"></v-radio>
-       				<v-radio label="Option 2" value="radio-2"></v-radio>
-      			</v-radio-group>
-              	</div>
-              
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Februari</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Maret</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>April</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Mei</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Juni</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Juli</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Agustus</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>September</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Oktober</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>November</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Januari</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-    <v-expansion-panel>
-      <v-expansion-panel-content >
-        <template v-slot:header>
-          <div>
-          <h2>Desember</h2>
-          </div>
-        </template>
-        <v-card>
-          <v-card-text> 
-            <h4> Daftar Teknisi </h4>
-            <v-container fluid px-0> 
-              <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-      >
-        <template v-slot:items="props">
-          <td>
-            <v-edit-dialog
-              :return-value.sync="props.item.nama"
-              lazy
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            > {{ props.item.nama }}
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.nama"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-          <td class="text-xs-left">{{ props.item.id }}</td>
-          <td class="text-xs-left">{{ props.item.alamat }}</td>
-          <td class="text-xs-left">{{ props.item.notelp }}</td>
-          <td class="text-xs-left">{{ props.item.dokumentasi }}</td>
-          <td class="text-xs-left">
-            <v-edit-dialog
-              :return-value.sync="props.item.shift"
-              large
-              lazy
-              persistent
-              @save="save"
-              @cancel="cancel"
-              @open="open"
-              @close="close"
-            >
-              <div>{{ props.item.shift }}</div>
-              <template v-slot:input>
-                <div class="mt-3 title">Update Shift</div>
-              </template>
-              <template v-slot:input>
-                <v-text-field
-                  v-model="props.item.shift"
-                  :rules="[max25chars]"
-                  label="Edit"
-                  single-line
-                  counter
-                  autofocus
-                ></v-text-field>
-              </template>
-            </v-edit-dialog>
-          </td>
-        </template>
-      </v-data-table>
-  
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
-        <v-btn flat @click="snack = false">Close</v-btn>
-      </v-snackbar>
-    </div>
-           
-            
-            </v-container>
-          </v-card-text>
-        </v-card>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-    
-    
-  </v-app>
-</div>
+
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+    <v-app>
+        <nav-side-bar></nav-side-bar>
+            <div id="schedule">
+                <div>
+                    <h4 class ="display-1 font-weight-medium black--text" align="center">Penjadwalan Bulanan Shift Teknisi</h4>
+                    <br><br>
+                </div>
+                <v-expansion-panel>
+                    <v-expansion-panel-content
+                            v-for="(item,i) in months"
+                            :key="i" >
+                        <template v-slot:header>
+                            <div>
+                                <h2 class="subheading black--text font-weight-medium">{{item}}</h2>
+                            </div>
+                        </template>
+                        <v-card id=daftar-teknisi>
+                            <v-flex xs12 sm3 offset-xs8>
+                                <v-card-title>
+                                    <v-text-field
+                                            v-model="search"
+                                            append-icon="search"
+                                            label="Search"
+                                            single-line
+                                            hide-details
+                                    ></v-text-field>
+                                </v-card-title>
+                            </v-flex>
+                            <v-flex xs12 offset-xs0>
+                            <v-data-table
+                                    :headers="headers"
+                                    :items="daftarteknisi"
+                                    :search="search"
+                                    class="schedule-table"
+                                    large>
+                                <template v-slot:items="props">
+                                    <td class="text-xs-left">{{ props.item.id_teknisi }}</td>
+                                    <td class="text-xs-left">{{ props.item.nama }}</td>
+                                    <td class="text-xs-left">
+                                        <v-edit-dialog
+                                                :return-value.sync="props.item.alamat"
+                                                lazy
+                                                large
+                                                persistent
+                                                @save="save(props.item)"
+                                                @cancel="cancel"
+                                                @open="open"
+                                                @close="close"
+                                        > {{ props.item.alamat }}
+                                            <template v-slot:input>
+                                                <v-text-field
+
+                                                        v-model="props.item.alamat"
+                                                        :rules="addressRules"
+                                                        label="Edit"
+                                                        single-line
+                                                        counter
+                                                ></v-text-field>
+                                            </template>
+                                        </v-edit-dialog>
+                                    </td>
+                                    <td class="text-xs-left">
+                                    	{{ imperfectNumber }}
+                                        <v-edit-dialog
+                                                :return-value.sync="props.item.no_telp"
+                                                lazy
+                                                large
+                                                persistent
+                                                @save="save(props.item)"
+                                                @cancel="cancel"
+                                                @open="open"
+                                                @close="close"
+                                        > 
+                                        	{{ props.item.no_telp }}
+                                            <template v-slot:input>
+                                                <v-text-field
+                                                        v-model.number="props.item.no_telp"
+                                                        :rules="numberRules"
+                                                        label="Edit"
+                                                        single-line
+                                                        counter
+                                                ></v-text-field>
+                                            </template>
+                                        </v-edit-dialog>
+                                    </td>
+                                    <td class="text-xs-left">
+                                        <v-flex>
+                                            <v-select
+                                                    :items="items"
+                                                    label="Pilih Shift"
+                                                    v-model="props.item.shift">
+
+                                            </v-select>
+                                        </v-flex>
+                                    </td>
+                                    <td>
+                                        <v-flex>
+                                            <v-btn class="save-button secondary"depressed small lazy @click="addJob(props.item)"
+                                                   persistent>
+                                                Simpan
+                                            </v-btn>
+                                        </v-flex>
+                                    </td>
+                                </template>
+                                <v-alert v-slot:no-results :value="true" color="error" icon="warning">
+                                    Your search for "{{ search }}" found no results.
+                                </v-alert>
+                                <template v-slot:no-data>
+                                    <v-alert :value="true" color="error" icon="warning">
+                                        Data tidak ditemukan :(
+                                    </v-alert>
+                                </template>
+                            </v-data-table>
+                            </v-flex>
+                        </v-card>
+
+                  </v-expansion-panel-content>
+                </v-expansion-panel><br><br><br><br><br><br><br>
+                <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                    {{ snackText }}
+                    <v-btn flat @click="snack = false">Close</v-btn>
+                  </v-snackbar>
+        </div>
+        <nav-footer-admin></nav-footer-admin>
+    </v-app>
 </template>
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './FooterUser';
+import FooterAdmin from './FooterAdmin';
 import axios from 'axios';
 
 
@@ -1114,89 +136,134 @@ export default {
   name: 'AdminTeknisi',
   components: {
       'nav-side-bar': NavSideBar,
-      'nav-footer' : Footer
+      'nav-footer-admin' : FooterAdmin
   },
   el: '#app',
   data () {
     return {
-      column: null,
-  
-      snack: false,
-      snackColor: '',
-      snackText: '',
-      max25chars: v => v.length <= 25 || 'Input too long!',
-      pagination: {},
-      headers: [
-        {
-          text: 'Nama Teknisi',
-          align: 'left',
-          sortable: false,
-          value: 'nama'
-        },
-        { text: 'ID Teknisi', value: 'id' },
-        { text: 'Alamat', value: 'alamat' },
-        { text: 'Nomer Telepon', value: 'notelp' },
-        { text: 'Link Foto', value: 'dokumentasi' },
-        { text: 'Shift', value: 'shift' }
-      ],
-      desserts: [
-        {
-          nama: 'Reihan',
-          id : 1,
-          alamat : 'Jl Bekasi Raya',
-          notelp : '081111111111' ,
-          dokumentasi : 'tinyurl.png',
-          shift : 'pagi'
-        },
-        {
-          nama: 'Arief',
-          id : 2,
-          alamat : 'Jl Bogor Raya',
-          notelp : '082222222222',
-          dokumentasi : 'tinyurl2.png',
-          shift : 'siang'
-        },
-        {
-          nama: 'Restow',
-          id : 3,
-          alamat : 'Jl Padang Raya',
-          notelp : '083333333333',
-          dokumentasi : 'tinyurl3.png',
-          shift : 'pagi'
-        }
-      ]
+    	alert:false,
+	  	items: ['pagi', 'siang'],
+	  	addressRules: [
+       		 v => v.length <= 150 || "Maximum 150 characters",
+       		 v => !!v || "This field can't be empty"
+     	],
+	  	numberRules: [
+       		 v => v.length <= 15 || "Maximum digits 15 or less",
+       		 v => !!v || "This field can't be empty",
+       		 v => v.isObjectNumber || "Only accepts number"
+     	],
+	  	shift: [],
+	  	snack: false,
+        snackColor: '',
+        snackText: '',
+	  	months: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],
+     	pagination: {},
+  		daftarteknisi: [],
+  		
+    	errors: [],
+    	search: "",
+    	headers: [
+          {
+            text: 'ID Teknisi',
+            align: 'left',
+            sortable: false,
+            value: 'daftarteknisi'
+          },
+         
+          { text: 'Nama', value: 'nama' },
+          { text: 'Alamat', value: 'alamat' }, 
+          { text: '(+62) Nomor Telepon', value: 'no_telp' },
+          { text: 'Shift'},
+          { text: 'Edit'}
+        ],
+        
     }
   },
+  props: {
+    source: String
+  },
   methods: {
-    save () {
-      this.snack = true
-      this.snackColor = 'success'
-      this.snackText = 'Data saved'
-    },
-    cancel () {
-      this.snack = true
-      this.snackColor = 'error'
-      this.snackText = 'Canceled'
-    },
-    open () {
-      this.snack = true
-      this.snackColor = 'info'
-      this.snackText = 'Dialog opened'
-    },
-    close () {
+  		 save:function (teknisi) {
+  		  const x = teknisi.no_telp
+  		  const y = teknisi.alamat
+  		 if ( x == null || x == "" || y == null || y  == "" ) {
+     		this.snack = true
+	     	this.snackColor = 'error'
+     	 	this.snackText = 'empty input not allowed'
+      		
+   		} else {
+    	  this.snack = true
+    	  this.snackColor = 'success'
+    	  this.snackText = 'Data saved'
+    	  console.log(teknisi)
+            axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
+            .then(response => {
+  			})
+  			.catch(e => {
+  			console.log(e)
+  		  }) }
+   		 },
+   		 cancel () {
+    	  this.snack = true
+	      this.snackColor = 'error'
+     	 this.snackText = 'Canceled'
+   		 },
+  		 open () {
+      	  this.snack = true
+      	  this.snackColor = 'info'
+          this.snackText = 'Dialog opened'
+   	 	},
+   close () {
       console.log('Dialog closed')
-    }
-  }
+    },
+  		alert:function(){
+  			this.$set=('alert',true)
+  		},
+        addJob:function(teknisi) {
+      	  this.snack = true
+    	  this.snackColor = 'success'
+    	  this.snackText = 'Data saved'
+        	console.log(teknisi)
+            axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
+            .then(response => {
+  				alert("Data tersimpan!")
+  			})
+  			.catch(e => {
+  			console.log(e)
+  			})
+        }
+  },
+  mounted(){
+  	axios.get('http://localhost:8080/api/teknisi')
+  	.then(response => {
+  		this.daftarteknisi = response.data.result
+  		this.shift = this.daftarteknisi.shift
+  		console.log(this.daftarteknisi)
+  		console.log(this.shift)
+  	})
+  	.catch(e => {
+  		console.log(e)
+  	})
+  }, 
  }
 
 </script>
 <style>
-#panel {
-	margin-left: 270px;
-	margin-top: 40px;
-	width: 83%;
-	
-	
 
-}
+    #schedule {
+        margin-top: 60px;
+        margin-left: 260px;
+        margin-right: 37px;
+        font-size: 12px;
+    }
+    .schedule-table {
+        margin-left: 75px;
+        margin-right: 80px;
+    }
+    #panel {
+        margin-left: 270px;
+        margin-top: 40px;
+        width: 50%;
+        font-size: 12px;
+    }
 </style>
