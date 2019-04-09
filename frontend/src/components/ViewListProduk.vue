@@ -6,7 +6,7 @@
         </ul>-->
         <div id="list-produk">
             <v-app id="inspire">
-                <h4 class ="display-1 font-weight-medium" align="left">Daftar Produk</h4>
+                <h4 class ="display-1 font-weight-medium black--text" align="left">Daftar Produk</h4>
                 <v-card-title>
                     <v-text-field
                             v-model="search"

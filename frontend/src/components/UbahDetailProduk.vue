@@ -2,7 +2,7 @@
     <v-app>
         <nav-side-bar></nav-side-bar>
         <div id="ubah-detail-produk">
-            <h4 class ="display-1 font-weight-medium" align="left">Ubah Detail Produk</h4>
+            <h4 class ="display-1 font-weight-medium black--text" align="left">Ubah Detail Produk</h4>
             <br>
         </div>
         <v-card-text>
@@ -96,7 +96,8 @@
             <div class="button">
                 <v-btn class="white--text" color="#009688"
                        @click.native="updateProduk">Simpan</v-btn>
-                <v-btn class="white--text" color="#EF5350">Batal</v-btn>
+                <v-btn class="white--text" color="#EF5350"
+                       @click.native="cancelUpdate">Batal</v-btn>
             </div>
         </v-card-actions>
         <br><br><br><br><br><br>
@@ -140,10 +141,10 @@
                             this.$router.push(`/list-produk/detail-produk/${idProduk}`)
                         })
             },
-            /*cancelUpdate(){
-                this.$router.push('http://localhost:8080/api/list-produk/detail-produk/' + this.$route.params.id_produk)
+            cancelUpdate(){
+                this.$router.push('/list-produk/detail-produk/' + this.$route.params.id_produk)
 
-            },*/
+            },
 
 
             onFileChange(e) {
@@ -202,7 +203,7 @@
         margin-left: 660px;
     }
     .button {
-        margin-left: 900px;
+        margin-left: 1000px;
         margin-top: 10px;
     }
 

@@ -230,7 +230,7 @@
     <v-app>
         <nav-side-bar></nav-side-bar>
         <div id="tambah-produk">
-            <h4 class ="display-1 font-weight-medium" align="left">Tambah Produk</h4>
+            <h4 class ="display-1 font-weight-medium black--text" align="left">Tambah Produk</h4>
             <br>
         </div>
         <v-card-text>
@@ -412,7 +412,7 @@
         margin-left: 330px;
     }
     .button {
-        margin-left: 900px;
+        margin-left: 1000px;
         margin-top: 10px;
     }
     .app {

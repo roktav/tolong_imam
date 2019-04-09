@@ -16,11 +16,11 @@
         </v-carousel>
         <br><br><br>
         <div id="homepage">
-            <h4 class ="display-1 font-weight-bold" align="center">Layanan Kami</h4>
+            <h4 class ="display-1 black--text font-weight-bold" align="center">Layanan Kami</h4>
             <br><br><br>
         </div>
         <v-layout>
-            <v-flex xs12 sm4 offset-xs-1>
+            <v-flex xs12 sm4 offset-xs-1 class="cards">
                 <v-card max-width="300px" align="justify">
                     <v-img class="imgLayanan"
                             src="http://www.towerjio.org/images/home-bg-slideshow2.jpg"
@@ -175,26 +175,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .avatar {
-        vertical-align: middle;
-        margin-left: 310px;
-        margin-top: 10px;
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-    }
-    #detail-produk {
-        margin-left: 290px;
-        margin-right: 50px;
-        margin-top: 50px ;
-    }
-    .detail {
-        margin-left: 660px;
-        margin-top: 30px;
-    }
-    .button {
-        margin-left: 1000px;
-        margin-top: 10px;
+    .cards {
+        margin-left: 13px;
     }
     .carousel {
         height: 400px !important;

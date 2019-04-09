@@ -1,10 +1,11 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <v-app>
         <nav-side-bar></nav-side-bar>
-            <div id="app">
+            <div id="schedule">
                 <div>
-                    <h1>Penjadwalan Bulanan Shift Teknisi</h1>
-                    <h1> Tahun 2019 </h1><br><br>
+                    <h4 class ="display-1 font-weight-medium black--text" align="center">Penjadwalan Bulanan Shift Teknisi</h4>
+                    <h4 class ="headline font-weight-medium black--text" align="center">Tahun 2019</h4>
+                    <br><br>
                 </div>
                 <v-expansion-panel>
                     <v-expansion-panel-content
@@ -12,121 +13,122 @@
                             :key="i" >
                         <template v-slot:header>
                             <div>
-                                <h2>{{item}}</h2>
+                                <h2 class="subheading black--text font-weight-medium">{{item}}</h2>
                             </div>
                         </template>
-                    <v-card id=daftar-teknisi>
-                <v-card-title>
-                  <v-spacer></v-spacer>
-                  <v-text-field
-                    v-model="search"
-                    append-icon="search"
-                    label="Search"
-                    single-line
-                    hide-details
-                  ></v-text-field>
-                </v-card-title>
-                <v-data-table
-                  :headers="headers"
-                  :items="daftarteknisi"
-                  :search="search"
-                  large
-                >
-                  <template v-slot:items="props">
-                    <td>{{ props.item.id_teknisi }}</td>
-                    <td class="text-xs-left">{{ props.item.nama }}</td>
-                    <td class="text-xs-left">
-                    <v-edit-dialog
-                          :return-value.sync="props.item.alamat"
-                          lazy
-                          large
-                          persistent
-                          @save="save(props.item)"
-                          @cancel="cancel"
-                          @open="open"
-                          @close="close"
-                        > {{ props.item.alamat }}
-                          <template v-slot:input>
-                            <v-text-field
-                              v-model="props.item.alamat"
-                              :rules="[max250chars]"
-                              label="Edit"
-                              single-line
-                              counter
-                            ></v-text-field>
-                          </template>
-                        </v-edit-dialog>
-                    </td>
-                    <td class="text-xs-left">
-                    <v-edit-dialog
-                          :return-value.sync="props.item.no_telp"
-                          lazy
-                          large
-                          persistent
-                          @save="save(props.item)"
-                          @cancel="cancel"
-                          @open="open"
-                          @close="close"
-                        > {{ props.item.no_telp }}
-                          <template v-slot:input>
-                            <v-text-field
-                              v-model="props.item.no_telp"
-                              :rules="[max25chars]"
-                              label="Edit"
-                              single-line
-                              counter
-                            ></v-text-field>
-                          </template>
-                        </v-edit-dialog>
+                        <v-card id=daftar-teknisi>
+                            <v-flex xs12 sm3 offset-xs8>
+                                <v-card-title>
+                                    <v-text-field
+                                            v-model="search"
+                                            append-icon="search"
+                                            label="Search"
+                                            single-line
+                                            hide-details
+                                    ></v-text-field>
+                                </v-card-title>
+                            </v-flex>
+                            <v-flex xs12 offset-xs0>
+                            <v-data-table
+                                    :headers="headers"
+                                    :items="daftarteknisi"
+                                    :search="search"
+                                    class="schedule-table"
+                                    large>
+                                <template v-slot:items="props">
+                                    <td class="text-xs-center">{{ props.item.id_teknisi }}</td>
+                                    <td class="text-xs-left">{{ props.item.nama }}</td>
+                                    <td class="text-xs-center">
+                                        <v-edit-dialog
+                                                :return-value.sync="props.item.alamat"
+                                                lazy
+                                                large
+                                                persistent
+                                                @save="save(props.item)"
+                                                @cancel="cancel"
+                                                @open="open"
+                                                @close="close"
+                                        > {{ props.item.alamat }}
+                                            <template v-slot:input>
+                                                <v-text-field
 
-                    </td>
-                    <td class="text-xs-left">{{ props.item.foto }}</td>
-                    <td class="text-xs-left">
-                        <v-flex xs12 sm6 d-flex>
-                        <v-select
+                                                        v-model="props.item.alamat"
+                                                        :rules="[max250chars]"
+                                                        label="Edit"
+                                                        single-line
+                                                        counter
+                                                ></v-text-field>
+                                            </template>
+                                        </v-edit-dialog>
+                                    </td>
+                                    <td class="text-xs-center">
+                                        <v-edit-dialog
+                                                :return-value.sync="props.item.no_telp"
+                                                lazy
+                                                large
+                                                persistent
+                                                @save="save(props.item)"
+                                                @cancel="cancel"
+                                                @open="open"
+                                                @close="close"
+                                        > {{ props.item.no_telp }}
+                                            <template v-slot:input>
+                                                <v-text-field
+                                                        v-model="props.item.no_telp"
+                                                        :rules="[max25chars]"
+                                                        label="Edit"
+                                                        single-line
+                                                        counter
+                                                ></v-text-field>
+                                            </template>
+                                        </v-edit-dialog>
+                                    </td>
+                                    <td class="text-xs-left">{{ props.item.foto }}</td>
+                                    <td class="text-xs-left">
+                                        <v-flex xs12 sm6 d-flex>
+                                            <v-select
+                                                    :items="items"
+                                                    label="Pilih Shift"
+                                                    v-model="props.item.shift">
 
-                            :items="items"
-                            label="Pilih Shift"
-                            v-model="props.item.shift"
-
-                        >
-                        </v-select>
-
-                        <v-btn depressed small color="info" lazy @click="addJob(props.item)"
-                            large
-                            lazy
-                            persistent
-                        >Simpan
-                        </v-btn>
-                        </v-flex>
-                    </td>
-                  </template>
-
-                  <v-alert v-slot:no-results :value="true" color="error" icon="warning">
-                    Your search for "{{ search }}" found no results.
-                  </v-alert>
-                  <template v-slot:no-data>
-                    <v-alert :value="true" color="error" icon="warning">
-                      Sorry, nothing to display here :(
-                    </v-alert>
-                  </template>
-                </v-data-table>
-
-              </v-card>
+                                            </v-select>
+                                        </v-flex>
+                                    </td>
+                                    <td>
+                                        <v-flex>
+                                            <v-btn class="save-button secondary"depressed small lazy @click="addJob(props.item)"
+                                                   lazy
+                                                   persistent>
+                                                Simpan
+                                            </v-btn>
+                                        </v-flex>
+                                    </td>
+                                </template>
+                                <v-alert v-slot:no-results :value="true" color="error" icon="warning">
+                                    Your search for "{{ search }}" found no results.
+                                </v-alert>
+                                <template v-slot:no-data>
+                                    <v-alert :value="true" color="error" icon="warning">
+                                        Sorry, nothing to display here :(
+                                    </v-alert>
+                                </template>
+                            </v-data-table>
+                            </v-flex>
+                        </v-card>
 
                   </v-expansion-panel-content>
-                </v-expansion-panel>
+                </v-expansion-panel><br><br><br><br><br><br><br>
                 <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
                     {{ snackText }}
                     <v-btn flat @click="snack = false">Close</v-btn>
                   </v-snackbar>
         </div>
-  </v-app>
-
+        <nav-footer-admin></nav-footer-admin>
+    </v-app>
 </template>
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './FooterUser';
+import FooterAdmin from './FooterAdmin';
 import axios from 'axios';
 
 
@@ -134,7 +136,7 @@ export default {
   name: 'AdminTeknisi',
   components: {
       'nav-side-bar': NavSideBar,
-      'nav-footer' : Footer
+      'nav-footer-admin' : FooterAdmin
   },
   el: '#app',
   data () {
@@ -230,13 +232,17 @@ export default {
 
 </script>
 <style>
-    #app {
+
+    #schedule {
         margin-top: 60px;
-
+        margin-left: 260px;
+        margin-right: 37px;
         font-size: 12px;
-
     }
-
+    .schedule-table {
+        margin-left: 75px;
+        margin-right: 80px;
+    }
     #panel {
         margin-left: 270px;
         margin-top: 40px;

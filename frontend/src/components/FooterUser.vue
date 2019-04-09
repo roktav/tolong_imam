@@ -26,7 +26,7 @@
                         <img class="wirelessindo" src="@/assets/images/wirelessindo.png">
                     </div>
 
-
+                    <v-spacer></v-spacer>
                     <v-spacer></v-spacer>
                     <v-spacer></v-spacer>
                     <v-spacer></v-spacer>

@@ -57,6 +57,8 @@ public class ProdukModel implements Serializable {
     @JsonIgnore
     private OrderModel order;
 
+    private String foto_produk;
+
     public long getId_produk() {
         return id_produk;
     }

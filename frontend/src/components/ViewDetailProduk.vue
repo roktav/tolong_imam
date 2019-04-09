@@ -4,7 +4,7 @@
         <v-card>
         <v-card-title>
         <div id="detail-produk">
-            <h4 class ="display-1 font-weight-medium" align="left">Detail Produk</h4>
+            <h4 class ="display-1 font-weight-medium black--text" align="left">Detail Produk</h4>
 
         </div>
         </v-card-title>
@@ -29,7 +29,7 @@
                         <v-btn class="white--text" color="#EF5350" v-on="on">Hapus</v-btn><br><br><br><br><br><br>
                     </template>
                     <v-card>
-                        <v-card-title class="headline">Produk akan dihapus!</v-card-title>
+                        <v-card-title class="headline justify-center">Produk akan dihapus!</v-card-title>
                         <v-card-text>Apakah Anda yakin ingin menghapus produk?</v-card-text>
                         <v-card-actions>
                             <v-spacer></v-spacer>
@@ -114,7 +114,7 @@
         margin-top: 30px;
     }
     .button {
-        margin-left: 900px;
+        margin-left: 1000px;
         margin-top: 10px;
     }
 
