@@ -3,7 +3,7 @@
           app
           :fixed="true"
           :clipped-left="true"
-          class="navbar"
+          class="primary"
           height="80px"
           flat>
 <!--
@@ -47,8 +47,5 @@
 <style >
     .navbar-logo {
         width: 200px;
-    }
-    .navbar {
-        color:#28292B;
     }
 </style>

@@ -126,6 +126,16 @@ public class ProdukController {
         return response;
     }
 
+    @PostMapping(value="/list-produk/{id_produk}")
+    public BaseResponses deleteProduk(@PathVariable Long id_produk) {
+        BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
+        ProdukModel produk = produkService.getProdukById(id_produk);
+        produkService.deleteProduk(produk);
+        response.setStatus(200);
+        response.setMessage("Success");
+        return response;
+    }
+
 }
 
 

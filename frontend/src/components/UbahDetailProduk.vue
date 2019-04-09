@@ -97,10 +97,9 @@
                 <v-btn class="white--text" color="#009688"
                        @click.native="updateProduk">Simpan</v-btn>
                 <v-btn class="white--text" color="#EF5350">Batal</v-btn>
-
             </div>
         </v-card-actions>
-        <br><br><br>
+        <br><br><br><br><br><br>
         <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
@@ -203,7 +202,7 @@
         margin-left: 660px;
     }
     .button {
-        margin-left: 1000px;
+        margin-left: 900px;
         margin-top: 10px;
     }
 

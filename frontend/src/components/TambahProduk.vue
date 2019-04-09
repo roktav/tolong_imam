@@ -314,12 +314,12 @@
         </v-card-text>
         <v-card-actions>
             <div class="button">
-                <v-btn class="white--text" color="#009688"
+                <v-btn class="white--text secondary"
                        @click.native="addProduk">Simpan</v-btn>
-                <v-btn class="white--text" color="#EF5350"
+                <v-btn class="white--text warning"
                        router :to="'/list-produk'">Batal</v-btn>
             </div>
-        </v-card-actions><br><br><br>
+        </v-card-actions><br><br><br><br><br><br>
         <nav-footer-admin></nav-footer-admin>
     </v-app>
 
@@ -412,7 +412,7 @@
         margin-left: 330px;
     }
     .button {
-        margin-left: 1000px;
+        margin-left: 900px;
         margin-top: 10px;
     }
     .app {

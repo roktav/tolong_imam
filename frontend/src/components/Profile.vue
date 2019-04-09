@@ -29,7 +29,7 @@
 
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './Footer';
+import Footer from './FooterUser';
 import axios from 'axios'
 
 export default {

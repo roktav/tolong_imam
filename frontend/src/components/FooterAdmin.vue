@@ -7,9 +7,11 @@
 </template>-->
 <template>
     <v-footer
-            dark
-
-            height="auto"
+        dark
+        :inset="false"
+        :height="10"
+        :absolute="true"
+        :clipped-left="true"
     >
         <v-card
                 class="flex"

@@ -9,6 +9,7 @@ public interface ProdukService {
 	ProdukModel addNewProduk(ProdukModel produk);
 	ProdukModel updateProduk(ProdukModel produk);
 	ProdukModel getProdukById(Long id_produk);
+	Boolean deleteProduk(ProdukModel produk);
 	List<ProdukModel> findAll();
 
 }

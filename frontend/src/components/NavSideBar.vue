@@ -1,5 +1,6 @@
 <template>
-  <div id="side-bar">
+  <div class="side-bar">
+    <nav-bar-vue></nav-bar-vue>
     <v-navigation-drawer
       :clipped="drawer.clipped"
       :fixed="drawer.fixed"
@@ -38,9 +39,9 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
+
     </v-navigation-drawer>
-    <nav-bar-vue></nav-bar-vue>
-    
+
   </div>
 </template>
 
@@ -49,9 +50,10 @@ import NavBarVuetify from './NavBarVuetify';
 
 
 export default {
-  name: 'HelloWorld',
+  name: 'NavSideBar',
   components: {
       'nav-bar-vue': NavBarVuetify
+
   },
   data() {
     return {
@@ -77,7 +79,7 @@ export default {
           // sets if the drawer is shown above (false) or below (true) the toolbar
           clipped: true,
           // sets if the drawer is CSS positioned as 'fixed'
-          fixed: false,
+          fixed: true,
           // sets if the drawer remains visible all the time (true) or not (false)
           permanent: true,
           // sets the drawer to the mini variant, showing only icons, of itself (true) 
@@ -110,7 +112,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #side-bar {
-    background-color:#28292B;
-  }
+
 </style>

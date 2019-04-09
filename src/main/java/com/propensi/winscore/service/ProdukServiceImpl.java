@@ -2,6 +2,7 @@ package com.propensi.winscore.service;
 
 import com.propensi.winscore.model.ProdukModel;
 import com.propensi.winscore.repository.ProdukDb;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,11 @@ public class ProdukServiceImpl implements ProdukService {
     @Override
     public List<ProdukModel> findAll() {
         return produkDb.findAll();
+    }
+
+    @Override
+    public Boolean deleteProduk(ProdukModel produk) {
+        produkDb.delete(produk);
+        return true;
     }
 }

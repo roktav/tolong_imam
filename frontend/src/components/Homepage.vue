@@ -86,7 +86,7 @@
             <v-flex xs12 sm4 offset-xs-1>
                 <v-card max-width="300px" align="justify">
                     <v-img class="imgLayanan"
-                           src="https://www.herosoftmedia.co.id/wp-content/uploads/2017/07/deve.jpg"
+                           src="https://cdn-images-1.medium.com/max/2600/1*rV6_99F42Jr7uR5YtLrHrQ.jpeg"
                            aspect-ratio="2.75"
                     ></v-img>
 
@@ -113,14 +113,14 @@
 
 <script>
     import NavBarUser from './NavBarUser';
-    import Footer from './Footer';
+    import FooterUser from './FooterUser';
     import axios from 'axios'
 
     export default {
         name: 'DetailProduk',
         components: {
             'nav-bar': NavBarUser,
-            'nav-footer' : Footer
+            'nav-footer' : FooterUser
         },
         data() {
             return {
@@ -133,7 +133,7 @@
                 card_text2: 'Integrasi antar sistem informasi yang dapat memenuhi kebutuhan suatu perusahaan dibutuhkan ' +
                     'tenaga profesional untuk menjembatani antara perusahaan dan vendor.' +
                     ' Kami dapat membantu untuk memberikan pendapat professional mengenai keperluan perangkat maupun software beserta penggunaannya.' +
-                    ' Baca selengkapnya untuk lebih lanjut.',
+                    ' Baca selengkapnya.',
                 card_text3: 'Sebagai pemenuhan kebutuhan IT satu pintu (One Way Service), ' +
                     'wirelessindo juga memiliki keahlian dalam bidang pengadaan dan pembuatan SOFTWARE baik untuk kebutuhan Desktop, ' +
                     'Online Application hingga Aplikasi berbasi SMART Phone semisal APK untuk Android.' +
@@ -141,7 +141,7 @@
                 card_text4: 'Para pengembang web kami ada di seluruh penjuru kota di Indonesia.' +
                     ' Berbagai orang yang menjadi developer tentunya memiliki kompetensi yang tinggi untuk bisa mengembangkan' +
                     ' web yang dimiliki oleh perusahaan.' +
-                    ' Para developer tersebut telah mengemban tugas untuk memenuhi kebutuhan perusahaan. Baca lebih lanjut.',
+                    ' Para developer tersebut telah mengemban tugas untuk memenuhi kebutuhan perusahaan. Baca selengkapnya untuk lebih lanjut.',
                 items: [
                     { src: require('@/assets/images/carousel1.png') },
                     { src: require('@/assets/images/carousel2.png') },

@@ -7,7 +7,7 @@
 
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './Footer';
+import Footer from './FooterUser';
 
 
 export default {
