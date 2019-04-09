@@ -1,7 +1,6 @@
 <template>
 	<div id="app">
 	<nav-side-bar></nav-side-bar>
-	
   	<v-app id="panel" >
   	<h1>Penjadwalan Bulanan Shift Teknisi</h1>
   	<h1> 2019 </h1>
@@ -65,11 +64,13 @@
               @cancel="cancel"
               @open="open"
               @close="close"
+              
             > {{ props.item.no_telp }}
               <template v-slot:input>
                 <v-text-field
                   v-model="props.item.no_telp"
-                  :rules="[max25chars]"
+                  :rules="numberRules"
+                  pattern="[0-9]+"
                   label="Edit"
                   single-line
                   counter
@@ -138,6 +139,11 @@ export default {
     return {
     	alert:false,
 	  	items: ['pagi', 'siang'],
+	  	numberRules: [
+       		 v => v.length <= 15 || "Maximum length is 15 numbers",
+       		 v => !!v || "This field can't be empty",
+       		 v => v.isNumberObject || "only accept numbers"
+     	],
 	  	shift: [],
 	  	snack: false,
         snackColor: '',
@@ -170,6 +176,7 @@ export default {
   },
   methods: {
   		 save:function (teknisi) {
+  		  this.$validator.validateAll()
     	  this.snack = true
     	  this.snackColor = 'success'
     	  this.snackText = 'Data saved'
