@@ -62,7 +62,6 @@
                                         </v-edit-dialog>
                                     </td>
                                     <td class="text-xs-left">
-                                    	{{ imperfectNumber }}
                                         <v-edit-dialog
                                                 :return-value.sync="props.item.no_telp"
                                                 lazy
@@ -76,11 +75,11 @@
                                         	{{ props.item.no_telp }}
                                             <template v-slot:input>
                                                 <v-text-field
-                                                        v-model.number="props.item.no_telp"
-                                                        :rules="numberRules"
+                                                        v-model="props.item.no_telp"
+                                                        :rules="[rules.phones, rules.required]"
                                                         label="Edit"
                                                         single-line
-                                                        counter
+                                                        
                                                 ></v-text-field>
                                             </template>
                                         </v-edit-dialog>
@@ -127,7 +126,7 @@
     </v-app>
 </template>
 <script>
-import NavSideBar from './NavSideBar';
+import NavSideBarMT from './NavSideBarMT';
 import FooterAdmin from './FooterAdmin';
 import axios from 'axios';
 
@@ -135,7 +134,7 @@ import axios from 'axios';
 export default {
   name: 'AdminTeknisi',
   components: {
-      'nav-side-bar': NavSideBar,
+      'nav-side-bar': NavSideBarMT,
       'nav-footer-admin' : FooterAdmin
   },
   el: '#app',
@@ -147,11 +146,20 @@ export default {
        		 v => v.length <= 150 || "Maximum 150 characters",
        		 v => !!v || "This field can't be empty"
      	],
-	  	numberRules: [
+	  	numberRules:  [
        		 v => v.length <= 15 || "Maximum digits 15 or less",
        		 v => !!v || "This field can't be empty",
        		 v => v.isObjectNumber || "Only accepts number"
      	],
+     	rules: {
+     		required: value => !! value || 'Required',
+     		phones(value) {
+     			const pattern = /^([0-9]+)$/
+     			return pattern.test(value) || 'Masukkan angka'
+     		
+     		}
+   
+     	},
 	  	shift: [],
 	  	snack: false,
         snackColor: '',
@@ -192,16 +200,21 @@ export default {
      	 	this.snackText = 'empty input not allowed'
       		
    		} else {
-    	  this.snack = true
-    	  this.snackColor = 'success'
-    	  this.snackText = 'Data saved'
-    	  console.log(teknisi)
-            axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
-            .then(response => {
-  			})
-  			.catch(e => {
-  			console.log(e)
-  		  }) }
+   			if (isNaN(x)){
+	   			this.snack = true
+		     	this.snackColor = 'error'
+	     	 	this.snackText = 'No Telepon Harus Angka'	
+   			} else {
+	    	  this.snack = true
+	    	  this.snackColor = 'success'
+	    	  this.snackText = 'Data saved'
+	    	  console.log(teknisi)
+	            axios.post('http://localhost:8080/api/ubah/' + teknisi.id_teknisi, teknisi)
+	            .then(response => {
+	  			})
+	  			.catch(e => {
+	  			console.log(e)
+	  		  })} }
    		 },
    		 cancel () {
     	  this.snack = true
