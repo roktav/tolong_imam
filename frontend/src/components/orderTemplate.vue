@@ -221,6 +221,7 @@ export default {
   },
   methods : {
      addKategoriProduk: function(val) {
+       alert(val)
        this.kategoriProduk = val
        this.dataOrder.kategori_produk = val
      },
@@ -317,8 +318,9 @@ export default {
       .then(response => (this.kecamatans = response.data.result))
     },
 
-    kategoriProduk: function (val){
-      axios.get('http://localhost:8080/api/produk/list/' + this.dataOrder.kategori_produk)
+    kategoriProduk: function (){
+      alert(this.kategoriProduk)
+      axios.get('http://localhost:8080/api/list-produk/' + this.kategoriProduk)
       .then(response => {
         let formatted = []
         let getData = response.data.result

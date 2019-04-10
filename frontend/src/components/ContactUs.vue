@@ -14,7 +14,7 @@
 
 <script>
 import NavBar from './NavBarVuetify';
-import Footer from './Footer';
+import Footer from './FooterUser';
 
 export default {
   components: {

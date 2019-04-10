@@ -12,7 +12,9 @@ Vue.config.productionTip = false
 
 Vue.use(Vuetify,{
   theme: {
-    primary: '#343a40'
+    primary: '#28292B',
+    secondary: '#009688',
+    warning: '#ef5350'
   }
 });
 Vue.use(VueRouter);
@@ -20,6 +22,7 @@ Vue.use(VueAxios, axios);
 Vue.use(VueSelectImage);
 
 require('vue-select-image/dist/vue-select-image.css');
+
 
 const router = new VueRouter({
   routes: Routes,
