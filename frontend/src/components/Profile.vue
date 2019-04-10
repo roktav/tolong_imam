@@ -16,6 +16,8 @@
         <h4 class = "title left leftmargin">Nomor Handphone : 08121231123</h4><br/>
         <h4 class = "title left leftmargin">Email       : arief.fadli@gmail.com</h4><br/>
         <h4 class = "title left leftmargin">Alamat      : Kebun Raya Bogor</h4><br/>
+        <li>{{this.info.kategori_produk}}</li>
+        <li>{{this.info.jenis_bangunan}}</li>
       </v-card-text>
       <v-card-actions>
         <v-btn class="secondary">Edit</v-btn>
@@ -30,7 +32,6 @@
 <script>
 import NavSideBar from './NavSideBar';
 import Footer from './Footer';
-import axios from 'axios'
 
 export default {
   name: 'adminprofil',
@@ -49,15 +50,8 @@ export default {
   
   methods: {
     
-  },
-  mounted() {
-      axios
-          .get('http://localhost:8080/api/order')
-          .then(response => {
-              this.info = response.data[0]
-              console.log(this.info)
-          })
   }
+
 }
 </script>
 

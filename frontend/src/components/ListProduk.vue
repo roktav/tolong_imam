@@ -4,18 +4,20 @@
     <div id="app">
         <v-app id="inspire">
             <h2 class = "display-1">Daftar Produk</h2>
-            <br>
-            <v-card>
+            <v-container>
+              <v-text-field
+                  v-model="search"
+                  append-icon="search"
+                  label="Search"
+                  single-line
+                  hide-details
+                  wrap
+              ></v-text-field>
+            </v-container>
+            <v-card class="card1">  
             <v-card-title>
                 Nutrition
                 <v-spacer></v-spacer>
-                <v-text-field
-                v-model="search"
-                append-icon="search"
-                label="Search"
-                single-line
-                hide-details
-                ></v-text-field>
             </v-card-title>
             <v-data-table
                 :headers="headers"
@@ -162,6 +164,9 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+      console.log(this.desserts)
   }
 }
 </script>
@@ -169,6 +174,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #app {
+    margin-top: 40px;
     margin-left: 130px;
     margin-right: 10px
 }

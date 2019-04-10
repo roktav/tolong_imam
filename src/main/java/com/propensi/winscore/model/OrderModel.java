@@ -1,5 +1,7 @@
 package com.propensi.winscore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,8 +35,13 @@ public class OrderModel implements Serializable {
 	@Column(name = "jenis_bangunan", nullable = false)
 	private String jenis_bangunan;
 
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade= CascadeType.PERSIST)
-	private List<ProdukModel> listProduk;
+	@NotNull
+	@Column(name = "status_order", nullable = false)
+	private String status_order;
+
+	@JsonIgnore
+	@OneToOne(mappedBy = "id_order")
+	private SurveiModel survei;
 
 	public long getId_order() {
 		return id_order;
@@ -84,11 +91,19 @@ public class OrderModel implements Serializable {
 		this.jenis_bangunan = jenis_bangunan;
 	}
 
-	public List<ProdukModel> getListProduk() {
-		return listProduk;
+	public String getStatus_order() {
+		return status_order;
 	}
 
-	public void setListProduk(List<ProdukModel> listProduk) {
-		this.listProduk = listProduk;
+	public void setStatus_order(String status_order) {
+		this.status_order = status_order;
+	}
+
+	public SurveiModel getSurvei() {
+		return survei;
+	}
+
+	public void setSurvei(SurveiModel survei) {
+		this.survei = survei;
 	}
 }

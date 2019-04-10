@@ -51,11 +51,6 @@ public class ProdukModel implements Serializable {
 	private Long harga;
 
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id_order", referencedColumnName="id_order")
-    @OnDelete(action= OnDeleteAction.NO_ACTION)
-    private OrderModel order;
-
     public long getId_produk() {
         return id_produk;
     }
@@ -120,11 +115,4 @@ public class ProdukModel implements Serializable {
         this.harga = harga;
     }
 
-    public OrderModel getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderModel order) {
-        this.order = order;
-    }
 }
