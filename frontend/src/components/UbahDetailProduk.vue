@@ -20,22 +20,35 @@
                 <v-flex xs12 sm8>
                     <v-text-field
                             v-model="ubahDetailProduk.nama"
+                            :rules="[rules.required, rules.counter]"
                             value="4ch XMEYE 1080N"
                             label="Nama Produk"
                             clearable
                     ></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm8>
+                    <p class="kategori-produk" align="left">Kategori Produk</p>
+                    <v-overflow-btn
+
+                            :items="dropdown_kategori"
+                            v-model="ubahDetailProduk.kategori_produk"
+                            target="#dropdown-example"
+                    ></v-overflow-btn>
+
+                </v-flex>
+                <v-flex xs12 sm8>
                     <v-text-field small
                                   v-model="ubahDetailProduk.harga"
+                                  :rules="[rules.required, rules.prices]"
                             value="Rp 800000"
                             label="Harga"
                             clearable
-                    ></v-text-field>
+                    >Rp </v-text-field>
                 </v-flex>
                 <v-flex xs12 sm8>
                     <v-text-field
                             v-model="ubahDetailProduk.detail_produk"
+                            :rules="[rules.required, rules.counter]"
                             value="Menggunakan aplikasi Mi Home"
                             label="Spesifikasi"
                             clearable
@@ -63,10 +76,8 @@
                                     clearable
                             ></v-text-field>
                         </template>
-                        <v-date-picker v-model="date" no-title scrollable>
-                            <v-spacer></v-spacer>
-                            <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                            <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                        <v-date-picker v-model="date" no-title scrollable @input="menu=false, $refs.menu.save(date)">
+
                         </v-date-picker>
                     </v-menu>
                 </v-flex>
@@ -121,10 +132,21 @@
                 image:'',
                 ubahDetailProduk: [],
                 dropdown_status: ['Tersedia', 'Tidak Tersedia'],
+                dropdown_kategori: ['CCTV', 'Smart Living', 'Video Conference'],
                 date: new Date().toISOString().substr(0, 10),
                 menu: false,
                 modal: false,
-                menu2: false
+                menu2: false,
+                rules: {
+                    required: value => !!value || 'Required',
+                    counter: value => value.length <= 30 || 'Maksimum 30 karakter',
+                    counter_spec: value => value.length <= 200 || 'Maksimum 200 karakter',
+                    prices: value => {
+                        const pattern = /^([0-9]+)$/
+                        return pattern.test(value) || 'Masukkan angka'
+                    }
+
+                },
             }
         },
         props: {

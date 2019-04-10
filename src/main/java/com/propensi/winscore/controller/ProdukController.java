@@ -74,6 +74,8 @@ public class ProdukController {
         produk.setDetail_produk((String) getproduk.get("detail_produk"));
         produk.setStatus((String) getproduk.get("status"));
         produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
+        produk.setKategori_produk((String) getproduk.get("kategori_produk"));
+        // produk.setFoto_produk((String) getproduk.get("foto_produk"));
         System.out.println(produk.getId_produk());
         //System.out.println(produk.toString());
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
