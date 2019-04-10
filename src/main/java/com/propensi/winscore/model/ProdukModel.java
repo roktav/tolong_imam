@@ -29,7 +29,12 @@ public class ProdukModel implements Serializable {
 	@NotNull
 	@Size(max = 50)
 	@Column(name = "nama", nullable = false)
-	private String nama;
+    private String nama;
+    
+    @NotNull
+	@Size(max = 50)
+	@Column(name = "kategori", nullable = false)
+	private String kategori;
 	
 	@NotNull
 	@Size(max = 15)
@@ -48,7 +53,10 @@ public class ProdukModel implements Serializable {
 	
 	@NotNull
 	@Column(name = "harga", nullable = false)
-	private Long harga;
+    private Long harga;
+    
+    @Column(name = "image")
+    private String image;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_order", referencedColumnName="id_order")
@@ -144,4 +152,19 @@ public class ProdukModel implements Serializable {
         this.harga = harga;
     }
 
+    public OrderModel getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderModel order) {
+        this.order = order;
+    }
+
+    public String getKategori(){
+        return kategori;
+    }
+
+    public String getImage(){
+        return image;
+    }
 }

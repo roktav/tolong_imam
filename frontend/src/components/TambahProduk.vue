@@ -155,7 +155,7 @@
                 menu: false,
                 modal: false,
                 menu2: false,
-                dropdown_kategori: ['CCTV', 'Smart Living', 'Video Conference'],
+                dropdown_kategori: ['CCTV', 'Smart Living', 'VCON'],
                 snack: false,
                 snackColor: '',
                 snackText: '',

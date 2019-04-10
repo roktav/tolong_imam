@@ -9,4 +9,5 @@ public interface OrderService {
     OrderModel addOrder(OrderModel order);
     Optional<OrderModel> getOrderById(long id);
     List<OrderModel> findAll();
+    public void insert(OrderModel order);
 }

@@ -2,6 +2,7 @@ package com.propensi.winscore.controller;
 
 import com.propensi.winscore.model.GaransiModel;
 import com.propensi.winscore.model.ProdukModel;
+import com.propensi.winscore.rest.BaseResponse;
 import com.propensi.winscore.service.GaransiServiceImpl;
 import com.propensi.winscore.service.ProdukService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,33 @@ import java.util.Map;
 public class ProdukController {
 
     @Autowired
-    @Qualifier("ProdukServiceImpl")
     private ProdukService produkService;
 
     @Autowired
     private GaransiServiceImpl garansiService;
 
+    
     public void setProdukService(ProdukService produkService) {
         this.produkService = produkService;
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/list-produk/{kategori}")
+    private Object viewAllProduk(@PathVariable("kategori") String kategori){
+        System.out.println(kategori);
+        BaseResponse<List<ProdukModel>> response = new BaseResponse<List<ProdukModel>>();
+        List<ProdukModel> listProduk = produkService.getProdukByKategori(kategori);
+        System.out.println(listProduk);
+        response.setStatus(200);
+        response.setMessage("success");
+        response.setResult(listProduk);
+        System.out.println("Masuk ke produk sort");
+        return response;
+    }
+
     @GetMapping(value="/list-produk")
-    public BaseResponses<List<ProdukModel>> retrieveAllProduk() {
-        BaseResponses<List<ProdukModel>> response = new BaseResponses<List<ProdukModel>>();
+    public BaseResponse<List<ProdukModel>> retrieveAllProduk() {
+        BaseResponse<List<ProdukModel>> response = new BaseResponse<List<ProdukModel>>();
         List<ProdukModel> listProduk = produkService.findAll();
         if(listProduk != null) {
             response.setResult(listProduk);
@@ -49,8 +64,8 @@ public class ProdukController {
     }
 
     @GetMapping(value="/list-produk/detail-produk/{id_produk}")
-    public BaseResponses<ProdukModel> retrieveDetailProduk(@PathVariable(value="id_produk") long id_produk) {
-        BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
+    public BaseResponse<ProdukModel> retrieveDetailProduk(@PathVariable(value="id_produk") long id_produk) {
+        BaseResponse<ProdukModel> response = new BaseResponse<ProdukModel>();
         ProdukModel detailProduk = produkService.getProdukById(id_produk);
         if(detailProduk != null) {
             response.setResult(detailProduk);
@@ -65,8 +80,8 @@ public class ProdukController {
 
     @CrossOrigin
     @PostMapping("/list-produk/tambah-produk")
-    public BaseResponses<ProdukModel> addProduk(@RequestBody Map<String, Object> getproduk) throws ParseException {
-        BaseResponses<ProdukModel> response = new BaseResponses<>();
+    public BaseResponse<ProdukModel> addProduk(@RequestBody Map<String, Object> getproduk) throws ParseException {
+        BaseResponse<ProdukModel> response = new BaseResponse<>();
         ProdukModel produk = new ProdukModel();
         GaransiModel garansi = new GaransiModel();
         produk.setNama((String) getproduk.get("nama"));
@@ -95,9 +110,9 @@ public class ProdukController {
 
     @CrossOrigin
     @PostMapping(value="/list-produk/detail-produk/{id_produk}/ubah-detail-produk")
-    public BaseResponses<ProdukModel> updateProduk(@RequestBody ProdukModel updateproduk,
+    public BaseResponse<ProdukModel> updateProduk(@RequestBody ProdukModel updateproduk,
                                                     @PathVariable(value="id_produk") long id_produk) throws ParseException {
-        BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
+        BaseResponse<ProdukModel> response = new BaseResponse<ProdukModel>();
         ProdukModel produk = produkService.getProdukById(id_produk);
         System.out.println(updateproduk.getId_garansi().getTgl_kadaluarsa());
         produk.setNama(updateproduk.getNama());
@@ -129,8 +144,8 @@ public class ProdukController {
     }
 
     @PostMapping(value="/list-produk/{id_produk}")
-    public BaseResponses deleteProduk(@PathVariable Long id_produk) {
-        BaseResponses<ProdukModel> response = new BaseResponses<ProdukModel>();
+    public BaseResponse deleteProduk(@PathVariable Long id_produk) {
+        BaseResponse<ProdukModel> response = new BaseResponse<ProdukModel>();
         ProdukModel produk = produkService.getProdukById(id_produk);
         produkService.deleteProduk(produk);
         response.setStatus(200);
@@ -141,32 +156,3 @@ public class ProdukController {
 }
 
 
-class BaseResponses<T> {
-    private int status;
-    private String message;
-    private T result;
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getResult() {
-        return result;
-    }
-
-    public void setResult(T result) {
-        this.result = result;
-    }
-}

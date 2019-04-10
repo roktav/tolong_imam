@@ -16,8 +16,7 @@
         <h4 class = "title left leftmargin">Nomor Handphone : 08121231123</h4><br/>
         <h4 class = "title left leftmargin">Email       : arief.fadli@gmail.com</h4><br/>
         <h4 class = "title left leftmargin">Alamat      : Kebun Raya Bogor</h4><br/>
-        <li>{{this.info.kategori_produk}}</li>
-        <li>{{this.info.jenis_bangunan}}</li>
+        <h4 class = "title left leftmargin">Info      : {{ info }}</h4><br/>
       </v-card-text>
       <v-card-actions>
         <v-btn class="secondary">Edit</v-btn>

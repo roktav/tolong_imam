@@ -2,6 +2,8 @@ package com.propensi.winscore.service;
 
 import com.propensi.winscore.model.OrderModel;
 import com.propensi.winscore.repository.OrderDb;
+import com.propensi.winscore.repository.ProdukDb;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderModel> findAll() {
         return orderDb.findAll();
+    }
+
+    @Override
+    public void insert(OrderModel order) {
+        orderDb.save(order);
     }
 }

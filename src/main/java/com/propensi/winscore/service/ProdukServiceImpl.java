@@ -1,21 +1,21 @@
 package com.propensi.winscore.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.propensi.winscore.model.ProdukModel;
 import com.propensi.winscore.repository.ProdukDb;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Service
 @Transactional
-@Qualifier(value = "ProdukServiceImpl")
-
 public class ProdukServiceImpl implements ProdukService {
+
     @Autowired
     private ProdukDb produkDb;
 
@@ -49,6 +49,26 @@ public class ProdukServiceImpl implements ProdukService {
     @Override
     public List<ProdukModel> findAll() {
         return produkDb.findAll();
+    }
+
+    @Override
+    public void insert(ProdukModel produk) {
+        produkDb.save(produk);
+    }
+
+    @Override
+    public ArrayList<ProdukModel> getProdukByKategori(String kategori) {
+        System.out.println("Masuk method sort");
+        ArrayList<ProdukModel> produkSorted = new ArrayList<ProdukModel>();
+        List<ProdukModel> produkList = produkDb.findAll();
+        System.out.println("produkList = null");
+        System.out.println(produkList);
+        for (ProdukModel produk : produkList){
+            if (produk.getKategori().equalsIgnoreCase(kategori)) {
+                produkSorted.add(produk);
+            }
+        }
+        return produkSorted;
     }
 
     @Override

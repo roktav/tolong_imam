@@ -132,7 +132,7 @@
                 image:'',
                 ubahDetailProduk: [],
                 dropdown_status: ['Tersedia', 'Tidak Tersedia'],
-                dropdown_kategori: ['CCTV', 'Smart Living', 'Video Conference'],
+                dropdown_kategori: ['CCTV', 'Smart Living', 'VCON'],
                 date: new Date().toISOString().substr(0, 10),
                 menu: false,
                 modal: false,

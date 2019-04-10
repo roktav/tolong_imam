@@ -2,6 +2,7 @@ package com.propensi.winscore.controller;
 
 import java.util.List;
 
+import com.propensi.winscore.rest.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,30 +63,5 @@ public class TeknisiController {
 		response.setResult(teknisi);
 		return response;
 	}
-	
-}
-class BaseResponse<T>{
-	private int status;
-	private String message;
-	private T result;
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public String getMessage() {
-		return message;
-	}
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	public T getResult() {
-		return result;
-	}
-	public void setResult(T result) {
-		this.result = result;
-	}
-	
 	
 }
