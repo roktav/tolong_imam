@@ -60,6 +60,7 @@ public class ProdukModel implements Serializable {
     @NotNull
     @Column(name="kategori_produk", nullable = false)
     private String kategori_produk;
+<<<<<<< HEAD
 
     public String getKategori_produk() {
         return kategori_produk;
@@ -81,6 +82,29 @@ public class ProdukModel implements Serializable {
         this.foto_produk = foto_produk;
     }
 
+=======
+
+    public String getKategori_produk() {
+        return kategori_produk;
+    }
+
+    public void setKategori_produk(String kategori_produk) {
+        this.kategori_produk = kategori_produk;
+    }
+
+    /*@NotNull
+        @Column(name = "foto_produk", nullable = false)
+        private String foto_produk;
+
+        public String getFoto_produk() {
+            return foto_produk;
+        }
+
+        public void setFoto_produk(String foto_produk) {
+            this.foto_produk = foto_produk;
+        }
+    */
+>>>>>>> b14655a3a3e9ba98e8199efe3f71ed7211a569b7
     public long getId_produk() {
         return id_produk;
     }

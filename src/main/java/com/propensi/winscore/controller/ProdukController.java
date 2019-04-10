@@ -82,6 +82,7 @@ public class ProdukController {
         BaseResponses<ProdukModel> response = new BaseResponses<>();
         ProdukModel produk = new ProdukModel();
         GaransiModel garansi = new GaransiModel();
+<<<<<<< HEAD
         produk.setNama(nama);
         produk.setKode_produk(kodeProduk);
         produk.setDetail_produk(detailProduk);
@@ -96,6 +97,15 @@ public class ProdukController {
                 .toUriString();
 
         produk.setFoto_produk(fileDownloadUri);
+=======
+        produk.setNama((String) getproduk.get("nama"));
+        produk.setKode_produk((String) getproduk.get("kode_produk"));
+        produk.setDetail_produk((String) getproduk.get("detail_produk"));
+        produk.setStatus((String) getproduk.get("status"));
+        produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
+        produk.setKategori_produk((String) getproduk.get("kategori_produk"));
+        // produk.setFoto_produk((String) getproduk.get("foto_produk"));
+>>>>>>> b14655a3a3e9ba98e8199efe3f71ed7211a569b7
         System.out.println(produk.getId_produk());
         //System.out.println(produk.toString());
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
