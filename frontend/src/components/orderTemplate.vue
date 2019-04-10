@@ -70,19 +70,30 @@
         <v-flex xs12 md6 sm6>
           <br>
           <p>Pilih Kategori Bangunan</p>
-          <v-btn color="primary" @click="addKategoriBangunan('Rumah')">Rumah</v-btn>
-          <v-btn color="primary" @click="addKategoriBangunan('Apartemen')">Apartemen</v-btn>
-          <v-btn color="primary" @click="addKategoriBangunan('Ruko')">Ruko</v-btn>
+          <v-btn color="primary" @click="addKategoriBangunan('Rumah'), pressed('rumah')" :disabled="rumah">Rumah</v-btn>
+          <v-btn color="primary" @click="addKategoriBangunan('Apartemen'), pressed('apart')" :disabled="apart">Apartemen</v-btn>
+          <v-btn color="primary" @click="addKategoriBangunan('Ruko'), pressed('ruko')" :disabled="ruko">Ruko</v-btn>
         </v-flex>
         <v-spacer></v-spacer>
         <v-flex xs12 md6 sm6>
           <br>
           <p>Pilih Produk yang Anda Inginkan</p>
-          <!-- <vue-select-image :dataImages="produks" 
+          <vue-select-image :dataImages="dataImages" 
           :is-multiple="true" 
-          :selectedImages="initialSelected"
+          :useLabel="true"
           @onselectmultipleimage="onSelectMultipleImage">
-          </vue-select-image> -->
+          </vue-select-image>
+            
+            <v-flex xs12 v-if="cctv || vcon || smart">
+            <v-btn @click="increaseCounter">
+              <v-icon small>add</v-icon>
+            </v-btn>          
+            <p>Jumlah Item : {{ counterBuyer }}</p>          
+            <v-btn @click="decreaseCounter">
+              <v-icon small>remove</v-icon>
+            </v-btn>
+            </v-flex>
+
         </v-flex>
       </v-card-text>
       <v-card-action>
@@ -97,19 +108,13 @@
     <v-stepper-content step="3">
       <v-card class="mb-5">
         <v-card-content>
-          <label>Nama Depan</label>
-          <input type="text" v-model="dataOrder.namaDepan">
+          <v-text-field type="text" v-model="listUser[0].nama" label="Nama Lengkap"></v-text-field>
           <br>
-          <label>Nama Belakang</label>
-          <input type="text" v-model="dataOrder.namaBelakang">
+          <v-text-field type="text" v-model="listUser[0].email" label="E-mail"></v-text-field>
           <br>
-          <label>E-mail</label>
-          <input type="text" v-model="dataOrder.email">
+          <v-text-field type="text" v-model="listUser[0].no_telp" label="Nomor Telepon"></v-text-field>
           <br>
-          <label>Nomor Ponsel</label>
-          <input type="text" v-model="dataOrder.nomorPonsel">
-          <label>Alamat Lengkap</label>
-          <input type="text" v-model="dataOrder.alamatLengkap">
+          <v-text-field type="text" v-model="listUser[0].alamat" label="Alamat Lengkap"></v-text-field>
         </v-card-content>
       <v-card-action>
       <v-btn color="primary" @click="e6 = 4">Lanjutkan</v-btn>
@@ -121,20 +126,47 @@
     <v-stepper-step step="4">Rincian Pemesanan</v-stepper-step>
     <v-stepper-content step="4">
       <v-card class="mb-5">
-        <p>Alamat Real : {{ alamatNotFound }}</p>
-        <p>Kategori Produk : {{ kategoriProduk }}</p>
-        <p>kategori Bangunan : {{ kategoriBangunan }}</p>
-        <p>Nama depan : {{ dataOrder.namaDepan }}</p>
-        <p>Nama belakang : {{ dataOrder.namaBelakang }}</p>
-        <p>Alamat e-mail : {{ dataOrder.email }}</p>
-        <p>Nomor ponsel : {{ dataOrder.nomorPonsel }}</p>
-        <p>Alamat : {{ dataOrder.alamatLengkap }}</p>
-        <p>Provinsi : {{ namaProvinsi }}</p>
-        <p>Kota : {{ namaKota }}</p>
-        <p>Kecamatan : {{ namaKecamatan }}</p>
+        <v-flex v-if="!readyToSubmit">
+        <h4>Kirim tagihan ke alamat e-mail sesuai data registrasi?</h4>
+        <v-btn @click="emailCek = true">Ya</v-btn>
+        <v-btn @click="addEmail = true">Tidak</v-btn>
+        <v-text-field v-if="addEmail && !emailCek" v-model="emailPembayaran" label="insert your e-mail and press enter" v-on:keyup.enter="emailCek = true"></v-text-field>
+        <br>
+        <p v-if="emailCek">Tagihan akan dikirim ke e-mail anda. 
+          Silahkan pilih Lanjutkan untuk melihat rincian pesanan atau Kembali untuk mengubah pesanan</p>
+        <br>
+        <v-btn v-if="emailCek" @click="e6 = 3">Kembali</v-btn>
+        <v-btn v-if="emailCek" @click="readyToSubmit = true">Lanjutkan</v-btn>
+        </v-flex>
+        <v-card v-if="readyToSubmit">
+          <v-card-title>Informasi Data Diri</v-card-title>
+          <v-card-text>
+            <p>Nama : {{ listUser[0].nama }}</p>
+            <p>E-mail : {{ listUser[0].email }}</p>
+            <p>Nomor Ponsel : {{ listUser[0].no_telp }}</p>
+            <p>Alamat Lengkap : {{ listUser[0].alamat }}</p>
+          </v-card-text>
+        </v-card>  
+        <v-card v-if="readyToSubmit">
+          <v-card-title>Informasi Pemesanan</v-card-title>
+          <v-card-text>
+            <p>Tanggal Pemesanan : {{ dataOrder.tgl_order }}</p>
+            <p>Kategori Produk : {{ dataOrder.kategori_produk }}</p>
+            <p>Nama Produk : {{ imageMultipleSelected[0].alt }}</p>
+            <p>Jenis Bangunan : {{ dataOrder.jenis_bangunan }}</p>
+            <p>Jumlah : {{ counterBuyer }} </p>
+            <p>Total Harga : {{ harga }}</p>
+          </v-card-text>
+        </v-card>
+        <v-btn v-if="readyToSubmit" @click="e6 = 3">Kembali</v-btn>
+        <v-btn v-if="readyToSubmit" @click.native="submitForm(), snackbar=true">Pesan Sekarang</v-btn>
+        <v-snackbar v-model="snackbar" auto-height=true :timeout="timeout">
+          <h4>Pesanan Anda Telah Kami Terima</h4>
+          <p>Terimakasih telah menggunakan WINSCORE</p>
+          <p>Kami akan menghubungi Anda untuk konfirmasi pesanan</p>
+          <v-btn :to="'/'">OK</v-btn>
+        </v-snackbar>
       </v-card>
-      <v-btn color="primary" @click="e6 = 1">Continue</v-btn>
-      <v-btn flat @click="e6 = 3">Kembali</v-btn>
     </v-stepper-content>
   </v-stepper>
 </v-app>
@@ -149,16 +181,13 @@ export default {
   data () {
     return {
       e6: 1,
-      toggle_exclusive : 2,
       dataOrder : {
-              namaDepan : '',
-              namaBelakang : '',
-              email : '',
-              nomorPonsel : '',
-              alamatLengkap : '',         
-          },
+        kategori_produk : '',
+        jenis_bangunan : '',
+        tgl_order : new Date().toISOString().substr(0, 10),
+
+      },
       kategoriProduk : '',
-      kategoriBangunan : '',
       provinsis : [],
       kotas : [],
       kecamatans : [],
@@ -174,36 +203,49 @@ export default {
       cctv : false,
       vcon : false,
       smart : false,
-      dataImages : []
+      rumah : false,
+      apart : false,
+      ruko : false,
+      dataImages : [],
+      emailCek : false,
+      addEmail : false,
+      emailPembayaran : '',
+      listUser : [],
+      counterBuyer : 1,
+      imageMultipleSelected : [],
+      readyToSubmit : false,
+      harga : 0,
+      snackbar : false,
+      timeout : 60000
     }
   },
   methods : {
      addKategoriProduk: function(val) {
        this.kategoriProduk = val
+       this.dataOrder.kategori_produk = val
      },
 
      addKategoriBangunan: function(val) {
-       this.kategoriBangunan = val
+       this.dataOrder.jenis_bangunan = val
      },
 
      post: function(){
        this.alamatUser = true;
      },
 
-     onSelectMultipleImage: function(){
-       this.produk += produk.nama; 
-     },
+    onSelectMultipleImage: function (data) {
+      console.log('fire event onSelectMultipleImage: ', data)
+      this.imageMultipleSelected = data
+      console.log(this.imageMultipleSelected)
+    },
 
      depressedButton: function(val){
-       alert(val)
        if (val === 'cctv'){
-         alert(val)
          this.cctv = true
          this.vcon = !this.cctv
          this.smart = !this.cctv
        }
        else if (val === 'vcons'){
-         alert(val)
          this.vcon = true
          this.cctv = !this.vcon
          this.smart = !this.vcon
@@ -213,14 +255,50 @@ export default {
          this.cctv = !this.smart
          this.vcon = !this.smart
        }
+     },
+
+     pressed: function(val){
+       if (val === 'rumah'){
+         this.rumah = true
+         this.apart = !this.rumah
+         this.ruko = !this.rumah
+       }
+       else if(val === 'apart'){
+         this.apart = true
+         this.rumah = !this.apart
+         this.ruko = !this.apart
+       }
+       else if(val === 'ruko'){
+         this.ruko = true
+         this.rumah = !this.ruko
+         this.apart = !this.ruko
+       }
+     },
+
+     increaseCounter: function(){
+       this.counterBuyer += 1;
+     },
+     decreaseCounter: function(){
+       if (this.counterBuyer > 1){
+         this.counterBuyer -= 1;
+       }
+     },
+     submitForm: function(){
+       console.log(this.dataOrder)
+       axios.post('http://localhost:8080/api/order/post', this.dataOrder)
+       
      }
    },
+   
   mounted() {
     axios.get('http://localhost:8080/api/provinsi/list')
-    .then(response => (this.provinsis = response.data.result)),
+    .then(response => (this.provinsis = response.data.result))
 
-    axios.get('http://localhost:8080/api/produk.list')
-    .then(response => (this.produks = response.data.result))
+    axios.get('http://localhost:8080/api/user/list')
+    .then(response => {
+      this.listUser = response.data.result
+      console.log(this.listUser)
+    })
   },
 
   watch : { 
@@ -240,20 +318,29 @@ export default {
     },
 
     kategoriProduk: function (val){
-      axios.get('http://localhost:8080/api/produk/list/' + this.kategoriProduk)
+      axios.get('http://localhost:8080/api/produk/list/' + this.dataOrder.kategori_produk)
       .then(response => {
         let formatted = []
         let getData = response.data.result
-        for (var ket in getData){
+        for (var key in getData){
           formatted.push({
             id: getData[key].id_produk,
             src: getData[key].image,
             alt: getData[key].nama,
+            harga: getData[key].harga
           })
         }
         this.dataImages = formatted
-        console.log(this.dataImages)
       })
+    },
+
+    counterBuyer: function(){
+      this.harga = this.counterBuyer * this.imageMultipleSelected[0].harga
+      console.log(this.counterBuyer)
+      console.log(this.imageMultipleSelected[0].harga)
+      console.log("INI PAD HARGANYA ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+
+
     }
   }
 };
