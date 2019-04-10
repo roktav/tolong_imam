@@ -3,6 +3,7 @@
         <nav-side-bar></nav-side-bar>
         <v-card>
         <v-card-title>
+            
         <div id="detail-produk">
             <h4 class ="display-1 font-weight-medium black--text" align="left">Detail Produk</h4>
 
@@ -13,6 +14,7 @@
             <div class="detail">
                 <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
                 <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br><br>
+                <h4 class = "body-2 left leftmargin">Kategori Produk : {{ detailProduk.kategori_produk }}</h4> <br><br>
                 <h4 class = "body-2 left leftmargin">Harga : Rp {{ detailProduk.harga }}</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Tanggal Batas Garansi : {{ detailProduk.id_garansi.tgl_kadaluarsa}}</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Status : {{ detailProduk.status }}</h4><br/><br>
@@ -41,6 +43,7 @@
             </div>
         </v-card-actions>
         </v-card>
+
         <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
@@ -59,7 +62,8 @@
         data() {
             return {
                 detailProduk: [],
-                dialog: false
+                dialog: false,
+                alert: true
             }
         },
         props: {

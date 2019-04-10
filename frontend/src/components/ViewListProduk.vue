@@ -8,13 +8,15 @@
             <v-app id="inspire">
                 <h4 class ="display-1 font-weight-medium black--text" align="left">Daftar Produk</h4>
                 <v-card-title>
-                    <v-text-field
-                            v-model="search"
-                            append-icon="search"
-                            label="Cari Produk"
-                            single-line
-                            hide-details
-                    ></v-text-field>
+                    <v-flex sm3>
+                        <v-text-field
+                                v-model="search"
+                                append-icon="search"
+                                label="Cari Produk"
+                                single-line
+                                hide-details
+                        ></v-text-field>
+                    </v-flex>
                     <v-spacer></v-spacer>
                     <v-btn class="white--text" color="#009688" @click="expand = !expand"
                         router :to="'/list-produk/tambah-produk'">
@@ -30,7 +32,9 @@
 
                         <template slot="items" slot-scope="props">
                             <td class="text-xs-center">{{ props.item.kode_produk }}</td>
-                            <td class="text-xs-center"><v-btn class="product-name" router :to="{name: 'detail-produk', params: {id_produk: props.item.id_produk}}" flat>{{ props.item.nama }}</v-btn></td>
+                            <td class="text-xs-center"><v-btn class="product-name"
+                                                              router :to="{name: 'detail-produk', params: {id_produk: props.item.id_produk}}"
+                                                              flat>{{ props.item.nama }}</v-btn></td>
                             <td class="text-xs-center">Rp {{ props.item.harga }}</td>
                             <td class="text-xs-center">{{ props.item.status }}</td>
                         </template>
