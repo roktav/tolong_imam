@@ -16,7 +16,7 @@
                 <h4 class = "body-2 left leftmargin">ID Karyawan  	 : UBP131245029</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Jabatan      	 : Manajer Operasional</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Role        	 : Manajer Teknisi</h4><br/><br>
-                <h4 class = "body-2 left leftmargin">Kantor Cabang	 : Jakarta</h4> <br/><br>
+                <h4 class = "body-2 left leftmargin">Kantor Cabang	 : TB Simatupang</h4> <br/><br>
                 <h4 class = "body-2 left leftmargin">Nomor Handphone : 081380831321</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Email           : yesjadimanajer@winscore.com</h4><br/><br>
                 <h4 class = "body-2 left leftmargin">Alamat          : Istiqlal </h4><br/><br>
