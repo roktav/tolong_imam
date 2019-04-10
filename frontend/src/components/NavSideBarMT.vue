@@ -10,30 +10,13 @@
       v-model="drawer.open"
       app
       dark
-      class="primary"
+      class="primary white--text"
+      
 
     >
       <v-divider style= "margin-top : 0"></v-divider>
-      <v-list>
-        <v-list-tile router :to="'/admin-teknisi/list-pesanan'"  active-class="blue-grey lighten-1 black--text">
-          <v-list-tile-action><v-icon>assignment</v-icon></v-list-tile-action>
-          <v-list-tile-content><v-list-tile-title class="body-1">Pesanan</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-        <v-list-tile router :to="'/list-produk'" active-class="blue-grey lighten-1 black--text">
-          <v-list-tile-action><v-icon>store</v-icon></v-list-tile-action>
-          <v-list-tile-content><v-list-tile-title class="body-1">Produk</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-        <v-list-tile router :to="'/list-promosi'" active-class="blue-grey lighten-1 black--text">
-          <v-list-tile-action><v-icon>event</v-icon></v-list-tile-action>
-          <v-list-tile-content><v-list-tile-title class="body-1">Promosi</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-
-      <v-list-tile router :to="'/teknisi/shiftt'" active-class="blue-grey lighten-1 black--text">
+      
+      <v-list-tile router :to="'/teknisi/shift'" active-class="blue-grey lighten-1 white--text">
           <v-list-tile-action><v-icon>schedule</v-icon></v-list-tile-action>
           <v-list-tile-content><v-list-tile-title class="body-1">Kelola Shift</v-list-tile-title>
           </v-list-tile-content>
@@ -46,11 +29,11 @@
 </template>
 
 <script>
-import NavBarVuetify from './NavBarVuetify';
+import NavBarVuetify from './NavBarVuetify2';
 
 
 export default {
-  name: 'NavSideBar',
+  name: 'NavSideBarMT',
   components: {
       'nav-bar-vue': NavBarVuetify
 

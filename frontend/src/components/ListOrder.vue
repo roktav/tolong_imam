@@ -44,9 +44,9 @@
 </template>
 
 <script>
-    import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
-    import axios from 'axios'
+import axios from 'axios'
+import NavSideBar from './NavSideBar';
+import Footer from './FooterUser';
 
     export default {
         name: 'AdminTeknisi',

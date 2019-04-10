@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <nav-side-bar></nav-side-bar>
-    <ul v-for="item in daftarteknisi" :key = "item.id_teknisi">
+   <!-- <ul v-for="item in daftarteknisi" :key = "item.id_teknisi">
     	<li> {{item.nama }}</li>
-    </ul>
+    </ul> -->
     
     <nav-footer></nav-footer>
     <v-card id=daftar-teknisi>
@@ -25,7 +25,6 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.id_teknisi }}</td>
-        <td class="text-xs-left">{{ props.item.id_teknisi }}</td>
         <td class="text-xs-left">{{ props.item.nama }}</td>
         <td class="text-xs-left">{{ props.item.shift }}</td>
         <td class="text-xs-left">{{ props.item.alamat }}</td>
@@ -35,16 +34,14 @@
         	<a class="btn btn-warning btn-xs">
               <router-link :to="{name: 'teknisi-edit', params: {id_teknisi: props.item.id_teknisi}}">Edit</router-link>
             </a>
-        </td>
+        </td> 
       </template>
       
       <v-alert v-slot:no-results :value="true" color="error" icon="warning">
         Your search for "{{ search }}" found no results.
       </v-alert>
     </v-data-table>
-  </v-card>
-  
-   
+  </v-card> 
   </v-app>
   
   
@@ -52,9 +49,9 @@
 
 <script>
 import NavSideBar from './NavSideBar';
-import Footer from './Footer';
+import Footer from './FooterUser';
 import axios from 'axios';
-//import teknisi.vue 
+
 
 export default {
   name: 'AdminTeknisi',
@@ -74,7 +71,7 @@ export default {
             sortable: false,
             value: 'daftarteknisi'
           },
-          { text: 'ID', value: 'id' },
+         
           { text: 'Nama', value: 'nama' },
           { text: 'Shift', value: 'shift' },
           { text: 'Alamat', value: 'alamat' },
@@ -109,7 +106,8 @@ export default {
 #daftar-teknisi {
 	margin-left: 270px;
 	margin-right: 20px;
-	
+	margin-top: 25px;
+
 }
 
 </style>
