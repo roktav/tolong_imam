@@ -57,7 +57,29 @@ public class ProdukModel implements Serializable {
     @JsonIgnore
     private OrderModel order;
 
+    @NotNull
+    @Column(name="kategori_produk", nullable = false)
+    private String kategori_produk;
+
+    public String getKategori_produk() {
+        return kategori_produk;
+    }
+
+    public void setKategori_produk(String kategori_produk) {
+        this.kategori_produk = kategori_produk;
+    }
+
+    @NotNull
+    @Column(name = "foto_produk", nullable = false)
     private String foto_produk;
+
+    public String getFoto_produk() {
+        return foto_produk;
+    }
+
+    public void setFoto_produk(String foto_produk) {
+        this.foto_produk = foto_produk;
+    }
 
     public long getId_produk() {
         return id_produk;
