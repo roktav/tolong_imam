@@ -170,7 +170,7 @@
 
 <script>
     import NavSideBar from './NavSideBar';
-    import Footer from './Footer';
+    import Footer from './FooterAdmin';
     import axios from 'axios';
     import DatePicker from './DatePicker';
 

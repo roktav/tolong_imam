@@ -31,7 +31,7 @@ export default [
         name: 'detail-order',
         component: DetailOrder
     },
-    { path : '/ubah/{id_teknisi}', component: TeknisiUpdate}
+    // { path : '/ubah/{id_teknisi}', component: TeknisiUpdate},
     { path : '/teknisi/shift', component: Shift},
     { path : '/manajer-teknisi/profile', component: ManajerTeknisi},
     { path : '/jadwalbulanan', component: JadwalBulanan},
