@@ -1,5 +1,6 @@
 <template>
 <v-app>
+  <nav-bar-user></nav-bar-user>
   <v-stepper v-model="e6" vertical>
     <v-stepper-step :complete="e6 > 1" step="1">Cek Area</v-stepper-step>
     <v-stepper-content step="1">
@@ -7,27 +8,27 @@
         <v-card-text >
           <div v-if="!alamatUser">
             <h4>Apakah anda ingin menggunakan alamat registrasi?</h4>
-            <v-btn @click="e6 = 2">Ya</v-btn>
-            <v-btn @click="post">Tidak</v-btn>
+            <v-btn @click="e6 = 2" color="#00897B"><strong class="white--text">Ya</strong></v-btn>
+            <v-btn @click="post" color="#00897B"><strong class="white--text">Tidak</strong></v-btn>
           </div>
           <div v-if="alamatUser">
           <v-flex xs12 sm3 md3 align-left: start>
-          <label>Provinsi</label>
-          <v-select v-model="namaProvinsi" :items="provinsis" item-text="nama">
+          <p class="text-sm-left"><strong>Provinsi</strong></p>
+          <v-select solo v-model="namaProvinsi" :items="provinsis" item-text="nama" label="Pilih provinsi anda">
             <!-- <option v-for="provinsi in provinsis" :key="provinsi.nama">{{ provinsi.nama }}</option> -->
           </v-select>
           </v-flex>
           <br>
-          <label>Kabupaten/Kota</label>
+          <p class="text-sm-left"><strong>Kabupaten/Kota</strong></p>
           <v-flex xs12 sm6 md6>
-          <v-select v-model="namaKota" :items="kotas" item-text="nama">
+          <v-select solo v-model="namaKota" :items="kotas" item-text="nama" label="Pilih kabupaten/kota anda">
             <!-- <option v-for="kota in kotas" :key="kota.nama">{{ kota.nama }}</option> -->
           </v-select>
           </v-flex>
           <br>
-          <label>Kecamatan</label>
+          <p class="text-sm-left"><strong>Kecamatan</strong></p>
           <v-flex xs12 sm3 md3>
-          <v-select v-model="namaKecamatan" :items="kecamatans" item-text="nama">
+          <v-select solo v-model="namaKecamatan" :items="kecamatans" item-text="nama" label="Pilih kecamatan anda">
             <!-- <option v-for="kecamatan in kecamatans" :key="kecamatan.nama">{{ kecamatan.nama }}</option> -->
           </v-select>
           </v-flex>
@@ -36,21 +37,20 @@
         </v-card-text>
         <div v-if="alamatUser">
         <v-card-actions>
-          <v-btn color="primary" @click="e6 = 2">Lanjutkan</v-btn>
           <v-dialog v-model="dialog">
           <template v-slot:activator="{ on }">
-          <v-btn flat v-on="on">Alamat Tidak Ditemukan?</v-btn>
+          <v-btn v-on="on" color="#FF5722" :round="true" class="white--text">Alamat Tidak Ditemukan?</v-btn>
           </template>
           <v-card>
-            <v-card-title>Form Pengisian Alamat</v-card-title>
+            <v-card-title><strong>Form Pengisian Alamat</strong></v-card-title>
             <v-card-text>
               <v-text-field v-model="alamatNotFound" label="insert your address here"></v-text-field>
               <br>
-              <v-btn @click="e6 = 2, dialog=false">Submit</v-btn>
-              <v-btn @click="dialog = false">Cancel</v-btn>
+              <v-btn @click="e6 = 2, dialog=false" :round="true" color="#03A9F4" class="white--text">Submit</v-btn>
             </v-card-text>
           </v-card>
           </v-dialog>
+          <v-btn color="#03A9F4" @click="e6 = 2" :round="true" class="white--text">Lanjutkan</v-btn>
         </v-card-actions>
         </div>
       </v-card>
@@ -61,18 +61,18 @@
       <v-card class="mb-5">
       <v-card-text>
           <v-flex xs12 md6 sm6>
-          <p>Pilih Kategori Produk</p>
-          <v-btn color="primary" @click="addKategoriProduk('cctv'), depressedButton('cctv')" :disabled="cctv">CCTV</v-btn>
-          <v-btn color="primary" @click="addKategoriProduk('vcon'), depressedButton('vcons')" :disabled="vcon">VCON</v-btn>
-          <v-btn color="primary" @click="addKategoriProduk('smartLiving'), depressedButton('smart')" :disabled="smart">Smart Living</v-btn>
+          <p>Pilih kategori produk yang Anda inginkan</p>
+          <v-btn @click="addKategoriProduk('CCTV'), depressedButton('cctv')" :disabled="cctv"><strong>CCTV</strong></v-btn>
+          <v-btn @click="addKategoriProduk('VCON'), depressedButton('vcons')" :disabled="vcon"><strong>VCON</strong></v-btn>
+          <v-btn @click="addKategoriProduk('Smart Living'), depressedButton('smart')" :disabled="smart"><strong>Smart Living</strong></v-btn>
         </v-flex>
         <v-spacer></v-spacer>
         <v-flex xs12 md6 sm6>
           <br>
           <p>Pilih Kategori Bangunan</p>
-          <v-btn color="primary" @click="addKategoriBangunan('Rumah'), pressed('rumah')" :disabled="rumah">Rumah</v-btn>
-          <v-btn color="primary" @click="addKategoriBangunan('Apartemen'), pressed('apart')" :disabled="apart">Apartemen</v-btn>
-          <v-btn color="primary" @click="addKategoriBangunan('Ruko'), pressed('ruko')" :disabled="ruko">Ruko</v-btn>
+          <v-btn @click="addKategoriBangunan('Rumah'), pressed('rumah')" :disabled="rumah"><strong>Rumah</strong></v-btn>
+          <v-btn @click="addKategoriBangunan('Apartemen'), pressed('apart')" :disabled="apart"><strong>Apartemen</strong></v-btn>
+          <v-btn @click="addKategoriBangunan('Ruko'), pressed('ruko')" :disabled="ruko"><strong>Ruko</strong></v-btn>
         </v-flex>
         <v-spacer></v-spacer>
         <v-flex xs12 md6 sm6>
@@ -83,22 +83,21 @@
           :useLabel="true"
           @onselectmultipleimage="onSelectMultipleImage">
           </vue-select-image>
-            
-            <v-flex xs12 v-if="cctv || vcon || smart">
-            <v-btn @click="increaseCounter">
-              <v-icon small>add</v-icon>
-            </v-btn>          
-            <p>Jumlah Item : {{ counterBuyer }}</p>          
-            <v-btn @click="decreaseCounter">
-              <v-icon small>remove</v-icon>
-            </v-btn>
+          <span v-for="(imgSelected, index) in imageMultipleSelected" :key="index">
+              <span>Detail = {{ imgSelected.detail }}, </span>
+          </span>
+            <v-flex xs9 sm3 md3 v-if="cctv || vcon || smart">
+              <p>Jumlah Pesanan : {{ counterBuyer }}</p>
+              <v-icon @click="increaseCounter">add</v-icon>         
+              <v-icon @click="decreaseCounter">remove</v-icon>
             </v-flex>
 
         </v-flex>
       </v-card-text>
       <v-card-action>
-        <v-btn color="primary" @click="e6 = 3">Lanjutkan</v-btn>
-        <v-btn flat @click="e6 = 1">Kembali</v-btn>
+        <v-btn color="#FF5722" :round="true" @click="e6 = 1" class="white--text">Kembali</v-btn>
+        <v-btn @click="e6 = 3" color="#03A9F4" :round="true" class="white--text">Lanjutkan</v-btn>
+        
       </v-card-action>
       </v-card>
     </v-stepper-content>
@@ -117,8 +116,8 @@
           <v-text-field type="text" v-model="listUser[0].alamat" label="Alamat Lengkap"></v-text-field>
         </v-card-content>
       <v-card-action>
-      <v-btn color="primary" @click="e6 = 4">Lanjutkan</v-btn>
-      <v-btn flat @click="e6 = 2">Kembali</v-btn>
+      <v-btn color="#FF5722" :round="true" class="white--text" @click="e6 = 2" >Kembali</v-btn>
+      <v-btn color="#03A9F4" :round="true" @click="e6 = 4" class="white--text">Lanjutkan</v-btn>
       </v-card-action>
       </v-card>
     </v-stepper-content>
@@ -128,56 +127,70 @@
       <v-card class="mb-5">
         <v-flex v-if="!readyToSubmit">
         <h4>Kirim tagihan ke alamat e-mail sesuai data registrasi?</h4>
-        <v-btn @click="emailCek = true">Ya</v-btn>
-        <v-btn @click="addEmail = true">Tidak</v-btn>
+        <v-btn @click="emailCek = true" color="#00897B"><strong class="white--text">Ya</strong></v-btn>
+        <v-btn @click="addEmail = true" color="#00897B"><strong class="white--text">Tidak</strong></v-btn>
         <v-text-field v-if="addEmail && !emailCek" v-model="emailPembayaran" label="insert your e-mail and press enter" v-on:keyup.enter="emailCek = true"></v-text-field>
         <br>
-        <p v-if="emailCek">Tagihan akan dikirim ke e-mail anda. 
+        <p v-if="emailCek" class="text-md-center">Tagihan akan dikirim ke e-mail anda. 
           Silahkan pilih Lanjutkan untuk melihat rincian pesanan atau Kembali untuk mengubah pesanan</p>
         <br>
-        <v-btn v-if="emailCek" @click="e6 = 3">Kembali</v-btn>
-        <v-btn v-if="emailCek" @click="readyToSubmit = true">Lanjutkan</v-btn>
+        <v-btn v-if="emailCek" @click="e6 = 3" color="#FF5722" :round="true" class="white--text">Kembali</v-btn>
+        <v-btn v-if="emailCek" @click="readyToSubmit = true" color="#03A9F4" :round="true" class="white--text">Lanjutkan</v-btn>
         </v-flex>
-        <v-card v-if="readyToSubmit">
-          <v-card-title>Informasi Data Diri</v-card-title>
-          <v-card-text>
-            <p>Nama : {{ listUser[0].nama }}</p>
-            <p>E-mail : {{ listUser[0].email }}</p>
-            <p>Nomor Ponsel : {{ listUser[0].no_telp }}</p>
-            <p>Alamat Lengkap : {{ listUser[0].alamat }}</p>
-          </v-card-text>
-        </v-card>  
-        <v-card v-if="readyToSubmit">
-          <v-card-title>Informasi Pemesanan</v-card-title>
-          <v-card-text>
-            <p>Tanggal Pemesanan : {{ dataOrder.tgl_order }}</p>
-            <p>Kategori Produk : {{ dataOrder.kategori_produk }}</p>
-            <p>Nama Produk : {{ imageMultipleSelected[0].alt }}</p>
-            <p>Jenis Bangunan : {{ dataOrder.jenis_bangunan }}</p>
-            <p>Jumlah : {{ counterBuyer }} </p>
-            <p>Total Harga : {{ harga }}</p>
-          </v-card-text>
-        </v-card>
-        <v-btn v-if="readyToSubmit" @click="e6 = 3">Kembali</v-btn>
-        <v-btn v-if="readyToSubmit" @click.native="submitForm(), snackbar=true">Pesan Sekarang</v-btn>
+        <div v-if="readyToSubmit">
+          <v-toolbar><v-toolbar-title>Informasi Data Diri</v-toolbar-title></v-toolbar>
+            <v-card>
+              <v-card-text>
+                <p>Nama : {{ listUser[0].nama }}</p>
+                <p>E-mail : {{ listUser[0].email }}</p>
+                <p>Nomor Ponsel : {{ listUser[0].no_telp }}</p>
+                <p>Alamat Lengkap : {{ listUser[0].alamat }}</p>
+              </v-card-text>
+            </v-card>  
+            <br>
+            <v-toolbar><v-toolbar-title>Informasi Pemesanan</v-toolbar-title></v-toolbar>
+            <v-card>
+              <v-card-text>
+                <p>Tanggal Pemesanan : {{ dataOrder.tgl_order }}</p>
+                <p>Kategori Produk : {{ dataOrder.kategori_produk }}</p>
+                <p>Nama Produk : {{ imageMultipleSelected[0].alt }}</p>
+                <p>Jenis Bangunan : {{ dataOrder.jenis_bangunan }}</p>
+                <p>Jumlah : {{ counterBuyer }} </p>
+                <p>Total Harga : {{ harga }}</p>
+              </v-card-text>
+            </v-card>
+          </div>
+          <br>
+        <v-btn v-if="readyToSubmit" @click="e6 = 3" color="#FF5722" :round="true" class="white--text">Kembali</v-btn>
+        <v-btn v-if="readyToSubmit" @click.native="submitForm(), snackbar=true" color="#03A9F4" :round="true" class="white--text">Pesan Sekarang</v-btn>
         <v-snackbar v-model="snackbar" auto-height=true :timeout="timeout">
           <h4>Pesanan Anda Telah Kami Terima</h4>
           <p>Terimakasih telah menggunakan WINSCORE</p>
           <p>Kami akan menghubungi Anda untuk konfirmasi pesanan</p>
-          <v-btn :to="'/'">OK</v-btn>
+          <v-btn :to="'/'" color="#03A9F4" :round="true" class="white--text">OK</v-btn>
         </v-snackbar>
       </v-card>
     </v-stepper-content>
   </v-stepper>
+  <nav-footer-user></nav-footer-user>
 </v-app>
+
+
 </template>
 
 
 <script>
 /* eslint-disable */
+import NavBarUser from './NavBarUser';
+import FooterUser from './FooterUser';
 import axios from 'axios';
 
 export default {
+  name : 'order',
+  components : {
+    'nav-bar-user': NavBarUser,
+    'nav-footer-user' : FooterUser
+  },
   data () {
     return {
       e6: 1,
@@ -216,12 +229,12 @@ export default {
       readyToSubmit : false,
       harga : 0,
       snackbar : false,
-      timeout : 60000
+      timeout : 60000,
+      detail : ''
     }
   },
   methods : {
      addKategoriProduk: function(val) {
-       alert(val)
        this.kategoriProduk = val
        this.dataOrder.kategori_produk = val
      },
@@ -319,7 +332,6 @@ export default {
     },
 
     kategoriProduk: function (){
-      alert(this.kategoriProduk)
       axios.get('http://localhost:8080/api/list-produk/' + this.kategoriProduk)
       .then(response => {
         let formatted = []
@@ -329,7 +341,8 @@ export default {
             id: getData[key].id_produk,
             src: getData[key].image,
             alt: getData[key].nama,
-            harga: getData[key].harga
+            harga: getData[key].harga,
+            detail: getData[key].detail_produk
           })
         }
         this.dataImages = formatted

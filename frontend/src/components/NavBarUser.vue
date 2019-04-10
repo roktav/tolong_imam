@@ -29,7 +29,7 @@
                     {icon: '', title: 'Promosi', link: ''},
                     {icon: '', title: 'Tips', link: ''},
                     {icon: '', title: 'Bantuan', link: ''},
-                    {icon: '', title: 'Pemesanan', link: ''},
+                    {icon: '', title: 'Pemesanan', link: '/orderTemplate'},
                     {icon: 'account_circle', title: 'Fadli', link: '/admin-teknisi/profile'}
                 ]
             }
