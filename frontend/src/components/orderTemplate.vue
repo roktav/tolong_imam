@@ -198,6 +198,7 @@ export default {
         kategori_produk : '',
         jenis_bangunan : '',
         tgl_order : new Date().toISOString().substr(0, 10),
+        id_pembeli : '',
 
       },
       kategoriProduk : '',
@@ -311,6 +312,7 @@ export default {
     axios.get('http://localhost:8080/api/user/list')
     .then(response => {
       this.listUser = response.data.result
+      this.dataOrder.id_pembeli = "1"
       console.log(this.listUser)
     })
   },

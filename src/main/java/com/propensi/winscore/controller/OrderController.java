@@ -1,12 +1,10 @@
 package com.propensi.winscore.controller;
 
-import com.propensi.winscore.model.ListProdukKey;
-import com.propensi.winscore.model.ListProdukModel;
-import com.propensi.winscore.model.OrderModel;
-import com.propensi.winscore.model.SurveiModel;
+import com.propensi.winscore.model.*;
 import com.propensi.winscore.rest.BaseResponse;
 import com.propensi.winscore.service.ListProdukService;
 import com.propensi.winscore.service.OrderService;
+//import com.propensi.winscore.service.PembeliService;
 import com.propensi.winscore.service.SurveiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +44,9 @@ public class OrderController {
 
     @Autowired
     private SurveiService surveiService;
+
+/*    @Autowired
+    private PembeliService pembeliService;*/
 
 
     @GetMapping
@@ -162,6 +163,7 @@ public class OrderController {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
         java.util.Date date = sdf1.parse((String) getOrder.get("tgl_order"));
         Date tgl_order = new Date(date.getTime());
+
         order.setTgl_order(tgl_order);
         order.setStatus_order("Ordered");
         System.out.println("BERHASIL MASUK POST PADDDDDD");
