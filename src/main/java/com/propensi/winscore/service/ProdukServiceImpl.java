@@ -64,7 +64,7 @@ public class ProdukServiceImpl implements ProdukService {
         System.out.println("produkList = null");
         System.out.println(produkList);
         for (ProdukModel produk : produkList){
-            if (produk.getKategori().equalsIgnoreCase(kategori)) {
+            if (produk.getKategori_produk().equalsIgnoreCase(kategori)) {
                 produkSorted.add(produk);
             }
         }

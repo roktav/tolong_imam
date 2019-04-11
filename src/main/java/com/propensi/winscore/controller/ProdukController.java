@@ -3,12 +3,15 @@ package com.propensi.winscore.controller;
 import com.propensi.winscore.model.GaransiModel;
 import com.propensi.winscore.model.ProdukModel;
 import com.propensi.winscore.rest.BaseResponse;
+import com.propensi.winscore.service.FileStorageService;
 import com.propensi.winscore.service.GaransiServiceImpl;
 import com.propensi.winscore.service.ProdukService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -25,6 +28,9 @@ public class ProdukController {
 
     @Autowired
     private ProdukService produkService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @Autowired
     private GaransiServiceImpl garansiService;
@@ -80,21 +86,35 @@ public class ProdukController {
 
     @CrossOrigin
     @PostMapping("/list-produk/tambah-produk")
-    public BaseResponse<ProdukModel> addProduk(@RequestBody Map<String, Object> getproduk) throws ParseException {
+    public BaseResponse<ProdukModel> addProduk(@RequestParam(value = "nama", required = true) String nama,
+                                                @RequestParam(value = "kategori_produk", required = true) String kategoriProduk,
+                                                @RequestParam(value = "kode_produk", required = true) String kodeProduk,
+                                                @RequestParam(value = "detail_produk", required = true) String detailProduk,
+                                                @RequestParam(value = "status", required = true) String status,
+                                                @RequestParam(value = "harga", required = true) Long harga,
+                                                @RequestParam(value = "tgl_garansi", required = true) String tglGaransi,
+                                                @RequestParam(value = "foto_produk", required = true) MultipartFile fotoProduk) throws ParseException {
         BaseResponse<ProdukModel> response = new BaseResponse<>();
         ProdukModel produk = new ProdukModel();
         GaransiModel garansi = new GaransiModel();
-        produk.setNama((String) getproduk.get("nama"));
-        produk.setKode_produk((String) getproduk.get("kode_produk"));
-        produk.setDetail_produk((String) getproduk.get("detail_produk"));
-        produk.setStatus((String) getproduk.get("status"));
-        produk.setHarga(Long.valueOf((String) getproduk.get("harga")));
-        produk.setKategori_produk((String) getproduk.get("kategori_produk"));
-        // produk.setFoto_produk((String) getproduk.get("foto_produk"));
+        produk.setNama(nama);
+        produk.setKode_produk(kodeProduk);
+        produk.setDetail_produk(detailProduk);
+        produk.setStatus(status);
+        produk.setHarga(harga);
+        produk.setKategori_produk(kategoriProduk);
+        String fileName = fileStorageService.storeFile(fotoProduk);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString();
+
+        produk.setFoto_produk(fileDownloadUri);
         System.out.println(produk.getId_produk());
         //System.out.println(produk.toString());
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date = sdf1.parse((String) getproduk.get("tgl_garansi"));
+        java.util.Date date = sdf1.parse(tglGaransi);
         Date tglKadaluarsa = new Date(date.getTime());
         garansi.setTgl_kadaluarsa(tglKadaluarsa);
         garansiService.addNewGaransi(garansi);

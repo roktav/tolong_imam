@@ -30,12 +30,7 @@ public class ProdukModel implements Serializable {
 	@Size(max = 50)
 	@Column(name = "nama", nullable = false)
     private String nama;
-    
-    @NotNull
-	@Size(max = 50)
-	@Column(name = "kategori", nullable = false)
-	private String kategori;
-	
+
 	@NotNull
 	@Size(max = 15)
 	@Column(name = "kode_produk", nullable = false)
@@ -76,18 +71,18 @@ public class ProdukModel implements Serializable {
         this.kategori_produk = kategori_produk;
     }
 
-    /*@NotNull
-        @Column(name = "foto_produk", nullable = false)
-        private String foto_produk;
+    @NotNull
+    @Column(name = "foto_produk", nullable = false)
+    private String foto_produk;
 
-        public String getFoto_produk() {
-            return foto_produk;
-        }
+    public String getFoto_produk() {
+        return foto_produk;
+    }
 
-        public void setFoto_produk(String foto_produk) {
-            this.foto_produk = foto_produk;
-        }
-    */
+    public void setFoto_produk(String foto_produk) {
+        this.foto_produk = foto_produk;
+    }
+
     public long getId_produk() {
         return id_produk;
     }
@@ -158,10 +153,6 @@ public class ProdukModel implements Serializable {
 
     public void setOrder(OrderModel order) {
         this.order = order;
-    }
-
-    public String getKategori(){
-        return kategori;
     }
 
     public String getImage(){

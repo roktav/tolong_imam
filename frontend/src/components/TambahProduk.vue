@@ -204,7 +204,19 @@
                 this.snackColor = 'success'
                 this.snackText = 'Data berhasil disimpan'
                 console.log(this.newProduk)
-                axios.post('http://localhost:8080/api/list-produk/tambah-produk', this.newProduk)
+                let productFormData = new FormData()
+                for ( var key in this.newProduk ) {
+                    productFormData.append(key, this.newProduk[key]);
+                }
+
+                for (var pair of productFormData.entries()) {
+                    console.log(pair[0]+ ', ' + pair[1]);
+                }
+
+                axios.post('http://localhost:8080/api/list-produk/tambah-produk', productFormData, {
+                    'content-type': 'multipart/form-data'
+                })
+
                     .then(response => {
                         const idProduk = response.data.result.id_produk
                         this.$router.push(`/list-produk/detail-produk/${idProduk}`)
@@ -231,6 +243,7 @@
                 })
                 fileReader.readAsDataURL(files[0])
                 this.image = files[0]
+                this.newProduk.foto_produk = files[0]
             },
             createImage(file) {
                 const image = new Image();
