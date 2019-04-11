@@ -106,7 +106,7 @@ public class ProdukController {
         String fileName = fileStorageService.storeFile(fotoProduk);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/productPicture/")
                 .path(fileName)
                 .toUriString();
 

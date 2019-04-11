@@ -163,6 +163,7 @@ public class OrderController {
         java.util.Date date = sdf1.parse((String) getOrder.get("tgl_order"));
         Date tgl_order = new Date(date.getTime());
         order.setTgl_order(tgl_order);
+        order.setStatus_order("Ordered");
         System.out.println("BERHASIL MASUK POST PADDDDDD");
         orderService.insert(order);
     }

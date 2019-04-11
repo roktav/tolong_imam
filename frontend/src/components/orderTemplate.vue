@@ -75,7 +75,7 @@
           <v-btn @click="addKategoriBangunan('Ruko'), pressed('ruko')" :disabled="ruko"><strong>Ruko</strong></v-btn>
         </v-flex>
         <v-spacer></v-spacer>
-        <v-flex xs12 md6 sm6>
+        <v-flex xs12 md12 sm12>
           <br>
           <p>Pilih Produk yang Anda Inginkan</p>
           <vue-select-image :dataImages="dataImages" 
@@ -86,9 +86,10 @@
           <span v-for="(imgSelected, index) in imageMultipleSelected" :key="index">
               <span>Detail = {{ imgSelected.detail }}, </span>
           </span>
-            <v-flex xs9 sm3 md3 v-if="cctv || vcon || smart">
-              <p>Jumlah Pesanan : {{ counterBuyer }}</p>
-              <v-icon @click="increaseCounter">add</v-icon>         
+            <v-flex xs12 sm3 md3 v-if="cctv || vcon || smart">
+              <span class="subheading">Jumlah Pesanan : </span>
+              <v-icon @click="increaseCounter">add</v-icon>
+              <span class="subheading">{{counterBuyer}}</span>
               <v-icon @click="decreaseCounter">remove</v-icon>
             </v-flex>
 
@@ -97,7 +98,6 @@
       <v-card-action>
         <v-btn color="#FF5722" :round="true" @click="e6 = 1" class="white--text">Kembali</v-btn>
         <v-btn @click="e6 = 3" color="#03A9F4" :round="true" class="white--text">Lanjutkan</v-btn>
-        
       </v-card-action>
       </v-card>
     </v-stepper-content>
@@ -339,7 +339,7 @@ export default {
         for (var key in getData){
           formatted.push({
             id: getData[key].id_produk,
-            src: getData[key].image,
+            src: getData[key].foto_produk,
             alt: getData[key].nama,
             harga: getData[key].harga,
             detail: getData[key].detail_produk

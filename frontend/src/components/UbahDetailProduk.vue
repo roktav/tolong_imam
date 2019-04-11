@@ -6,7 +6,7 @@
             <br>
         </div>
         <v-card-text>
-            <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
+            <img class = "avatar left leftmargin" v-bind:src="ubahDetailProduk.foto_produk">
 
             <div class="detail">
                 <v-flex sm8>
