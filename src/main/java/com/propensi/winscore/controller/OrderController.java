@@ -144,6 +144,7 @@ public class OrderController {
         Optional<SurveiModel> survei = surveiService.getSurveiByIdOrder(id_order);
         if(survei.isPresent()){
             SurveiModel surveiM = survei.get();
+            System.out.println(surveiM.getTanggal_survei());
             response.setMessage("success");
             response.setStatus(200);
             response.setResult(surveiM);

@@ -17,7 +17,8 @@ public class KabKotaModel implements Serializable {
 	private long id_kabkota;
 
 	@OneToMany(mappedBy = "kabkota", fetch = FetchType.LAZY, cascade= CascadeType.PERSIST)
-	private List<KecamatanModel> listKecamatan;
+    @JsonIgnore
+    private List<KecamatanModel> listKecamatan;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_provinsi", referencedColumnName="id_provinsi",nullable = false)

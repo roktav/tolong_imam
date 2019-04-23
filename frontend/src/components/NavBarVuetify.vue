@@ -30,7 +30,7 @@
             return {
                 menuItems: [
                     {icon: 'home', title: 'Beranda', link: '/'},
-                    {icon: 'account_circle', title: 'Fadli', link: '/admin-teknisi/profile'}
+                    {icon: 'account_circle', title: 'Fadli', link: '/manajer-teknisi/profile'}
                 ]
             }
         },

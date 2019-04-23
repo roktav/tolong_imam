@@ -1,10 +1,11 @@
 <template>
 <v-app>
   <nav-bar-user></nav-bar-user>
+
   <v-stepper v-model="e6" vertical>
     <v-stepper-step :complete="e6 > 1" step="1">Cek Area</v-stepper-step>
     <v-stepper-content step="1">
-      <v-card class="mb-5" >
+      <v-card class="order mb-5" >
         <v-card-text >
           <div v-if="!alamatUser">
             <h4>Apakah anda ingin menggunakan alamat registrasi?</h4>
@@ -163,7 +164,7 @@
           <br>
         <v-btn v-if="readyToSubmit" @click="e6 = 3" color="#FF5722" :round="true" class="white--text">Kembali</v-btn>
         <v-btn v-if="readyToSubmit" @click.native="submitForm(), snackbar=true" color="#03A9F4" :round="true" class="white--text">Pesan Sekarang</v-btn>
-        <v-snackbar v-model="snackbar" auto-height=true :timeout="timeout">
+        <v-snackbar v-model="snackbar" :auto-height="true" :timeout="timeout">
           <h4>Pesanan Anda Telah Kami Terima</h4>
           <p>Terimakasih telah menggunakan WINSCORE</p>
           <p>Kami akan menghubungi Anda untuk konfirmasi pesanan</p>
@@ -362,3 +363,7 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  
+</style>
