@@ -23,7 +23,7 @@ public class UserController{
     @GetMapping(value="/list")
     private Object viewAllUser(){
         BaseResponse<List<UserModel>> response = new BaseResponse<List<UserModel>>();
-        List<UserModel> listUser = userService.getAllUser();
+        List<UserModel> listUser = userService.getUserRoleList();
         response.setStatus(200);
         response.setMessage("success");
         response.setResult(listUser);

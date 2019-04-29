@@ -1,31 +1,26 @@
 package com.propensi.winscore.model;
 
-import org.apache.tomcat.jni.User;
-
-import java.io.Serializable;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name= "admin")
 public class AdminModel implements Serializable {
-	@Id
+
 	@OneToOne
 	@JoinColumn(name = "id_admin",  referencedColumnName="id_user")
 	private UserModel id_admin;
-	
-	@NotNull
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
 	@Column(name = "id_pegawai", nullable = false)
 	private String id_pegawai;
 
 	@NotNull
 	@Column(name = "username", nullable = false)
 	private String username;
-	
-	@NotNull
-	@Column(name = "role", nullable = false)
-	private String role;
 	
 	@NotNull
 	@Column(name = "jabatan", nullable = false)
@@ -63,13 +58,6 @@ public class AdminModel implements Serializable {
 		this.username = username;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getJabatan() {
 		return jabatan;

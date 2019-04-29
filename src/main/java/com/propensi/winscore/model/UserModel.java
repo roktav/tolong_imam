@@ -18,10 +18,7 @@ public class UserModel implements Serializable {
 	@NotNull
 	@Column(name = "email", nullable = false)
 	private String email;
-	
-	@NotNull
-	@Column(name = "foto", nullable = false)
-	private String foto;
+
 	
 	@NotNull
 	@Column(name = "nama", nullable = false)
@@ -34,6 +31,10 @@ public class UserModel implements Serializable {
 	@NotNull
 	@Column(name = "alamat", nullable = false)
 	private String alamat;
+
+    @NotNull
+    @Column(name = "role", nullable = false)
+    private String role;
 
     public long getId_user() {
         return id_user;
@@ -59,14 +60,6 @@ public class UserModel implements Serializable {
         this.email = email;
     }
 
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
     public String getNama() {
         return nama;
     }
@@ -89,5 +82,13 @@ public class UserModel implements Serializable {
 
     public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

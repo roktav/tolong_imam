@@ -1,12 +1,13 @@
 package com.propensi.winscore.service;
 
-import java.util.List;
-
 import com.propensi.winscore.model.UserModel;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
 public interface UserService {
-    List<UserModel> getAllUser();
+    UserModel addUser(UserModel user);
+    UserModel getUserByEmail(String email);
+    UserModel getUserById(long id);
+    List<UserModel> getUserRoleList();
+    void deleteUser(UserModel userModel);
 }
