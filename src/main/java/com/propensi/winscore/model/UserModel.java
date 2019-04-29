@@ -1,12 +1,15 @@
 package com.propensi.winscore.model;
 
+import com.propensi.winscore.model.audit.DateAudit;
+import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 @Table(name= "user")
-public class UserModel implements Serializable {
+public class UserModel extends DateAudit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id_user;
@@ -35,6 +38,21 @@ public class UserModel implements Serializable {
     @NotNull
     @Column(name = "role", nullable = false)
     private String role;
+
+    public UserModel(String nama, String password, String email, String no_telp, String alamat, String role){
+        super();
+        this.nama = nama;
+        this.password = password;
+        this.email = email;
+        this.no_telp = no_telp;
+        this.alamat = alamat;
+        this.role = role;
+    }
+
+    public UserModel(){
+        super();
+
+    }
 
     public long getId_user() {
         return id_user;
