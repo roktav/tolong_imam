@@ -7,6 +7,7 @@ import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSelectImage from 'vue-select-image'
+import { store } from './store'
 
 Vue.config.productionTip = false
 
@@ -31,5 +32,6 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router: router
+  router: router,
+  store,
 }).$mount('#app')

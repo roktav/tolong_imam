@@ -30,6 +30,7 @@ public class ProvinsiController {
         response.setMessage("success");
         response.setResult(listProvinsi);
         System.out.println("Masuk ke provinsi");
+        System.out.println(listProvinsi);
         return response;
     }
 

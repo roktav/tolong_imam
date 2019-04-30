@@ -1,5 +1,7 @@
 package com.propensi.winscore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,7 +19,8 @@ public class ProvinsiModel implements Serializable {
 	private String nama;
 
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY, cascade= CascadeType.PERSIST)
-	private List<KabKotaModel> listKabKota;
+	@JsonIgnore
+    private List<KabKotaModel> listKabKota;
 
     public long getId_provinsi() {
         return id_provinsi;

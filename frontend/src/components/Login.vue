@@ -29,7 +29,7 @@
                             </v-card-text>
                             <v-card-actions>
                                 <v-spacer></v-spacer>
-                                <v-btn color="primary" href="/admin-teknisi/profile">Login</v-btn>
+                                <v-btn color="primary" @click="login">Login</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-flex>
@@ -42,32 +42,28 @@
 <script>
     export default {
         data: () => ({
-            drawer: null
+            drawer: null,
+            username : null,
+            password : null,
         }),
 
         props: {
             source: String
         },
-        data:{
-            username: '',
-            password: '',
-        },
         methods: {
-            login(){
-                var params = new URLSearchParams();
-                params.append('grant_type', 'password');
-                params.append('login', this.username);
-                params.append('password',this.password);
-                axios({
-                    method:'post',
-                    url:'oauth/token',
-                    auth:{username:this.password},
-                    headers: {"Content-type": "application/x-www-form-urlencoded; charset=utf-8"},
-                    data:params
-                }).then(function(response){
-                    set_cookie("access_token",response.data.access_token);
-                    document.location.replace("/");
-                });
+            /* eslint-disable */
+            async login(){
+                const user = {
+                    username : this.username,
+                    password : this.password,
+                }
+                console.log("mama")
+                console.log(this.$store.state.token)
+                await this.$store.dispatch('retrieveToken', user)
+                console.log("gilaa")
+                this.$router.push({
+                    name : 'profile',
+                })
             }
         }
     }

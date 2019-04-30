@@ -1,5 +1,6 @@
 package com.propensi.winscore.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class OrderModel implements Serializable {
 
 	@NotNull
 	@Column(name = "tgl_order", nullable = false)
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date tgl_order;
 
 	@NotNull

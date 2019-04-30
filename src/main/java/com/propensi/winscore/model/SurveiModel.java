@@ -1,5 +1,7 @@
 package com.propensi.winscore.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,6 +21,7 @@ public class SurveiModel implements Serializable {
 
     @NotNull
     @Column(name = "tanggal_survei", nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date tanggal_survei;
 
     @NotNull

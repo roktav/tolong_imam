@@ -20,6 +20,9 @@
                 <v-icon left dark> {{item.icon}} </v-icon>
                 {{item.title}}
             </v-btn>
+            <v-btn v-if='loggedIn' :to="{name: 'logout'}">
+                Logout
+            </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -30,13 +33,18 @@
             return {
                 menuItems: [
                     {icon: 'home', title: 'Beranda', link: '/'},
-                    {icon: 'account_circle', title: 'Fadli', link: '/admin-teknisi/profile'}
+                    {icon: 'account_circle', title: 'Fadli', link: '/manajer-teknisi/profile'}
                 ]
             }
         },
         methods: {
             toHome(){
                 this.$router.push('/')
+            }
+        },
+        computed: {
+            loggedIn() {
+                return this.$store.getters.loggedIn
             }
         }
 

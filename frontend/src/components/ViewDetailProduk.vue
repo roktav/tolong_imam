@@ -10,7 +10,7 @@
         </div>
         </v-card-title>
         <v-card-text>
-            <img class = "avatar left leftmargin" src="@/assets/images/CCTV.jpg">
+            <img class = "avatar left leftmargin" v-bind:src="detailProduk.foto_produk">
             <div class="detail">
                 <h4 class = "title left leftmargin">{{ detailProduk.nama }}</h4> <br/> <br/>
                 <h4 class = "body-2 left leftmargin">Kode Produk : {{ detailProduk.kode_produk }}</h4> <br><br>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+/* eslint-disable */
     import NavSideBar from './NavSideBar';
     import FooterAdmin from './FooterAdmin';
     import axios from 'axios'

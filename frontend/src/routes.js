@@ -10,6 +10,7 @@ import JadwalBulanan from './components/JadwalBulanan.vue'
 import ListProduk from './components/ListProduk.vue'
 import ListOrder from './components/ListOrder.vue'
 import LoginComponent from "./components/Login.vue"
+import LogoutComponent from "./components/Logout.vue"
 import SecureComponent from "./components/secure.vue"
 import Register from "./components/Register.vue"
 import RegisterAdmin from "./components/RegisterAdmin"
@@ -25,19 +26,24 @@ import UbahDetailPembeli from './components/UbahDetailPembeli.vue'
 export default [
     { path : '/register', component: Register},
     { path : '/admin-register', component: RegisterAdmin},
-    { path : '/', component: Homepage},
+    { path : '/', name:'home', component: Homepage},
     { path : '/list-produk', component: ViewListProduk},
     { path : '/list-produk/detail-produk/:id_produk', name: 'detail-produk', component: ViewDetailProduk},
     { path : '/list-produk/detail-produk/:id_produk/ubah-detail-produk', component: UbahDetailProduk},
     { path : '/list-produk/tambah-produk', component: TambahProduk},
     { path : '/admin-teknisi', component: AdminTeknisi},
-    { path : '/admin-teknisi/profile', component: Profile},
-    { path : '/teknisi', component: Teknisi},
+    { path : '/admin-teknisi/profile', name: 'profile', component: Profile},
+    { path : '/teknisi', name:'teknisi', component: Teknisi},
     { path : '/admin-teknisi/list-pesanan', component: ListOrder},
     {
         path: "/login",
         name: "login",
         component: LoginComponent
+    },
+    {
+        path: "/logout",
+        name: "logout",
+        component: LogoutComponent
     },
     {
         path: "/secure",

@@ -3,7 +3,7 @@
         <nav-side-bar></nav-side-bar>
         <div id="app">
             <v-app id="inspire">
-                <h2 class = "display-1">Daftar Pesanan</h2>
+                <h4 class ="display-1 font-weight-medium black--text" align="left">Daftar Pesanan</h4>
                 <br>
                 <v-card>
                     <v-card-title>
@@ -39,20 +39,21 @@
                 </v-card>
             </v-app>
         </div>
-        <nav-footer></nav-footer>
+        <nav-footer-admin></nav-footer-admin>
     </v-app>
 </template>
 
 <script>
+/* eslint-disable */
 import axios from 'axios'
 import NavSideBar from './NavSideBar';
-import Footer from './FooterUser';
+import FooterAdmin from './FooterAdmin';
 
     export default {
         name: 'AdminTeknisi',
         components: {
             'nav-side-bar': NavSideBar,
-            'nav-footer' : Footer
+            'nav-footer-admin' : FooterAdmin
         },
 
         data () {
