@@ -59,7 +59,7 @@ export default [
     { path : '/admin/list-admin/detail-admin/:id_admin', name: 'detail-admin', component: ViewDetailAdmin},
     { path : '/pembeli/detail-pembeli/:id_user', name: 'detail-pembeli', component: ViewDetailPembeli},
     { path : '/pembeli/detail-pembeli/ubah-detail-pembeli/:id_user', component: UbahDetailPembeli},
-    { path : '/admin-teknisi/list-pesanan', component: ListOrder},
+    { path : '/admin-teknisi/list-pesanan', name: 'list-order', component: ListOrder},
 
 ]
 

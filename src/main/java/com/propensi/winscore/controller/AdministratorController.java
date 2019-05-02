@@ -35,7 +35,7 @@ public class AdministratorController {
 
 
         for (AdminModel i: listAdmin) {
-            serializerAdminUsers.add(new SerializerAdminUser(i.getId_admin(), i));
+            serializerAdminUsers.add(new SerializerAdminUser(i.getUser(), i));
         }
 
         if(listAdmin != null) {
@@ -49,12 +49,11 @@ public class AdministratorController {
         return response;
     }
 
-    /*@GetMapping(value="/list-admin/detail-admin/{id_admin}")
-    public BaseResponses<AdminModel> retrieveDetailAdmin(@PathVariable(value="id_admin") long id_admin) {
+    @GetMapping(value="/list-admin/detail-admin/{username}")
+    public BaseResponses<AdminModel> retrieveDetailAdmin(@PathVariable(value="username") String username) {
         System.out.println("masuk");
         BaseResponses<AdminModel> response = new BaseResponses<AdminModel>();
-        UserModel userModel = userService.getUserById(id_admin).get();
-        AdminModel detailAdmin = adminService.getAdminbyId(id_admin);
+        AdminModel detailAdmin = adminService.getAdminbyUsername(username);
         if(detailAdmin != null) {
             response.setResult(detailAdmin);
             response.setMessage("Success");
@@ -64,7 +63,7 @@ public class AdministratorController {
             response.setMessage("Not Found");
         }
         return response;
-    }*/
+    }
 
     @PostMapping("/post")
     public BaseResponses<AdminModel> addAdmin(@RequestBody Map<String, Object> getAdmin) throws ParseException {
@@ -82,7 +81,7 @@ public class AdministratorController {
 
         adminModel.setId_pegawai((String) getAdmin.get("id_pegawai"));
         adminModel.setJabatan((String) getAdmin.get("jabatan"));
-        adminModel.setId_admin(userModel);
+        adminModel.setUser(userModel);
         adminModel.setUsername((String) getAdmin.get("username"));
         adminModel.setStatus((String) getAdmin.get("status"));
         adminModel.setKantor_cabang((String) getAdmin.get("cabang"));

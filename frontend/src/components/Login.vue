@@ -52,18 +52,21 @@
         },
         methods: {
             /* eslint-disable */
-            async login(){
+            login(){
                 const user = {
                     username : this.username,
                     password : this.password,
                 }
                 console.log("mama")
                 console.log(this.$store.state.token)
-                await this.$store.dispatch('retrieveToken', user)
-                console.log("gilaa")
-                this.$router.push({
-                    name : 'profile',
-                })
+                this.$store.dispatch('retrieveToken', user)
+                    .then( resp => {
+                        console.log(resp)
+                        this.$router.push({
+                            name: 'list-order',
+                        })
+                    })
+                
             }
         }
     }

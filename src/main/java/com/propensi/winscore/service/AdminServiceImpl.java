@@ -3,6 +3,7 @@ package com.propensi.winscore.service;
 import java.util.List;
 
 import com.propensi.winscore.model.AdminModel;
+import com.propensi.winscore.model.UserModel;
 import com.propensi.winscore.repository.AdminDb;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,6 @@ public class AdminServiceImpl implements AdminService {
     public AdminModel getAdminbyUsername(String username) {
         return getAdminDb().findByUsername(username);
     }
-
-    /*@Override
-    public AdminModel getAdminbyId_Pegawai(long id_pegawai) {
-        return adminDb.findById_pegawai(id_pegawai);
-    }*/
 
     @Override
     public void deleteAdmin(AdminModel adminModel) {

@@ -10,7 +10,7 @@ public class AdminModel implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "id_admin",  referencedColumnName="id_user")
-	private UserModel id_admin;
+	private UserModel user;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class AdminModel implements Serializable {
 	private String id_pegawai;
 
 	@NotNull
-	@Column(name = "username", nullable = false)
+	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 	
 	@NotNull
@@ -34,12 +34,12 @@ public class AdminModel implements Serializable {
 	@Column(name = "status", nullable = false)
 	private String status;
 
-	public UserModel getId_admin() {
-		return id_admin;
+	public UserModel getUser() {
+		return user;
 	}
 
-	public void setId_admin(UserModel id_admin) {
-		this.id_admin = id_admin;
+	public void setUser(UserModel user) {
+		this.user = user;
 	}
 
 	public String getId_pegawai() {

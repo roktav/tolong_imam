@@ -39,6 +39,11 @@ public class UserModel extends DateAudit {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
+    private AdminModel admin;
+
     public UserModel(String nama, String password, String email, String no_telp, String alamat, String role){
         super();
         this.nama = nama;

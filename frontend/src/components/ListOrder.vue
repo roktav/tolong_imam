@@ -76,6 +76,7 @@ import FooterAdmin from './FooterAdmin';
             }
         },
         created() {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token')
             axios
                 .get('http://localhost:8080/api/order')
                 .then(response => {
@@ -96,6 +97,9 @@ import FooterAdmin from './FooterAdmin';
                     }
                     console.log(formatted)
                     this.desserts = formatted
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         }
     }

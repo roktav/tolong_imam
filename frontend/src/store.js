@@ -17,12 +17,10 @@ export const store = new Vuex.Store({
     mutations: {
         retrieveToken(state, token){
             state.token = token
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
             console.log(axios.defaults.headers)
         },
         destroyToken(state){
             state.token = null
-            axios.defaults.headers.common['Authorization'] = null
             console.log(axios.defaults.headers)
         }
     },
@@ -38,12 +36,14 @@ export const store = new Vuex.Store({
                     console.log(response)
                     localStorage.setItem('access_token', response.data.accessToken)
                     context.commit('retrieveToken', response.data.accessToken)
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.accessToken
                 })
                 .catch(error => console.log(error.status))
                 .finally(console.log('kelar'))
         },
         destroyToken(context) {
             localStorage.removeItem('access_token')
+            axios.defaults.headers.common['Authorization'] = null
             context.commit('destroyToken')
         }
     }
